@@ -14,7 +14,7 @@ import grse from '../../assets/sponsors/grse.avif';
 import hindustanClub from '../../assets/sponsors/hindustan_club.avif';
 import ilead from '../../assets/sponsors/ilead.avif';
 import itcHotel from '../../assets/sponsors/itc_hotel.avif';
-import jdBirla from '../../assets/sponsors/jd_birla.avif';
+import jdBirla from '../../assets/sponsors/Jd_birla.avif';
 import jis from '../../assets/sponsors/jis.avif';
 import kazirang from '../../assets/sponsors/kazirang.avif';
 import lynq from '../../assets/sponsors/lynq.avif';
