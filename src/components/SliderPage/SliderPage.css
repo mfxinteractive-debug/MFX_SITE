@@ -1,0 +1,170 @@
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-slides {
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  transition: transform 0.6s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Improved text overlay - stronger dark gradient + solid backdrop for readability */
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 100px 30px 50px; /* More space at bottom */
+  text-align: center;
+  color: white;
+  /* Solid dark backdrop + gradient for maximum readability */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
+    transparent 100%
+  );
+  pointer-events: none; /* Allows clicks on dots below */
+}
+
+.carousel-caption h2 {
+  font-size: 3rem;
+  margin: 0 0 12px;
+  font-weight: 800;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+  letter-spacing: 1px;
+}
+
+.carousel-caption p {
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Dots moved BELOW the text - now truly at the bottom */
+.carousel-dots {
+  position: absolute;
+  bottom: 20px; /* Clearly below the caption */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 20; /* Above everything */
+  pointer-events: all; /* Allow clicking */
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.dot:hover {
+  background: white;
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background: white;
+  transform: scale(1.5);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .carousel-slides {
+    height: 65vh;
+  }
+
+  .carousel-caption h2 {
+    font-size: 2.6rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-slides {
+    height: 60vh;
+  }
+
+  .carousel-caption {
+    padding: 90px 20px 45px;
+  }
+
+  .carousel-caption h2 {
+    font-size: 2.2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.2rem;
+  }
+
+  .carousel-dots {
+    bottom: 15px;
+    gap: 10px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-slides {
+    height: 55vh;
+  }
+
+  .carousel-caption {
+    padding: 80px 15px 40px;
+  }
+
+  .carousel-caption h2 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.1rem;
+  }
+
+  .carousel-dots {
+    bottom: 12px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .dot.active {
+    transform: scale(1.4);
+  }
+}

@@ -1,0 +1,193 @@
+
+.landing-container {
+  width: 100%;
+  min-height: 80vh; /* Increased for better presence */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #042b30 0%, #031f24 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional subtle background pattern */
+.landing-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(190, 36, 38, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.landing-content {
+  max-width: 1000px;
+  text-align: center;
+  z-index: 1;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+/* Main heading with gradient highlight */
+.main-heading {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  font-family: "Merriweather", serif;
+}
+
+.highlight {
+  color: #be2426;
+  position: relative;
+  display: inline-block;
+    font-family: "Merriweather", serif;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #be2426, #e74c3c);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.italic-text {
+  font-size: 1.8rem;
+  font-style: italic;
+  margin-bottom: 32px;
+  opacity: 0.95;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: "Merriweather", serif;
+}
+
+.normal-text {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  margin-bottom: 24px;
+  font-weight: 400;
+  opacity: 0.95;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Merriweather", serif;
+}
+
+.button-container {
+  margin-top: 40px;
+}
+
+.contact-btn {
+  background: #ffffff;
+  color: #042b30;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Merriweather", serif;
+}
+
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.contact-btn:hover {
+  background: #be2426;
+  color: #fff;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(190, 36, 38, 0.4);
+}
+
+.contact-btn:hover::before {
+  left: 100%;
+}
+
+.contact-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+  .main-heading {
+    font-size: 3.4rem;
+  }
+  .italic-text {
+    font-size: 1.6rem;
+  }
+  .normal-text {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-container {
+    min-height: 70vh;
+    padding: 60px 20px;
+  }
+  .main-heading {
+    font-size: 2.8rem;
+  }
+  .highlight::after {
+    height: 6px;
+    bottom: -6px;
+  }
+  .italic-text {
+    font-size: 1.4rem;
+  }
+  .normal-text {
+    font-size: 1.05rem;
+  }
+  .contact-btn {
+    padding: 14px 40px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 2.2rem;
+  }
+  .italic-text {
+    font-size: 1.2rem;
+  }
+  .normal-text {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  .contact-btn {
+    padding: 12px 32px;
+    font-size: 1.1rem;
+  }
+}

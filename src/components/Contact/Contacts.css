@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.mfx-contact-page {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0;
+}
+
+.mfx-bg-shape-1, .mfx-bg-shape-2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(45deg, rgba(190, 36, 38, 0.05), rgba(4, 43, 48, 0.05));
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.mfx-bg-shape-1 {
+  top: 10%;
+  right: 5%;
+}
+
+.mfx-bg-shape-2 {
+  bottom: 10%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  animation-duration: 25s;
+  animation-direction: reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+.mfx-contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.mfx-contact-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.mfx-contact-title {
+  font-size: 3.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #be2426, #042b30);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+  font-family: "Merriweather", serif;
+}
+
+.mfx-contact-subtitle {
+  font-size: 1.15rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.mfx-contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+}
+
+.mfx-contact-card, .mfx-form-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.mfx-contact-card h2, .mfx-form-card h2 {
+  font-size: 1.9rem;
+  color: #042b30;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 4px solid #be2426;
+  display: inline-block;
+}
+
+.mfx-company-description, .mfx-form-intro {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  font-size: 1rem;
+}
+
+.mfx-contact-details {
+  margin: 40px 0;
+}
+
+.mfx-contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 35px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.mfx-contact-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.mfx-contact-icon {
+  background: linear-gradient(135deg, #be2426, #ff6b6b);
+  color: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 22px;
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 10px rgba(190, 36, 38, 0.2);
+}
+
+.mfx-contact-item h4 {
+  color: #042b30;
+  margin-bottom: 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.mfx-contact-item p {
+  color: #777;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* FIXED: Email & Phone Links – Now 100% working */
+.mfx-contact-item a {
+  color: #be2426 !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer !important;
+  position: relative;
+  display: inline;
+  transition: all 0.3s ease;
+}
+
+.mfx-contact-item a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #be2426;
+  transition: width 0.3s ease;
+}
+
+.mfx-contact-item a:hover {
+  color: #be2426 !important;
+}
+
+.mfx-contact-item a:hover::after {
+  width: 100%;
+}
+
+.mfx-company-highlight {
+  background: linear-gradient(135deg, #042b30, #0a454c);
+  color: white;
+  padding: 28px;
+  border-radius: 16px;
+  margin-top: 35px;
+  text-align: center;
+}
+
+.mfx-company-highlight h4 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.mfx-company-highlight p {
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.mfx-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.mfx-form-group label {
+  display: block;
+  font-weight: 500;
+  color: #042b30;
+  margin-bottom: 10px;
+  font-size: 0.98rem;
+}
+
+.mfx-form-group input,
+.mfx-form-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.mfx-form-group input:focus,
+.mfx-form-group textarea:focus {
+  outline: none;
+  border-color: #be2426;
+  background: white;
+  box-shadow: 0 5px 20px rgba(190, 36, 38, 0.12);
+}
+
+.mfx-form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.mfx-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.mfx-required-note {
+  color: #999;
+  font-size: 0.88rem;
+}
+
+.mfx-submit-btn {
+  background: linear-gradient(135deg, #be2426, #ff6b6b);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 25px rgba(190, 36, 38, 0.25);
+  transition: all 0.4s ease;
+}
+
+.mfx-submit-btn:hover:not(:disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(190, 36, 38, 0.35);
+}
+
+.mfx-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.mfx-success-message {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 22px;
+  border-radius: 14px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mfx-contact-content {
+    grid-template-columns: 1fr;
+  }
+  .mfx-form-row {
+    grid-template-columns: 1fr;
+  }
+  .mfx-form-footer {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mfx-contact-item {
+    flex-direction: column;
+  }
+  .mfx-contact-icon {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+  .mfx-bg-shape-1, .mfx-bg-shape-2 {
+    display: none;
+  }
+}

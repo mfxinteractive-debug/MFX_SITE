@@ -1,0 +1,132 @@
+/* Sponsors.css - Ultra Tight, Zero Gap, Same Height Version (2025 Clean Look) */
+
+.sponsors-tight {
+  padding: 5rem 0 6rem;
+  background: #0a0e17; /* Deep dark background - change to #ffffff for light mode */
+  text-align: center;
+}
+
+.sponsors-tight-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sponsors-tight h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  letter-spacing: -1px;
+}
+
+/* MAIN GRID - ZERO GAP, FIXED HEIGHT */
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0; /* 0 gap - sab chipak gaye */
+  place-items: center;
+  width: 100%;
+}
+
+/* Each logo box - same height, no padding, no bg */
+.logo-wrapper {
+  height: 100px;                    /* All logos exactly same height */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  overflow: hidden;
+}
+
+.logo-wrapper img {
+  max-width: 88%;
+  max-height: 68px;                 /* Controls actual logo size inside box */
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(90%) opacity(0.75);
+  transition: all 0.35s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Hover Effect - Optional but looks premium */
+.logo-wrapper:hover img {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.12);
+}
+
+/* RESPONSIVE - Perfect on every device */
+@media (max-width: 1400px) {
+  .logos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .logo-wrapper {
+    height: 95px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .logo-wrapper {
+    height: 90px;
+  }
+  .logo-wrapper img {
+    max-height: 62px;
+  }
+}
+
+@media (max-width: 992px) {
+  .logos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+  .logo-wrapper {
+    height: 85px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsors-tight h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .logo-wrapper {
+    height: 80px;
+  }
+  .logo-wrapper img {
+    max-height: 56px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sponsors-tight {
+    padding: 4rem 0;
+  }
+  .sponsors-tight-container {
+    padding: 0 1rem;
+  }
+  .sponsors-tight h2 {
+    font-size: 2.2rem;
+  }
+  .logos-grid {
+    grid-template-columns: repeat(4, 1fr); /* Force 4 columns on mobile */
+  }
+  .logo-wrapper {
+    height: 75px;
+  }
+  .logo-wrapper img {
+    max-height: 52px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-wrapper {
+    height: 70px;
+  }
+  .logo-wrapper img {
+    max-height: 48px;
+  }
+}
