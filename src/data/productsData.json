@@ -5,11 +5,6 @@
     "category": "Digital Displays",
     "shortDescription": "Interactive touch screen displays for immersive digital experiences",
     "fullDescription": "Our high-resolution touch screen displays offer exceptional clarity and responsive touch technology. Perfect for retail, education, corporate, and public information displays.",
-    "images": [
-      "../screens/touch1.jpg",
-      "../screens/touch2.jpg",
-      "../screens/touch3.jpg"
-    ],
     "models": [
       {
         "name": "MWE813 PC Version",
@@ -120,7 +115,6 @@
       "Custom sizes available",
       "Wall mount or stand options"
     ],
-    "priceRange": "₹50,000 - ₹5,00,000",
     "leadTime": "2-4 weeks",
     "applications": ["Retail Stores", "Corporate Offices", "Education Institutes", "Public Information", "Healthcare Facilities"]
   },
@@ -131,11 +125,6 @@
     "category": "LED Solutions",
     "shortDescription": "Weather-resistant outdoor LED displays for advertising and digital signage",
     "fullDescription": "Designed to withstand harsh weather conditions, our outdoor LED displays are perfect for advertising, public information, and digital signage.",
-    "images": [
-      "/images/products/outdoor-led/outdoor1.avif",
-      "/images/products/outdoor-led/outdoor2.avif",
-      "/images/products/outdoor-led/outdoor3.avif"
-    ],
     "models": [
       {
         "name": "Outdoor P4 Series",
@@ -174,7 +163,6 @@
       "Remote content management",
       "Real-time monitoring"
     ],
-    "priceRange": "₹2,00,000 - ₹20,00,000",
     "leadTime": "3-5 weeks",
     "applications": ["Outdoor Advertising", "Stadium Displays", "Shopping Malls", "Public Transportation", "Event Venues"]
   },
@@ -185,11 +173,6 @@
     "category": "LED Solutions",
     "shortDescription": "High-resolution indoor LED walls for corporate and retail environments",
     "fullDescription": "Our indoor LED displays offer superior image quality with seamless integration for corporate offices, retail stores, control rooms, and event venues.",
-    "images": [
-      "/images/products/indoor-led/indoor1.avif",
-      "/images/products/indoor-led/indoor2.avif",
-      "/images/products/indoor-led/indoor3.avif"
-    ],
     "models": [
       {
         "name": "Indoor P1.5 Series",
@@ -228,7 +211,6 @@
       "Modular design",
       "Energy saving"
     ],
-    "priceRange": "₹1,50,000 - ₹15,00,000",
     "leadTime": "2-4 weeks",
     "applications": ["Corporate Lobbies", "Retail Stores", "Control Rooms", "Broadcast Studios", "Conference Rooms"]
   },
@@ -239,11 +221,6 @@
     "category": "Smart Solutions",
     "shortDescription": "Intelligent AI-powered interactive kiosks with advanced features",
     "fullDescription": "Revolutionize customer interaction with our AI-powered smart kiosks. Featuring facial recognition, voice interaction, gesture control, and data analytics.",
-    "images": [
-      "/images/products/ai-kiosks/ai1.avif",
-      "/images/products/ai-kiosks/ai2.avif",
-      "/images/products/ai-kiosks/ai3.avif"
-    ],
     "models": [
       {
         "name": "AI Smart Kiosk Pro",
@@ -284,7 +261,6 @@
       "Real-time analytics",
       "Multi-language support"
     ],
-    "priceRange": "₹75,000 - ₹7,50,000",
     "leadTime": "4-6 weeks",
     "applications": ["Retail Stores", "Banking", "Healthcare", "Airports", "Government Offices"]
   }

@@ -8,21 +8,26 @@ import Sponsors from "./components/Sponsors/Sponsors";
 import Contacts from "./components/Contact/Contacts";
 import Footer from "./components/Footer/Footer";
 import AboutUs from "./components/AboutUs/AboutUs";
-import ProductPage from "./components/Products/Products";
+import TouchScreens from "./components/Screens/TouchScreen";
+import Outdoor from "./components/Screens/Outdoor";
+import Indoor from "./components/Screens/Indoor";
+import Aikiosk from "./components/Screens/Aikiosk";
 import Services from "./components/Services/Services";
-import TouchScreen from "./components/TouchScreen/TouchScreen"
 import SliderPage from "./components/SliderPage/SliderPage";
+import ScrollToTop from "./components/ScrollTop"; // Import ScrollToTop
+
 function App() {
   return (
     <>
       <Navbar />
       <SocialIcons />
+      <ScrollToTop /> {/* Add this */}
       <Routes>
         <Route
           path="/"
           element={
             <>
-           <SliderPage/>
+              <SliderPage />
               <LandingPage />
               <OurInstallations />
               <Sponsors />
@@ -32,11 +37,11 @@ function App() {
         />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contacts />} />
-        {/* <Route path="/products" element={<ProductPage/>} /> */}
-        <Route path="/services" element={<Services/>} />
-        <Route path="/touch-screen-display" element={<TouchScreen/>} />
-
-
+        <Route path="/services" element={<Services />} />
+        <Route path="/touch-screen-display" element={<TouchScreens />} />
+        <Route path="/outdoor-led" element={<Outdoor />} />
+        <Route path="/indoor-led" element={<Indoor />} />
+        <Route path="/ai-kiosks" element={<Aikiosk />} />
       </Routes>
       <Footer />
     </>
