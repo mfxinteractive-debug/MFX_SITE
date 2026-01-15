@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight } from "react-icons/fa";
 import productData from "../../data/productsData.json";
 
-const Indoor = () => {
+const Outdoor_Digital_Display = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [activeTab, setActiveTab] = useState("specTable");
@@ -253,9 +253,8 @@ const Indoor = () => {
         </div>
       )}
 
-    
     </>
   );
 };
 
-export default Indoor;
+export default Outdoor_Digital_Display;

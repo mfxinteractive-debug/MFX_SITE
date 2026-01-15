@@ -88,10 +88,10 @@ function ContactPage() {
                 </div>
               </div>
 
-              <div className="mfx-company-highlight">
+              {/* <div className="mfx-company-highlight">
                 <h4>MFX INTERACTIVE PVT. LTD.</h4>
                 <p>Your Partner in Digital Transformation</p>
-              </div>
+              </div> */}
             </div>
           </div>
 

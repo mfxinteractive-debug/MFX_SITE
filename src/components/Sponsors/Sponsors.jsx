@@ -1,7 +1,6 @@
 import React from 'react';
 import './Sponsors.css';
 
-// Import all logos
 import khushiRealcon from '../../assets/sponsors/khushi_realcon.avif';
 import ambujaNeotia from '../../assets/sponsors/ambuja-neotia.avif';
 import bigCup from '../../assets/sponsors/big_cup.avif';
@@ -75,13 +74,14 @@ const logos = [
 ];
 
 function Sponsors() {
+  const duplicatedLogos = [...logos, ...logos];
+
   return (
     <section className="sponsors">
       <div className="sponsors-container">
-        {/* Header Section */}
         <div className="sponsors-header">
           <div className="section-label">
-            <span className="label-text">CLIENTS</span>
+            <span className="label-text">OUR CLIENTS</span>
             <div className="label-line"></div>
           </div>
           <h2 className="sponsors-title">
@@ -94,29 +94,21 @@ function Sponsors() {
           </p>
         </div>
 
-        {/* Logos Grid */}
-        <div className="sponsors-grid">
-          {logos.map((logo, index) => (
-            <div 
-              key={index} 
-              className="sponsor-card"
-              data-aos="fade-up"
-              data-aos-delay={index * 50}
-            >
-              <div className="sponsor-logo-container">
+        <div className="clients-marquee">
+          <div className="marquee-track">
+            {duplicatedLogos.map((logo, index) => (
+              <div key={index} className="marquee-item">
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="sponsor-logo"
+                  className="marquee-logo"
                   loading="lazy"
                 />
               </div>
-              <p className="sponsor-name">{logo.name}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Stats Section */}
         <div className="stats-section">
           <div className="stats-container">
             <div className="stat-item">
@@ -135,18 +127,6 @@ function Sponsors() {
               <div className="stat-number" style={{ color: '#042b30' }}>100%</div>
               <div className="stat-label">Satisfaction Rate</div>
             </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="sponsors-cta">
-          <div className="cta-content">
-            <h3>Become Our Next Success Story</h3>
-            <p>Join our growing list of satisfied clients and transform your digital presence</p>
-            <button className="cta-button">
-              Get Started Today
-              <span className="button-arrow">→</span>
-            </button>
           </div>
         </div>
       </div>

@@ -1,3 +1,6 @@
+/* ======================================== */
+/* NAVBAR BASE STYLES */
+/* ======================================== */
 
 .navbar {
   width: 100%;
@@ -27,17 +30,16 @@
   height: 100%;
 }
 
-
+/* Logo */
 .navbar-logo img {
   height: 70px;
   width: auto;
   object-fit: contain;
   transition: all 0.4s ease;
-  background-color: transparent; /* Default transparent */
+  background-color: transparent;
   padding: 5px;
   border-radius: 6px;
 }
-
 
 .navbar-logo img:hover {
   transform: scale(1.1);
@@ -45,11 +47,12 @@
 
 .navbar.scrolled .navbar-logo img {
   height: 70px;
-  background-color: white; 
+  background-color: white;
   padding: 8px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
 /* Desktop Nav Links */
 .navbar-links {
   display: flex;
@@ -77,7 +80,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
- font-family: "Merriweather", serif;;
+  font-family: "Merriweather", serif;
 }
 
 .nav-item > a:hover {
@@ -114,7 +117,10 @@
   background: #fff;
 }
 
-/* Desktop Dropdown Styles */
+/* ======================================== */
+/* DESKTOP DROPDOWN STYLES */
+/* ======================================== */
+
 .dropdown-wrapper {
   position: relative;
 }
@@ -133,6 +139,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-family: "Merriweather", serif;
 }
 
 .dropdown-wrapper:hover .dropdown-trigger {
@@ -175,23 +182,103 @@
 }
 
 .dropdown-menu li {
-  padding: 8px 24px;
+  position: relative;
+  padding: 0;
   transition: background 0.3s ease;
 }
 
-.dropdown-menu li:hover {
-  background: #f8f8f8;
+.dropdown-menu li.has-nested-dropdown {
+  padding: 0;
 }
 
-.dropdown-menu li a {
+.dropdown-menu li a,
+.dropdown-menu li .nested-trigger {
   color: #042b30;
   font-size: 15.5px;
   font-weight: 500;
   text-decoration: none;
   display: block;
+  padding: 8px 24px;
+  transition: all 0.3s ease;
 }
 
 .dropdown-menu li a:hover {
+  color: #be2426;
+  background: #f8f8f8;
+}
+
+/* ======================================== */
+/* DESKTOP NESTED DROPDOWN STYLES */
+/* ======================================== */
+
+/* Nested dropdown trigger */
+.nested-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #042b30;
+  font-size: 15.5px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 8px 24px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.has-nested-dropdown:hover .nested-trigger {
+  background: #f8f8f8;
+  color: #be2426;
+}
+
+.nested-chevron {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+}
+
+.has-nested-dropdown:hover .nested-chevron {
+  transform: rotate(90deg);
+}
+
+/* Nested dropdown menu */
+.nested-dropdown-menu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #fff;
+  min-width: 200px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.18);
+  padding: 12px 0;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.has-nested-dropdown:hover .nested-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.nested-dropdown-menu li {
+  padding: 0;
+}
+
+.nested-dropdown-menu li a {
+  padding: 8px 20px;
+  font-size: 15px;
+  color: #042b30;
+}
+
+.nested-dropdown-menu li a:hover {
+  background: #f8f8f8;
   color: #be2426;
 }
 
@@ -208,12 +295,28 @@
   background: #042b30;
 }
 
-.navbar.scrolled .dropdown-menu li a {
+.navbar.scrolled .dropdown-menu li a,
+.navbar.scrolled .dropdown-menu li .nested-trigger {
   color: #fff;
 }
 
-.navbar.scrolled .dropdown-menu li:hover {
+.navbar.scrolled .dropdown-menu li a:hover,
+.navbar.scrolled .has-nested-dropdown:hover .nested-trigger {
   background: rgba(190, 36, 38, 0.3);
+  color: #fff;
+}
+
+.navbar.scrolled .nested-dropdown-menu {
+  background: #042b30;
+}
+
+.navbar.scrolled .nested-dropdown-menu li a {
+  color: #fff;
+}
+
+.navbar.scrolled .nested-dropdown-menu li a:hover {
+  background: rgba(190, 36, 38, 0.3);
+  color: #fff;
 }
 
 /* Hamburger Menu Toggle */
@@ -252,6 +355,10 @@
 /* Mobile-only and Desktop-only helpers */
 .mobile-only {
   display: none;
+}
+
+.desktop-only {
+  display: block;
 }
 
 /* ======================================== */
@@ -384,7 +491,7 @@
     transform: rotate(180deg);
   }
 
-  /* Mobile Dropdown Content - SHOWS ONLY WHEN TOGGLED */
+  /* Mobile Dropdown Content */
   .mobile-dropdown-content {
     display: flex;
     flex-direction: column;
@@ -404,10 +511,16 @@
   }
 
   .mobile-dropdown-content li {
+    position: relative;
     border-bottom: 1px solid #ddd;
   }
 
   .mobile-dropdown-content li:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-dropdown-content li.has-nested-mobile {
+    padding: 0;
     border-bottom: none;
   }
 
@@ -424,6 +537,88 @@
     background: #e0e0e0;
     color: #be2426;
     padding-left: 45px;
+  }
+
+  /* ======================================== */
+  /* MOBILE NESTED DROPDOWN STYLES */
+  /* ======================================== */
+
+  /* Nested mobile trigger */
+  .mobile-nested-trigger {
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #042b30;
+    padding: 14px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nested-trigger:hover {
+    background: #e0e0e0;
+    color: #be2426;
+  }
+
+  .nested-chevron-mobile {
+    font-size: 14px;
+    transition: transform 0.4s ease;
+  }
+
+  .nested-chevron-mobile.rotated {
+    transform: rotate(180deg);
+  }
+
+  /* Nested mobile dropdown */
+  .mobile-nested-dropdown {
+    background: rgba(0, 0, 0, 0.05);
+    margin: 0;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    animation: slideDown 0.3s ease;
+    max-height: 200px;
+  }
+
+  @keyframes slideDown {
+    from { 
+      opacity: 0; 
+      max-height: 0; 
+      overflow: hidden;
+    }
+    to { 
+      opacity: 1; 
+      max-height: 200px; 
+    }
+  }
+
+  .mobile-nested-dropdown li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-nested-dropdown li:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nested-dropdown li a {
+    padding: 12px 50px;
+    font-size: 15px;
+    color: #042b30;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nested-dropdown li a:hover {
+    background: rgba(0, 0, 0, 0.1);
+    padding-left: 60px;
+    color: #be2426;
   }
 
   /* Scrolled Mobile Menu */
@@ -456,9 +651,35 @@
     background: rgba(255, 255, 255, 0.25);
     color: #fff;
   }
+
+  /* Scrolled mobile nested dropdown */
+  .navbar.scrolled .mobile-nested-trigger {
+    color: #fff;
+  }
+
+  .navbar.scrolled .mobile-nested-trigger:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .navbar.scrolled .mobile-nested-dropdown {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar.scrolled .mobile-nested-dropdown li a {
+    color: #fff;
+  }
+
+  .navbar.scrolled .mobile-nested-dropdown li a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
 }
 
-/* Extra Small Phones */
+/* ======================================== */
+/* EXTRA SMALL PHONES (≤480px) */
+/* ======================================== */
+
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0 15px;
@@ -480,16 +701,33 @@
   }
 
   .mobile-dropdown-content li a {
+    padding: 12px 25px;
     font-size: 15px;
-    padding: 12px 30px;
   }
 
   .mobile-dropdown-content li a:hover {
-    padding-left: 40px;
+    padding-left: 35px;
+  }
+
+  .mobile-nested-trigger {
+    padding: 12px 25px;
+    font-size: 15px;
+  }
+
+  .mobile-nested-dropdown li a {
+    padding: 10px 40px;
+    font-size: 14px;
+  }
+
+  .mobile-nested-dropdown li a:hover {
+    padding-left: 50px;
   }
 }
 
-/* Tablet Adjustments */
+/* ======================================== */
+/* TABLET ADJUSTMENTS (769px - 992px) */
+/* ======================================== */
+
 @media (max-width: 992px) and (min-width: 769px) {
   .navbar-container {
     padding: 0 30px;
@@ -506,5 +744,19 @@
   .nav-item > a,
   .dropdown-trigger {
     font-size: 16px;
+  }
+
+  .dropdown-menu {
+    min-width: 220px;
+  }
+
+  .nested-dropdown-menu {
+    min-width: 180px;
+  }
+
+  .dropdown-menu li a,
+  .dropdown-menu li .nested-trigger {
+    font-size: 15px;
+    padding: 8px 20px;
   }
 }

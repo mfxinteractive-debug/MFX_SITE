@@ -16,11 +16,11 @@ function LandingPage() {
         <p className="normal-text">
           Schedule time to come in for a demo or share your details — we'll get in touch with you!
         </p>
-        <div className="button-container">
+        {/* <div className="button-container">
           <button className="contact-btn">
             Contact Us
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

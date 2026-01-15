@@ -5,80 +5,127 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes } from "react-icons/fa";
-import productData from "../../data/productsData.json"; // Import your JSON file
+import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight } from "react-icons/fa";
+import productData from "../../data/productsData.json";
 
 const Aikiosk = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [activeTab, setActiveTab] = useState("specTable");
 
-  // Get AI kiosk data from JSON
-  const aiData = productData["ai-kiosks"];
+  // Use the imported productData
+  const { specifications } = productData;
   
-  // Create products array from JSON data
-  const products = aiData.models.map((model, index) => {
-    // Get hardware specs
-    const screenSize = model.specs.Hardware?.["Screen Size"] || "32\"/43\"/55\"";
-    const processor = model.specs.Hardware?.Processor || "Intel i5/i7";
-    const aiFeatures = "Facial Recognition, Voice Interaction, Gesture Control";
-    
-    return {
-      name: `${aiData.name} - ${model.name}`,
-      sizes: `${screenSize} | ${processor} | AI Features`,
-      desc: index === 0 ? aiData.shortDescription : aiData.fullDescription,
+  // Create products array
+  const products = [
+    {
+      name: "Indoor LED - Professional Series",
+      sizes: `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution} | ${specifications.screen.brightness}`,
+      desc: "High-performance indoor LED display with dual OS support, perfect for corporate and educational environments.",
       images: [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
       ],
-      tag: model.name,
-      modelData: model,
-    };
-  });
+    }
+    
+  ];
 
   const handleDetailsClick = (product) => {
     setSelectedProduct(product);
+    setActiveTab("specTable");
     setShowDetails(true);
   };
 
-  const renderSpecsTable = () => {
-    if (!selectedProduct) return null;
-    
-    const specs = selectedProduct.modelData.specs;
-    
+  // Helper function to format values properly
+  const formatValue = (value) => {
+    if (Array.isArray(value)) {
+      return value.join(', ');
+    } else if (typeof value === 'object' && value !== null) {
+      // Handle nested objects
+      return Object.entries(value)
+        .map(([key, val]) => {
+          const formattedKey = key.split('_').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+          ).join(' ');
+          return `${formattedKey}: ${val}`;
+        })
+        .join('; ');
+    }
+    return value;
+  };
+
+  // Helper function to format keys
+  const formatKey = (key) => {
+    return key.split('_').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+  };
+
+  const renderSpecificationTable = () => {
     return (
-      <div className="specs-modal-content">
-        <h3>{selectedProduct.name} - Specifications</h3>
-        
+      <div className="specs-tab-content">
         <div className="specs-grid">
-          {Object.entries(specs).map(([category, categorySpecs]) => (
+          {Object.entries(specifications).map(([category, categoryData]) => (
             <div key={category} className="specs-category">
-              <h4 className="specs-category-title">{category}</h4>
+              <h4 className="specs-category-title">
+                {formatKey(category)}
+              </h4>
               <div className="specs-table">
-                {Object.entries(categorySpecs).map(([key, value]) => (
+                {Object.entries(categoryData).map(([key, value]) => (
                   <div key={key} className="specs-row">
-                    <div className="specs-key">{key}:</div>
-                    <div className="specs-value">{value}</div>
+                    <div className="specs-key">
+                      {formatKey(key)}:
+                    </div>
+                    <div className="specs-value">
+                      {formatValue(value)}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-        
+      </div>
+    );
+  };
+
+  const renderFeatures = () => {
+    return (
+      <div className="specs-tab-content">
         <div className="specs-features">
-          <h4>Features</h4>
+          <h4>All Features</h4>
           <ul>
-            {aiData.features.map((feature, index) => (
-              <li key={index}>{feature}</li>
+            {specifications.features.map((feature, index) => (
+              <li key={index}>
+                <FaChevronRight className="feature-icon" />
+                {feature}
+              </li>
             ))}
           </ul>
         </div>
-        
+      </div>
+    );
+  };
+
+  const renderApplications = () => {
+    const applications = [
+      "Corporate Meetings",
+      "Education & Training",
+      "Retail Displays",
+      "Control Rooms",
+      "Digital Signage",
+      "Conference Rooms"
+    ];
+    
+    return (
+      <div className="specs-tab-content">
         <div className="specs-applications">
           <h4>Applications</h4>
           <div className="applications-tags">
-            {aiData.applications.map((app, index) => (
+            {applications.map((app, index) => (
               <span key={index} className="app-tag">{app}</span>
             ))}
           </div>
@@ -93,10 +140,10 @@ const Aikiosk = () => {
       <section className="px-hero">
         <div className="px-hero-overlay">
           <h1>
-            Discover <span className="px-highlight">AI-Powered</span> Interactive Solutions
+            Discover Indoor <span className="px-highlight">LED Solutions</span>
           </h1>
           <p className="px-hero-desc">
-            {aiData.fullDescription}
+            Professional indoor LED displays with dual OS support, high brightness, and interactive touch capabilities for corporate, education, and commercial applications.
           </p>
         </div>
       </section>
@@ -104,8 +151,8 @@ const Aikiosk = () => {
       {/* Products Grid */}
       <section className="px-section">
         <div className="px-container">
-          <h2 className="section-title">{aiData.name}</h2>
-          <p className="section-subtitle">{aiData.shortDescription}</p>
+          <h2 className="section-title">Indoor LED Displays</h2>
+          <p className="section-subtitle">High-performance interactive displays for professional environments</p>
           
           {products.map((product, index) => (
             <div
@@ -130,7 +177,6 @@ const Aikiosk = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                {product.tag && <div className="px-badge">{product.tag}</div>}
               </div>
 
               {/* Content */}
@@ -155,7 +201,7 @@ const Aikiosk = () => {
 
                 <div className="px-quote">
                   <FaQuoteRight />
-                  <em>Revolutionize customer interaction with AI intelligence.</em>
+                  <em>Superior image quality with seamless integration.</em>
                 </div>
               </div>
             </div>
@@ -168,7 +214,7 @@ const Aikiosk = () => {
         <div className="specs-modal-overlay">
           <div className="specs-modal">
             <div className="specs-modal-header">
-              <h2>Product Specifications</h2>
+              <h2>{selectedProduct?.name} - Complete Specifications</h2>
               <button 
                 className="specs-modal-close"
                 onClick={() => setShowDetails(false)}
@@ -176,21 +222,39 @@ const Aikiosk = () => {
                 <FaTimes />
               </button>
             </div>
-            {renderSpecsTable()}
+            
+            {/* Tabs */}
+            <div className="specs-tabs">
+              <button 
+                className={`specs-tab ${activeTab === "specTable" ? "active" : ""}`}
+                onClick={() => setActiveTab("specTable")}
+              >
+                Technical Specifications
+              </button>
+              <button 
+                className={`specs-tab ${activeTab === "features" ? "active" : ""}`}
+                onClick={() => setActiveTab("features")}
+              >
+                Features
+              </button>
+              <button 
+                className={`specs-tab ${activeTab === "applications" ? "active" : ""}`}
+                onClick={() => setActiveTab("applications")}
+              >
+                Applications
+              </button>
+            </div>
+
+            <div className="specs-modal-content">
+              {activeTab === "specTable" && renderSpecificationTable()}
+              {activeTab === "features" && renderFeatures()}
+              {activeTab === "applications" && renderApplications()}
+            </div>
           </div>
         </div>
       )}
 
-      {/* CTA */}
-      <section className="px-cta">
-        <div className="px-container">
-          <h2>Ready for AI-Powered Digital Transformation?</h2>
-          <p>
-            Join hundreds of brands already using <strong>MULTIFX</strong> AI kiosks for intelligent customer interaction and engagement.
-          </p>
-          <button className="px-main-cta">Explore All Products</button>
-        </div>
-      </section>
+    
     </>
   );
 };

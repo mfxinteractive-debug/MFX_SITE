@@ -14,6 +14,7 @@ import Indoor from "./components/Screens/Indoor";
 import Aikiosk from "./components/Screens/Aikiosk";
 import Services from "./components/Services/Services";
 import SliderPage from "./components/SliderPage/SliderPage";
+import Outdoor_Digital_Display from "./components/Screens/Outdoor_Digital_Display"
 import ScrollToTop from "./components/ScrollTop"; // Import ScrollToTop
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/outdoor-led" element={<Outdoor />} />
         <Route path="/indoor-led" element={<Indoor />} />
         <Route path="/ai-kiosks" element={<Aikiosk />} />
+        <Route path="/outdoor-digital-displays" element={<Outdoor_Digital_Display/>}/>
       </Routes>
       <Footer />
     </>

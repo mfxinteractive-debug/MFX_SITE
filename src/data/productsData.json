@@ -1,267 +1,62 @@
 {
-  "touch-screen-display": {
-    "id": "touch-screen-display",
-    "name": "Touch Screen Display",
-    "category": "Digital Displays",
-    "shortDescription": "Interactive touch screen displays for immersive digital experiences",
-    "fullDescription": "Our high-resolution touch screen displays offer exceptional clarity and responsive touch technology. Perfect for retail, education, corporate, and public information displays.",
-    "models": [
-      {
-        "name": "MWE813 PC Version",
-        "specs": {
-          "Screen": {
-            "Panel Brand": "LG/Samsung/AUO/BOE",
-            "Panel size": "43\" (optional: 32\" - 65\")",
-            "Display size": "927mm(H) × 521mm(V)",
-            "Display ratio": "16:9",
-            "Resolution": "1080 × 1920",
-            "Viewing angle": "89°/89°/89°/89° (Min.)(CR≥10)",
-            "Color": "16.7M",
-            "Backlight": "LED",
-            "Brightness": "300-700 cd/m²",
-            "Contrast ratio": "1200:1"
-          },
-          "OS System": {
-            "Main board": "i5-3317U (optional)",
-            "Content Management": "Software included",
-            "RAM/Storage": "4GB RAM, 128GB SSD (optional)",
-            "Operating System": "Windows 7 (optional: Win8, Win8.1, Win10)",
-            "Network Connection": "RJ45, 4G, WIFI (optional)"
-          },
-          "Touch Screen": {
-            "Touch screen": "Infrared touch screen (touch foil, capacitive)",
-            "Touch ways": "Finger, touch pen",
-            "Touch dots": "10 dots (optional: 20 dots, 40 dots)",
-            "Durability": "More than 50 million touches"
-          },
-          "Power": {
-            "Power": "140W",
-            "Voltage": "AC100-240V 50/60HZ",
-            "Stability": "Good"
-          },
-          "Instructions": {
-            "Interface": "VGA/HDMI/USB",
-            "Working temperature": "0°C - 50°C",
-            "Material": "Aluminum alloy, tempered glass",
-            "Surface": "Spraying, frosted aluminum"
-          },
-          "Body": {
-            "Shell": "Galvanized steel sheet. Thickness: 1.0-1.5mm",
-            "Color": "Black, white, silver or customized colors",
-            "Packing": "By carton with foam inside & wooden"
-          },
-          "Optional Functions": {
-            "Anti-dazzle": "Available",
-            "3G/4G Capability": "Available"
-          }
-        }
+  "product_name": "indoor-led",
+  "specifications": {
+    "screen": {
+      
+      "panel": "Samsung & LG A+ Grade Panel",
+      "panel_size": ["32", "55"],
+      "display_ratio": "16:9",
+      "resolution": "FULL HD 1920X1080",
+      "viewing_angle": "89/89/89/89 (Typ.)(CR=>10)",
+      "color": "16.7M",
+      "backlits": "LED",
+      "brightness": "700 cd/m2",
+      "contrast": "3000:1"
+    },
+    "operating_system": {
+      "main_board": {
+        "pc": "i5-3317U (optional)",
+        "android": "CPU: RK3288 (optional)"
       },
-      {
-        "name": "MWE813 Android Version",
-        "specs": {
-          "Screen": {
-            "Panel Brand": "LG/Samsung/AUO/BOE",
-            "Panel size": "43\" (optional: 32\" - 65\")",
-            "Display size": "927mm(H) × 521mm(V)",
-            "Display ratio": "16:9",
-            "Resolution": "1080 × 1920",
-            "Viewing angle": "89°/89°/89°/89° (Min.)(CR≥10)",
-            "Color": "16.7M",
-            "Backlight": "LED",
-            "Brightness": "300-700 cd/m²",
-            "Contrast ratio": "1200:1"
-          },
-          "OS System": {
-            "CPU": "RK3288 (optional)",
-            "Content Management": "Setup your own server or use MFX Cloud",
-            "RAM/Storage": "2GB RAM, 8GB EMMC (optional)",
-            "Operating System": "Android 4.2 (optional: Android 4.4.4/4.2.2/5.1.1/6.0.1/7.1.2)",
-            "Network Connection": "RJ45, 4G, WIFI (optional)",
-            "Cloud Service": "MFX Cloud: http://terminal.mfxinteractive.com"
-          },
-          "Touch Screen": {
-            "Touch screen": "Infrared touch screen (touch foil, capacitive)",
-            "Touch ways": "Finger, touch pen",
-            "Touch dots": "10 dots (optional: 20 dots, 40 dots)",
-            "Durability": "More than 50 million touches"
-          },
-          "Power": {
-            "Power": "120W",
-            "Voltage": "AC100-240V 50/60HZ",
-            "Stability": "Good"
-          },
-          "Instructions": {
-            "Interface": "HDMI/USB/SD",
-            "Working temperature": "0°C - 50°C",
-            "Material": "Aluminum alloy, tempered glass",
-            "Surface": "Spraying, frosted aluminum"
-          },
-          "Body": {
-            "Shell": "Galvanized steel sheet. Thickness: 1.0-1.5mm",
-            "Color": "Black, white, silver or customized colors",
-            "Packing": "By carton with foam inside & wooden"
-          },
-          "Optional Functions": {
-            "Anti-dazzle": "Available",
-            "3G/4G Capability": "Available"
-          }
-        }
-      }
-    ],
+      "ram": {
+        "pc": "4GB, SSD 128GB (optional)",
+        "android": "RAM 2GB, eMMC 8G (optional)"
+      },
+      "operation": {
+        "pc": "Windows 7 (optional Wins, Wins1, Win10)",
+        "android": "Android 4.2 (optional Android 4.4.4/4.2.2/5.1.1/6.0.1/7.1.2)"
+      },
+      "connection_to_network": ["RJ45", "4G", "WiFi (optional)"]
+    },
+    "touch_screen_system": {
+      "touch_screen": "Infrared Touch (Foil, Capacitive)",
+      "touch_ways": ["Finger", "Stylus (Pen)"],
+      "touch_dots": "10 dots (optional 20 dots, 40 dots)",
+      "durability": "More than 50 Million touch"
+    },
+    "power_and_environment": {
+      "working_temperature": "0°C-50°C",
+      "power_supply": "140Watt",
+      "voltage": "AC 100 - 240V 50/60 HZ",
+      "stability": "Good",
+      "interface": ["VGA", "HDMI", "USB"]
+    },
+    "body_and_shell": {
+      "material": "Aluminium alloy mould",
+      "surface": "Spraying, frosted aluminium",
+      "shell": "Galvanized Steel Sheet",
+      "side_and_front_frame": "Aluminium alloy mould 1.5mm-6mm thickness",
+      "colour": ["Black", "White", "Silver"]
+    },
     "features": [
-      "Multi-touch technology",
-      "4K Ultra HD Resolution",
-      "Anti-glare coating",
-      "Custom sizes available",
-      "Wall mount or stand options"
-    ],
-    "leadTime": "2-4 weeks",
-    "applications": ["Retail Stores", "Corporate Offices", "Education Institutes", "Public Information", "Healthcare Facilities"]
-  },
-
-  "outdoor-led": {
-    "id": "outdoor-led",
-    "name": "Outdoor LED Display",
-    "category": "LED Solutions",
-    "shortDescription": "Weather-resistant outdoor LED displays for advertising and digital signage",
-    "fullDescription": "Designed to withstand harsh weather conditions, our outdoor LED displays are perfect for advertising, public information, and digital signage.",
-    "models": [
-      {
-        "name": "Outdoor P4 Series",
-        "specs": {
-          "Display": {
-            "Pixel Pitch": "P4",
-            "Brightness": "5000-8000 nits",
-            "IP Rating": "IP65",
-            "Refresh Rate": "3840Hz",
-            "Viewing Angle": "140° horizontal, 120° vertical",
-            "Cabinet Size": "500×500mm"
-          },
-          "Power": {
-            "Power Consumption": "≤450W/m²",
-            "Voltage": "AC110-240V",
-            "Power Factor": "≥0.95"
-          },
-          "Performance": {
-            "Gray Scale": "16bit",
-            "Color Temperature": "6500K-9300K",
-            "Contrast Ratio": "5000:1",
-            "Lifespan": "100,000 hours"
-          },
-          "Environment": {
-            "Operating Temperature": "-20°C to +50°C",
-            "Storage Temperature": "-30°C to +60°C",
-            "Humidity": "10% to 90% RH"
-          }
-        }
-      }
-    ],
-    "features": [
-      "IP65 weatherproof rating",
-      "High brightness for sunlight",
-      "Energy efficient",
-      "Remote content management",
-      "Real-time monitoring"
-    ],
-    "leadTime": "3-5 weeks",
-    "applications": ["Outdoor Advertising", "Stadium Displays", "Shopping Malls", "Public Transportation", "Event Venues"]
-  },
-
-  "indoor-led": {
-    "id": "indoor-led",
-    "name": "Indoor LED Display",
-    "category": "LED Solutions",
-    "shortDescription": "High-resolution indoor LED walls for corporate and retail environments",
-    "fullDescription": "Our indoor LED displays offer superior image quality with seamless integration for corporate offices, retail stores, control rooms, and event venues.",
-    "models": [
-      {
-        "name": "Indoor P1.5 Series",
-        "specs": {
-          "Display": {
-            "Pixel Pitch": "P1.5",
-            "Brightness": "800-1200 nits",
-            "Refresh Rate": "3840Hz",
-            "Viewing Angle": "160° horizontal, 160° vertical",
-            "Cabinet Size": "500×500mm"
-          },
-          "Power": {
-            "Power Consumption": "≤320W/m²",
-            "Voltage": "AC110-240V",
-            "Power Factor": "≥0.95"
-          },
-          "Performance": {
-            "Gray Scale": "16bit",
-            "Color Temperature": "3000K-10000K adjustable",
-            "Contrast Ratio": "5000:1",
-            "Lifespan": "100,000 hours"
-          },
-          "Structure": {
-            "Cabinet Material": "Aluminum alloy",
-            "Weight": "≤18kg",
-            "Thickness": "≤80mm",
-            "Installation": "Wall mount, floor stand, hanging"
-          }
-        }
-      }
-    ],
-    "features": [
-      "Ultra-thin bezel design",
-      "High refresh rate",
-      "Wide color gamut",
-      "Modular design",
-      "Energy saving"
-    ],
-    "leadTime": "2-4 weeks",
-    "applications": ["Corporate Lobbies", "Retail Stores", "Control Rooms", "Broadcast Studios", "Conference Rooms"]
-  },
-
-  "ai-kiosks": {
-    "id": "ai-kiosks",
-    "name": "AI Interactive Kiosks",
-    "category": "Smart Solutions",
-    "shortDescription": "Intelligent AI-powered interactive kiosks with advanced features",
-    "fullDescription": "Revolutionize customer interaction with our AI-powered smart kiosks. Featuring facial recognition, voice interaction, gesture control, and data analytics.",
-    "models": [
-      {
-        "name": "AI Smart Kiosk Pro",
-        "specs": {
-          "Hardware": {
-            "Screen Size": "32\" / 43\" / 55\" (optional)",
-            "Processor": "Intel i5/i7 or equivalent",
-            "RAM": "8GB/16GB DDR4",
-            "Storage": "256GB/512GB SSD",
-            "Camera": "8MP/12MP with IR for night vision"
-          },
-          "AI Features": {
-            "Facial Recognition": "Yes, with emotion detection",
-            "Voice Interaction": "Multi-language support",
-            "Gesture Control": "Hand gesture recognition",
-            "Analytics": "Real-time customer analytics",
-            "Security": "Anti-tampering, alarm system"
-          },
-          "Connectivity": {
-            "Network": "Wi-Fi 6, Ethernet, 4G/5G optional",
-            "Ports": "USB 3.0, HDMI, RJ45, Audio",
-            "Payment": "NFC, QR code, card reader optional",
-            "Printing": "Thermal printer optional"
-          },
-          "Physical": {
-            "Material": "Stainless steel + tempered glass",
-            "Weatherproof": "IP54 rating",
-            "Dimensions": "Customizable",
-            "Mounting": "Floor standing, wall mount"
-          }
-        }
-      }
-    ],
-    "features": [
-      "Facial recognition",
-      "Voice interaction",
-      "Gesture control",
-      "Real-time analytics",
-      "Multi-language support"
-    ],
-    "leadTime": "4-6 weeks",
-    "applications": ["Retail Stores", "Banking", "Healthcare", "Airports", "Government Offices"]
+      "Multi-Touch",
+      "WiFi",
+      "Windows Android",
+      "4K",
+      "Interactive Teaching",
+      "Bluetooth",
+      "Scanner",
+      "Printer"
+    ]
   }
 }

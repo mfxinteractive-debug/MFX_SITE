@@ -5,80 +5,126 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes } from "react-icons/fa";
-import productData from "../../data/productsData.json"; // Import your JSON file
+import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight } from "react-icons/fa";
+import productData from "../../data/productsData.json";
 
 const Outdoor = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [activeTab, setActiveTab] = useState("specTable");
 
-  // Get outdoor LED data from JSON
-  const outdoorData = productData["outdoor-led"];
+  // Use the imported productData
+  const { specifications } = productData;
   
-  // Create products array from JSON data
-  const products = outdoorData.models.map((model, index) => {
-    // Get display specs
-    const pixelPitch = model.specs.Display?.["Pixel Pitch"] || "P4";
-    const brightness = model.specs.Display?.Brightness || "5000-8000 nits";
-    const ipRating = model.specs.Display?.["IP Rating"] || "IP65";
-    
-    return {
-      name: `${outdoorData.name} - ${model.name}`,
-      sizes: `${pixelPitch} Pixel Pitch | ${brightness} | ${ipRating}`,
-      desc: index === 0 ? outdoorData.shortDescription : outdoorData.fullDescription,
+  // Create products array
+  const products = [
+    {
+      name: "Indoor LED - Professional Series",
+      sizes: `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution} | ${specifications.screen.brightness}`,
+      desc: "High-performance indoor LED display with dual OS support, perfect for corporate and educational environments.",
       images: [
-        "https://images.unsplash.com/photo-1518834103325-6725c4b54c14?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-        "https://images.unsplash.com/photo-1590691565924-90d0a14443e8?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
       ],
-      tag: model.name,
-      modelData: model,
-    };
-  });
+    }
+  ];
 
   const handleDetailsClick = (product) => {
     setSelectedProduct(product);
+    setActiveTab("specTable");
     setShowDetails(true);
   };
 
-  const renderSpecsTable = () => {
-    if (!selectedProduct) return null;
-    
-    const specs = selectedProduct.modelData.specs;
-    
+  // Helper function to format values properly
+  const formatValue = (value) => {
+    if (Array.isArray(value)) {
+      return value.join(', ');
+    } else if (typeof value === 'object' && value !== null) {
+      // Handle nested objects
+      return Object.entries(value)
+        .map(([key, val]) => {
+          const formattedKey = key.split('_').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+          ).join(' ');
+          return `${formattedKey}: ${val}`;
+        })
+        .join('; ');
+    }
+    return value;
+  };
+
+  // Helper function to format keys
+  const formatKey = (key) => {
+    return key.split('_').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+  };
+
+  const renderSpecificationTable = () => {
     return (
-      <div className="specs-modal-content">
-        <h3>{selectedProduct.name} - Specifications</h3>
-        
+      <div className="specs-tab-content">
         <div className="specs-grid">
-          {Object.entries(specs).map(([category, categorySpecs]) => (
+          {Object.entries(specifications).map(([category, categoryData]) => (
             <div key={category} className="specs-category">
-              <h4 className="specs-category-title">{category}</h4>
+              <h4 className="specs-category-title">
+                {formatKey(category)}
+              </h4>
               <div className="specs-table">
-                {Object.entries(categorySpecs).map(([key, value]) => (
+                {Object.entries(categoryData).map(([key, value]) => (
                   <div key={key} className="specs-row">
-                    <div className="specs-key">{key}:</div>
-                    <div className="specs-value">{value}</div>
+                    <div className="specs-key">
+                      {formatKey(key)}:
+                    </div>
+                    <div className="specs-value">
+                      {formatValue(value)}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-        
+      </div>
+    );
+  };
+
+  const renderFeatures = () => {
+    return (
+      <div className="specs-tab-content">
         <div className="specs-features">
-          <h4>Features</h4>
+          <h4>All Features</h4>
           <ul>
-            {outdoorData.features.map((feature, index) => (
-              <li key={index}>{feature}</li>
+            {specifications.features.map((feature, index) => (
+              <li key={index}>
+                <FaChevronRight className="feature-icon" />
+                {feature}
+              </li>
             ))}
           </ul>
         </div>
-        
+      </div>
+    );
+  };
+
+  const renderApplications = () => {
+    const applications = [
+      "Corporate Meetings",
+      "Education & Training",
+      "Retail Displays",
+      "Control Rooms",
+      "Digital Signage",
+      "Conference Rooms"
+    ];
+    
+    return (
+      <div className="specs-tab-content">
         <div className="specs-applications">
           <h4>Applications</h4>
           <div className="applications-tags">
-            {outdoorData.applications.map((app, index) => (
+            {applications.map((app, index) => (
               <span key={index} className="app-tag">{app}</span>
             ))}
           </div>
@@ -93,10 +139,10 @@ const Outdoor = () => {
       <section className="px-hero">
         <div className="px-hero-overlay">
           <h1>
-            Discover Outdoor <span className="px-highlight">LED Solutions</span>
+            Discover Indoor <span className="px-highlight">LED Solutions</span>
           </h1>
           <p className="px-hero-desc">
-            {outdoorData.fullDescription}
+            Professional indoor LED displays with dual OS support, high brightness, and interactive touch capabilities for corporate, education, and commercial applications.
           </p>
         </div>
       </section>
@@ -104,8 +150,8 @@ const Outdoor = () => {
       {/* Products Grid */}
       <section className="px-section">
         <div className="px-container">
-          <h2 className="section-title">{outdoorData.name}</h2>
-          <p className="section-subtitle">{outdoorData.shortDescription}</p>
+          <h2 className="section-title">Indoor LED Displays</h2>
+          <p className="section-subtitle">High-performance interactive displays for professional environments</p>
           
           {products.map((product, index) => (
             <div
@@ -130,7 +176,6 @@ const Outdoor = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                {product.tag && <div className="px-badge">{product.tag}</div>}
               </div>
 
               {/* Content */}
@@ -155,7 +200,7 @@ const Outdoor = () => {
 
                 <div className="px-quote">
                   <FaQuoteRight />
-                  <em>Designed to withstand the toughest outdoor conditions.</em>
+                  <em>Superior image quality with seamless integration.</em>
                 </div>
               </div>
             </div>
@@ -168,7 +213,7 @@ const Outdoor = () => {
         <div className="specs-modal-overlay">
           <div className="specs-modal">
             <div className="specs-modal-header">
-              <h2>Product Specifications</h2>
+              <h2>{selectedProduct?.name} - Complete Specifications</h2>
               <button 
                 className="specs-modal-close"
                 onClick={() => setShowDetails(false)}
@@ -176,21 +221,38 @@ const Outdoor = () => {
                 <FaTimes />
               </button>
             </div>
-            {renderSpecsTable()}
+            
+            {/* Tabs */}
+            <div className="specs-tabs">
+              <button 
+                className={`specs-tab ${activeTab === "specTable" ? "active" : ""}`}
+                onClick={() => setActiveTab("specTable")}
+              >
+                Technical Specifications
+              </button>
+              <button 
+                className={`specs-tab ${activeTab === "features" ? "active" : ""}`}
+                onClick={() => setActiveTab("features")}
+              >
+                Features
+              </button>
+              <button 
+                className={`specs-tab ${activeTab === "applications" ? "active" : ""}`}
+                onClick={() => setActiveTab("applications")}
+              >
+                Applications
+              </button>
+            </div>
+
+            <div className="specs-modal-content">
+              {activeTab === "specTable" && renderSpecificationTable()}
+              {activeTab === "features" && renderFeatures()}
+              {activeTab === "applications" && renderApplications()}
+            </div>
           </div>
         </div>
       )}
 
-      {/* CTA */}
-      <section className="px-cta">
-        <div className="px-container">
-          <h2>Ready for Outdoor Digital Transformation?</h2>
-          <p>
-            Join hundreds of brands already using <strong>MULTIFX</strong> outdoor LED displays for impactful advertising and information display.
-          </p>
-          <button className="px-main-cta">Explore All Products</button>
-        </div>
-      </section>
     </>
   );
 };

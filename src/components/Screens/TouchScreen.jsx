@@ -5,83 +5,188 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes } from "react-icons/fa";
-import productData from "../../data/productsData.json"; // Import your JSON file
+import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight } from "react-icons/fa";
+import productData from "../../data/productsData.json";
 
-const TouchScreen = () => {
+const TouchScreens = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [selectedModelIndex, setSelectedModelIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState("specTable");
 
-  // Get touch screen data from JSON
-  const touchScreenData = productData["touch-screen-display"];
+  // Get touch screens displays data from JSON
+  // Note: Make sure your JSON has this key or adjust accordingly
+  const touchScreenData = productData["touch-screens-displays"] || productData["touch_screens_displays"] || productData;
   
-  // Create products array from JSON data
-  const products = touchScreenData.models.map((model, index) => {
-    // Get available sizes from specs
-    const panelSize = model.specs.Screen?.["Panel size"] || "43\"";
-    const availableSizes = panelSize.includes("optional") 
-      ? panelSize.replace(/.*\(optional: (.*)\)/, "$1")
-      : panelSize;
-    
-    return {
-      name: model.name,
-      sizes: availableSizes,
-      desc: index === 0 ? touchScreenData.shortDescription : touchScreenData.fullDescription,
+  // Use the specifications from touch screen data
+  const specifications = touchScreenData.specifications || touchScreenData;
+  
+  // Create products array
+  const products = [
+    {
+      name: "Touch Screen - Professional Series",
+      sizes: specifications?.screen?.panel_size ? 
+        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
+        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
+      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
       images: [
-        `https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3`,
-        `https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w-800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3`,
-        `https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w-800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3`,
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
       ],
-      tag: index === 0 ? "PC Version" : "Android Version",
-      modelData: model,
-    };
-  });
+    },
+       {
+      name: "Touch Screen - Professional Series",
+      sizes: specifications?.screen?.panel_size ? 
+        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
+        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
+      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
+      images: [
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
+      ],
+    },
+       {
+      name: "Touch Screen - Professional Series",
+      sizes: specifications?.screen?.panel_size ? 
+        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
+        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
+      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
+      images: [
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
+      ],
+    },
+       {
+      name: "Touch Screen - Professional Series",
+      sizes: specifications?.screen?.panel_size ? 
+        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
+        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
+      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
+      images: [
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
+      ],
+    },
+       {
+      name: "Touch Screen - Professional Series",
+      sizes: specifications?.screen?.panel_size ? 
+        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
+        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
+      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
+      images: [
+        "/Indoor/Creative_01.jpg",
+        "/Indoor/Creative_02.jpg",
+        "/Indoor/Creative_03.jpg",
+        "/Indoor/Creative_04.jpg",
+        "/Indoor/Creative_06.jpg",
+      ],
+    },
+  ];
 
-  const handleDetailsClick = (product, index) => {
+  const handleDetailsClick = (product) => {
     setSelectedProduct(product);
-    setSelectedModelIndex(index);
+    setActiveTab("specTable");
     setShowDetails(true);
   };
 
-  const renderSpecsTable = () => {
-    if (!selectedProduct) return null;
-    
-    const specs = selectedProduct.modelData.specs;
-    
+  // Helper function to format values properly
+  const formatValue = (value) => {
+    if (Array.isArray(value)) {
+      return value.join(', ');
+    } else if (typeof value === 'object' && value !== null) {
+      // Handle nested objects
+      return Object.entries(value)
+        .map(([key, val]) => {
+          const formattedKey = key.split('_').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+          ).join(' ');
+          return `${formattedKey}: ${val}`;
+        })
+        .join('; ');
+    }
+    return value;
+  };
+
+  // Helper function to format keys
+  const formatKey = (key) => {
+    return key.split('_').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+  };
+
+  const renderSpecificationTable = () => {
     return (
-      <div className="specs-modal-content">
-        <h3>{selectedProduct.name} - Specifications</h3>
-        
+      <div className="specs-tab-content">
         <div className="specs-grid">
-          {Object.entries(specs).map(([category, categorySpecs]) => (
+          {Object.entries(specifications).map(([category, categoryData]) => (
             <div key={category} className="specs-category">
-              <h4 className="specs-category-title">{category}</h4>
+              <h4 className="specs-category-title">
+                {formatKey(category)}
+              </h4>
               <div className="specs-table">
-                {Object.entries(categorySpecs).map(([key, value]) => (
+                {Object.entries(categoryData).map(([key, value]) => (
                   <div key={key} className="specs-row">
-                    <div className="specs-key">{key}:</div>
-                    <div className="specs-value">{value}</div>
+                    <div className="specs-key">
+                      {formatKey(key)}:
+                    </div>
+                    <div className="specs-value">
+                      {formatValue(value)}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-        
+      </div>
+    );
+  };
+
+  const renderFeatures = () => {
+    return (
+      <div className="specs-tab-content">
         <div className="specs-features">
-          <h4>Features</h4>
+          <h4>All Features</h4>
           <ul>
-            {touchScreenData.features.map((feature, index) => (
-              <li key={index}>{feature}</li>
+            {specifications.features?.map((feature, index) => (
+              <li key={index}>
+                <FaChevronRight className="feature-icon" />
+                {feature}
+              </li>
             ))}
           </ul>
         </div>
-        
+      </div>
+    );
+  };
+
+  const renderApplications = () => {
+    const applications = [
+      "Corporate Meetings",
+      "Education & Training",
+      "Retail Displays",
+      "Control Rooms",
+      "Digital Signage",
+      "Conference Rooms"
+    ];
+    
+    return (
+      <div className="specs-tab-content">
         <div className="specs-applications">
           <h4>Applications</h4>
           <div className="applications-tags">
-            {touchScreenData.applications.map((app, index) => (
+            {applications.map((app, index) => (
               <span key={index} className="app-tag">{app}</span>
             ))}
           </div>
@@ -96,10 +201,10 @@ const TouchScreen = () => {
       <section className="px-hero">
         <div className="px-hero-overlay">
           <h1>
-            Discover the Future of <span className="px-highlight">Interaction</span>
+            Discover Interactive <span className="px-highlight">Touch Screens Solutions</span>
           </h1>
           <p className="px-hero-desc">
-            {touchScreenData.fullDescription}
+            Professional touch screens displays with OS support, high brightness, and interactive touch capabilities for corporate, education, and commercial applications.
           </p>
         </div>
       </section>
@@ -107,8 +212,8 @@ const TouchScreen = () => {
       {/* Products Grid */}
       <section className="px-section">
         <div className="px-container">
-          <h2 className="section-title">{touchScreenData.name}</h2>
-          <p className="section-subtitle">{touchScreenData.shortDescription}</p>
+          <h2 className="section-title">Touch Screens Displays</h2>
+          <p className="section-subtitle">High-performance interactive displays for professional environments</p>
           
           {products.map((product, index) => (
             <div
@@ -133,14 +238,13 @@ const TouchScreen = () => {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                {product.tag && <div className="px-badge">{product.tag}</div>}
               </div>
 
               {/* Content */}
               <div className="px-info">
                 <h2>{product.name}</h2>
                 <div className="px-sizes">
-                  <FaRulerCombined /> Available Sizes: <span>{product.sizes}</span>
+                  <FaRulerCombined /> Specifications: <span>{product.sizes}</span>
                 </div>
                 <p className="px-desc">{product.desc}</p>
 
@@ -150,7 +254,7 @@ const TouchScreen = () => {
                   </button>
                   <button 
                     className="px-details-btn"
-                    onClick={() => handleDetailsClick(product, index)}
+                    onClick={() => handleDetailsClick(product)}
                   >
                     View Details
                   </button>
@@ -158,7 +262,7 @@ const TouchScreen = () => {
 
                 <div className="px-quote">
                   <FaQuoteRight />
-                  <em>Turn every touch into a memorable experience.</em>
+                  <em>Superior image quality with seamless integration.</em>
                 </div>
               </div>
             </div>
@@ -171,7 +275,7 @@ const TouchScreen = () => {
         <div className="specs-modal-overlay">
           <div className="specs-modal">
             <div className="specs-modal-header">
-              <h2>Product Specifications</h2>
+              <h2>{selectedProduct?.name} - Complete Specifications</h2>
               <button 
                 className="specs-modal-close"
                 onClick={() => setShowDetails(false)}
@@ -179,23 +283,41 @@ const TouchScreen = () => {
                 <FaTimes />
               </button>
             </div>
-            {renderSpecsTable()}
+            
+            {/* Tabs */}
+            <div className="specs-tabs">
+              <button 
+                className={`specs-tab ${activeTab === "specTable" ? "active" : ""}`}
+                onClick={() => setActiveTab("specTable")}
+              >
+                Technical Specifications
+              </button>
+              <button 
+                className={`specs-tab ${activeTab === "features" ? "active" : ""}`}
+                onClick={() => setActiveTab("features")}
+              >
+                Features
+              </button>
+              <button 
+                className={`specs-tab ${activeTab === "applications" ? "active" : ""}`}
+                onClick={() => setActiveTab("applications")}
+              >
+                Applications
+              </button>
+            </div>
+
+            <div className="specs-modal-content">
+              {activeTab === "specTable" && renderSpecificationTable()}
+              {activeTab === "features" && renderFeatures()}
+              {activeTab === "applications" && renderApplications()}
+            </div>
           </div>
         </div>
       )}
 
-      {/* CTA */}
-      <section className="px-cta">
-        <div className="px-container">
-          <h2>Ready to Transform Your Space?</h2>
-          <p>
-            Join hundreds of brands already using <strong>MULTIFX</strong> interactive displays to captivate audiences and drive results.
-          </p>
-          <button className="px-main-cta">Explore All Products</button>
-        </div>
-      </section>
+
     </>
   );
 };
 
-export default TouchScreen;
+export default TouchScreens;

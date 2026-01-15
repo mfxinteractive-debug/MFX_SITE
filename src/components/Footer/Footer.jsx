@@ -42,7 +42,7 @@ const Footer = () => {
               <FaYoutube />
             </a>
           </div>
-          <div className="newsletter">
+          {/* <div className="newsletter">
             <p>Subscribe to our newsletter</p>
             <div className="newsletter-input">
               <input type="email" placeholder="Your email address" />
@@ -50,7 +50,7 @@ const Footer = () => {
                 <FaArrowRight />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Quick Links */}
@@ -70,21 +70,9 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="/products">
-                <FaArrowRight className="link-arrow" />
-                Products
-              </a>
-            </li>
-            <li>
               <a href="/services">
                 <FaArrowRight className="link-arrow" />
                 Services
-              </a>
-            </li>
-            <li>
-              <a href="/touch-kiosk">
-                <FaArrowRight className="link-arrow" />
-                Touch Kiosk
               </a>
             </li>
             <li>

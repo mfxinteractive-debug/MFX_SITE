@@ -1,4 +1,5 @@
-.social-container {
+/* SocialIcons.css */
+.social-icons-container {
   position: fixed;
   top: 50%;
   right: 20px;
@@ -6,20 +7,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* tighter gap */
+  gap: 10px;
   z-index: 9999;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.social-container.hide {
+.social-icons-container.social-hide {
   opacity: 0;
-  transform: translateY(-50%) translateX(60px);
+  transform: translateY(-50%) translateX(80px);
   pointer-events: none;
 }
 
-.social-container.show {
+.social-icons-container.social-show {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
+  pointer-events: all;
 }
 
 .social-icon {
@@ -30,29 +32,85 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-size: 22px;
+  font-size: 20px;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .social-icon:hover {
-  transform: scale(1.15);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.fb {
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.social-icon:hover::before {
+  left: 100%;
+}
+
+.social-fb {
   background: linear-gradient(135deg, #042b30 0%, #1877f2 100%);
 }
 
-.insta {
+.social-insta {
   background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  background-size: 200% 200%;
+  animation: insta-gradient 3s ease infinite;
 }
 
-.wa {
+.social-wa {
   background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
 }
 
-.yt {
+.social-yt {
   background: linear-gradient(135deg, #be2426, #ff0000);
+}
+
+@keyframes insta-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .social-icons-container {
+    right: 10px;
+    gap: 8px;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .social-icons-container.social-hide {
+    transform: translateY(-50%) translateX(60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons-container {
+    right: 8px;
+    gap: 6px;
+  }
+  
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
 }
