@@ -51,7 +51,7 @@ const Services = () => {
               </ul>
             </div>
 
-            <div className="multi-services-tag">Full-Stack Expertise</div>
+            {/* <div className="multi-services-tag">Full-Stack Expertise</div> */}
           </div>
 
           {/* Service 2: Interactive Content */}
@@ -78,14 +78,14 @@ const Services = () => {
               </ul>
             </div>
 
-            <div className="multi-services-tag">One-Stop Interactive Solution</div>
+            {/* <div className="multi-services-tag">One-Stop Interactive Solution</div> */}
           </div>
 
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="multi-services-cta">
+      {/* <section className="multi-services-cta">
         <div className="multi-services-container">
           <h2>Ready to Transform Your Digital Presence?</h2>
           <p>
@@ -94,7 +94,7 @@ const Services = () => {
           </p>
           <button className="multi-services-cta-button">Start Your Project Today</button>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

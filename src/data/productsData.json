@@ -59,9 +59,9 @@
         "short_desc": "Slim wall-mounted interactive display for conference rooms",
         "full_desc": "Ultra-slim wall-mounted touch screen display with 4K resolution and multi-touch capability. Perfect for boardrooms, control rooms, and collaborative spaces.",
         "images": [
-          "/Indoor/Creative_04.jpg",
-          "/Indoor/Creative_05.jpg",
-          "/Indoor/Creative_06.jpg"
+          "/WallMount/1.jpg",
+          "/WallMount/2.jpg",
+           "/WallMount/4.png"
         ],
         "specifications": {
           "display": {
@@ -147,8 +147,9 @@
         "short_desc": "Multi-user interactive table for collaborative work",
         "full_desc": "Collaborative interactive table supporting multiple simultaneous users. Perfect for team collaboration, design reviews, and interactive presentations.",
         "images": [
-          "/Indoor/Table_01.jpg",
-          "/Indoor/Table_02.jpg"
+          "/Table/1.jpg",
+          "/Table/2.jpg",
+           "/Table/3.png"
         ],
         "specifications": {
           "display": {
@@ -190,9 +191,9 @@
         "short_desc": "Compact portable touch screen for on-the-go presentations",
         "full_desc": "Ultra-portable 32-inch touch screen display with built-in battery and carrying case. Perfect for sales presentations, remote meetings, and mobile demonstrations.",
         "images": [
-          "/Indoor/Portable_01.jpg",
-          "/Indoor/Portable_02.jpg",
-          "/Indoor/Portable_03.jpg"
+          "/Portable/1.jpg",
+          "/Portable/2.jpg",
+          "/Portable/3.jpg"
         ],
         "specifications": {
           "display": {
@@ -245,9 +246,9 @@
         "short_desc": "Professional interactive flat panel for corporate environments",
         "full_desc": "High-end interactive flat panel with ultra-thin bezels and advanced touch technology. Designed for corporate boardrooms, universities, and control rooms with superior image quality.",
         "images": [
-          "/Indoor/FlatPanel_01.jpg",
-          "/Indoor/FlatPanel_02.jpg",
-          "/Indoor/FlatPanel_03.jpg"
+          "/FlatPanel/1.jpg",
+          "/FlatPanel/2.jpg",
+          "/FlatPanel/3.jpg"
         ],
         "specifications": {
           "display": {

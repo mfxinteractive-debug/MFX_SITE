@@ -70,7 +70,7 @@ function About() {
               <div className="feature-item">
                 <FaUsers className="feature-icon" />
                 <h4>Trusted by Industry Leaders</h4>
-                <p>From Fortune 500 companies to top universities — they choose MULTIFX.</p>
+                <p>From Fortune top universities — they choose MULTIFX.</p>
               </div>
               <div className="feature-item">
                 <FaRocket className="feature-icon" />

@@ -691,6 +691,30 @@
   box-shadow: 0 8px 20px rgba(190, 36, 38, 0.2);
 }
 
+/* AI Highlights Styles */
+.ai-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ai-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 150, 255, 0.15);
+  border-radius: 20px;
+  color: #4db8ff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 150, 255, 0.3);
+}
+
+.ai-highlight-item svg {
+  font-size: 14px;
+}
 /* ======================================== */
 /* ANIMATIONS */
 /* ======================================== */
