@@ -1,62 +1,319 @@
 {
-  "product_name": "indoor-led",
-  "specifications": {
-    "screen": {
-      
-      "panel": "Samsung & LG A+ Grade Panel",
-      "panel_size": ["32", "55"],
-      "display_ratio": "16:9",
-      "resolution": "FULL HD 1920X1080",
-      "viewing_angle": "89/89/89/89 (Typ.)(CR=>10)",
-      "color": "16.7M",
-      "backlits": "LED",
-      "brightness": "700 cd/m2",
-      "contrast": "3000:1"
-    },
-    "operating_system": {
-      "main_board": {
-        "pc": "i5-3317U (optional)",
-        "android": "CPU: RK3288 (optional)"
+  "touch-screen": {
+    "category": "interactive-displays",
+    "description": "Interactive touch screen displays for various applications",
+    "products": [
+      {
+        "id": 1,
+        "name": "MultiFX Standing Display",
+        "type": "freestanding",
+        "short_desc": "Freestanding interactive display with mobility and flexibility",
+        "full_desc": "Professional standing touch screen display with adjustable height and mobility features. Perfect for presentations, exhibitions, and interactive demos.",
+        "images": [
+          "/Standing/1.jpg",
+         "/Standing/2.jpg",
+          "/Standing/3.jpg",
+          "/Standing/4.jpg",
+          "/Standing/5.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "panel": "IPS Touch Panel",
+            "sizes": ["21.5\"","32\"", "43\"", "55\"","65\"","75\""],
+            "resolution": "HD ,4K UHD 3840x2160",
+            "brightness": "450 cd/m²",
+            "contrast": "4000:1",
+            "response_time": "8ms"
+          },
+          "touch": {
+            "technology": "Infrared Touch",
+            "points": "10 points",
+            "response": "4ms"
+          },
+          "stand": {
+            "type": "Mobile Stand",
+
+            "wheels": "Lockable casters"
+          },
+          "connectivity": ["HDMI", "USB-C", "RJ45", "WiFi", "Bluetooth"]
+        },
+        "features": [
+          "Mobile Design",
+          "Multi-User Touch",
+          "Wireless Screen Sharing",
+          "Built-in Whiteboard",
+          "Video Conferencing Ready"
+        ],
+        "applications": [
+          "Corporate Presentations",
+          "Retail Exhibitions",
+          "Education",
+          "Trade Shows",
+          "Interactive Kiosks"
+        ]
       },
-      "ram": {
-        "pc": "4GB, SSD 128GB (optional)",
-        "android": "RAM 2GB, eMMC 8G (optional)"
+      {
+        "id": 2,
+        "name": "MultiFX Wall Mount Display",
+        "type": "wall-mounted",
+        "short_desc": "Slim wall-mounted interactive display for conference rooms",
+        "full_desc": "Ultra-slim wall-mounted touch screen display with 4K resolution and multi-touch capability. Perfect for boardrooms, control rooms, and collaborative spaces.",
+        "images": [
+          "/Indoor/Creative_04.jpg",
+          "/Indoor/Creative_05.jpg",
+          "/Indoor/Creative_06.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "panel": "LG IPS Panel",
+            "sizes": ["32\"", "43\"", "55\"","65\"","75\"","85\""],
+            "resolution": "HD,4K UHD",
+            "brightness": "500 cd/m²",
+            "viewing_angle": "178°"
+          },
+          "touch": {
+            "technology": "Projected Capacitive",
+            "points": "10 points",
+            "accuracy": "±1mm"
+          },
+          "mounting": {
+            "type": "VESA 600x400",
+            "tilt": "±15°"
+          },
+          "connectivity": ["HDMI 2.0", "USB 3.0", "DisplayPort", "OPS Slot"]
+        },
+        "features": [
+          "Ultra-Slim Design",
+          "Anti-Glare Glass",
+          "Eye Protection Mode",
+          "Split Screen",
+          "Smart Calibration"
+        ],
+        "applications": [
+          "Conference Rooms",
+          "Control Centers",
+          "Corporate Lobbies",
+          "Command Centers"
+        ]
       },
-      "operation": {
-        "pc": "Windows 7 (optional Wins, Wins1, Win10)",
-        "android": "Android 4.2 (optional Android 4.4.4/4.2.2/5.1.1/6.0.1/7.1.2)"
+      {
+        "id": 3,
+        "name": "MultiFX Digital Easel",
+        "type": "portable",
+        "short_desc": "Portable interactive easel for hotels,malls,hospitals,events, and workshops",
+        "full_desc": "Lightweight and portable interactive easel . Ideal for  hotels,malls,hospitals,events, and  workshops.",
+        "images": [
+          "/Indoor/Easel_01.jpg",
+          "/Indoor/Easel_02.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "panel": "LED Backlit",
+            "size": "43\"",
+            "resolution": "Full HD 1920x1080",
+            "brightness": "350 cd/m²"
+          },
+          "touch": {
+            "technology": "Optical Touch",
+            "points": "10 points",
+            "pen_support": "Yes"
+          },
+          "mobility": {
+            "weight": "35kg",
+            "foldable": "Yes",
+            "setup_time": "< 2 minutes"
+          },
+          "connectivity": ["HDMI", "USB", "Wireless Dongle"]
+        },
+        "features": [
+          "Portable Design",
+          "Battery Powered",
+          "Quick Setup",
+          "Education Software",
+          "Annotation Tools"
+        ],
+        "applications": [
+          "Classrooms",
+          "Training Rooms",
+          "Art Studios",
+          "Workshops",
+          "Temporary Installations"
+        ]
       },
-      "connection_to_network": ["RJ45", "4G", "WiFi (optional)"]
-    },
-    "touch_screen_system": {
-      "touch_screen": "Infrared Touch (Foil, Capacitive)",
-      "touch_ways": ["Finger", "Stylus (Pen)"],
-      "touch_dots": "10 dots (optional 20 dots, 40 dots)",
-      "durability": "More than 50 Million touch"
-    },
-    "power_and_environment": {
-      "working_temperature": "0°C-50°C",
-      "power_supply": "140Watt",
-      "voltage": "AC 100 - 240V 50/60 HZ",
-      "stability": "Good",
-      "interface": ["VGA", "HDMI", "USB"]
-    },
-    "body_and_shell": {
-      "material": "Aluminium alloy mould",
-      "surface": "Spraying, frosted aluminium",
-      "shell": "Galvanized Steel Sheet",
-      "side_and_front_frame": "Aluminium alloy mould 1.5mm-6mm thickness",
-      "colour": ["Black", "White", "Silver"]
-    },
-    "features": [
-      "Multi-Touch",
-      "WiFi",
-      "Windows Android",
-      "4K",
-      "Interactive Teaching",
-      "Bluetooth",
-      "Scanner",
-      "Printer"
+      {
+        "id": 4,
+        "name": "MultiFX Interactive Table",
+        "type": "table",
+        "short_desc": "Multi-user interactive table for collaborative work",
+        "full_desc": "Collaborative interactive table supporting multiple simultaneous users. Perfect for team collaboration, design reviews, and interactive presentations.",
+        "images": [
+          "/Indoor/Table_01.jpg",
+          "/Indoor/Table_02.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "panel": "LED Touch Panel",
+            "size": "55\"",
+            "resolution": "4K UHD",
+            "orientation": "Horizontal"
+          },
+          "touch": {
+            "technology": "Infrared Multi-Touch",
+            "points": "20 points",
+            "users": "Up to 10 simultaneous"
+          },
+          "table": {
+            "height": "750mm",
+            "material": "Tempered Glass + Aluminum"
+          },
+          "connectivity": ["USB-C", "Thunderbolt", "WiFi 6", "Bluetooth 5.0"]
+        },
+        "features": [
+          "Multi-User Collaboration",
+          "Gesture Controls",
+          "Object Recognition",
+          "Water Resistant",
+          "Adjustable Height"
+        ],
+        "applications": [
+          "Team Collaboration",
+          "Design Studios",
+          "Museum Exhibits",
+          "Retail Experiences",
+          "Innovation Labs"
+        ]
+      },
+       {
+        "id": 5,
+        "name": "32\" Portable Screen",
+        "type": "portable-display",
+        "short_desc": "Compact portable touch screen for on-the-go presentations",
+        "full_desc": "Ultra-portable 32-inch touch screen display with built-in battery and carrying case. Perfect for sales presentations, remote meetings, and mobile demonstrations.",
+        "images": [
+          "/Indoor/Portable_01.jpg",
+          "/Indoor/Portable_02.jpg",
+          "/Indoor/Portable_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "panel": "IPS LCD",
+            "size": "32\"",
+            "resolution": "Full HD 1920x1080",
+            "brightness": "300 cd/m²",
+            "contrast": "3000:1",
+            "refresh_rate": "60Hz"
+          },
+          "touch": {
+            "technology": "Projected Capacitive",
+            "points": "10 points",
+            "response_time": "10ms"
+          },
+          "portability": {
+            "weight": "8.5kg",
+            "battery_life": "6-8 hours",
+            "carrying_case": "Included",
+            "stand": "Foldable tripod included"
+          },
+          "power": {
+            "input": "AC 100-240V",
+            "battery": "Built-in 8000mAh",
+            "charging_time": "3 hours"
+          },
+          "connectivity": ["HDMI", "USB-C", "Mini DisplayPort", "USB 3.0", "3.5mm Audio","LAN"]
+        },
+        "features": [
+          "Ultra Portable",
+          "Built-in Battery",
+          "Touch Screen",
+          "Sunlight Readable",
+          "Travel Case Included",
+          "Plug & Play Setup"
+        ],
+        "applications": [
+          "Sales Presentations",
+          "Remote Meetings",
+          "Mobile Demos",
+          "Field Work",
+          "Training Sessions",
+          "Trade Shows"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Interactive Flat Panel",
+        "type": "flat-panel",
+        "short_desc": "Professional interactive flat panel for corporate environments",
+        "full_desc": "High-end interactive flat panel with ultra-thin bezels and advanced touch technology. Designed for corporate boardrooms, universities, and control rooms with superior image quality.",
+        "images": [
+          "/Indoor/FlatPanel_01.jpg",
+          "/Indoor/FlatPanel_02.jpg",
+          "/Indoor/FlatPanel_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "panel": "Samsung/LG IPS Panel",
+            "sizes": ["65\"", "75\"", "86\""],
+            "resolution": "4K UHD 3840x2160 (8K Optional)",
+            "brightness": "500-700 cd/m²",
+            "contrast": "5000:1",
+            "color_gamut": "95% DCI-P3",
+            "hdr_support": "HDR10"
+          },
+          "touch": {
+            "technology": "Infrared/Capacitive Hybrid",
+            "points": "20-40 points",
+            "accuracy": "±0.5mm",
+            "response_time": "≤8ms"
+          },
+          "audio_video": {
+            "speakers": "2 x 15W",
+            "microphone": "Built-in array mic",
+            "camera": "Optional 4K AI Camera",
+            "audio_output": "Optical/3.5mm"
+          },
+          "hardware": {
+            "processor": "Intel i5/i7 or ARM Octa-core",
+            "ram": "8GB/16GB",
+            "storage": "128GB/256GB SSD",
+            "operating_system": "Android 11/Windows 11"
+          },
+          "connectivity": {
+            "video": ["HDMI 2.0 x 2", "DisplayPort", "USB-C with DP"],
+            "usb": ["USB 3.0 x 4", "USB 2.0 x 2"],
+            "network": ["RJ45 Gigabit", "WiFi 6", "Bluetooth 5.0"],
+            "audio": ["3.5mm Input", "3.5mm Output", "Optical Audio"],
+            "other": ["OPS Slot", "RS-232", "IR Extender"]
+          },
+          "physical": {
+            "bezel_width": "≤1.8mm",
+            "vesa_mount": "600x400mm",
+            "material": "Aluminum Alloy",
+            "thickness": "≤45mm"
+          }
+        },
+        "features": [
+          "Ultra-Thin Bezels",
+          "4K/8K Resolution",
+          "Multi-Touch Support",
+          "Built-in Whiteboard",
+          "Wireless Casting",
+          "Video Conferencing",
+          "Split Screen Mode",
+          "Annotation Tools",
+          "Cloud Integration",
+          "Firmware Updates"
+        ],
+        "applications": [
+          "Corporate Boardrooms",
+          "University Classrooms",
+          "Control Rooms",
+          "Medical Facilities",
+          "Government Offices",
+          "Broadcast Studios",
+          "Design Centers",
+          "Financial Trading Floors"
+        ]
+      }
     ]
   }
 }

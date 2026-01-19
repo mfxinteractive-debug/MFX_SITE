@@ -1,0 +1,78 @@
+{
+  "ai-kiosk": {
+    "category": "interactive-kiosks",
+    "description": "AI-powered interactive kiosks with advanced features",
+    "products": [
+      {
+        "id": 1,
+        "name": "AI Smart Retail Kiosk",
+        "type": "retail",
+        "short_desc": "Intelligent retail kiosk with facial recognition and personalized recommendations",
+        "full_desc": "Advanced AI-powered retail kiosk featuring facial recognition for customer identification, voice interaction, and personalized product recommendations. Perfect for shopping malls, retail stores, and brand experience centers.",
+        "images": [
+          "/AiKiosk/13.jpg",
+          "/AiKiosk/23.jpg",
+          "/AiKiosk/25.jpg",
+          "/AiKiosk/26.jpg",
+          "/AiKiosk/27.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "size": "32",
+            "type": "Capacitive Touch",
+            "resolution": "Full HD 1920x1080",
+            "brightness": "500 cd/m²"
+          },
+          "ai": {
+            "capabilities": ["Facial Recognition", "Voice Assistant", "Emotion Detection", "Personalized Recommendations"],
+            "facial_recognition": "Yes",
+            "voice_assistant": "Yes",
+            "language_support": ["English", "Spanish", "French", "German"],
+            "processing_speed": "Real-time"
+          },
+          "hardware": {
+            "processor": "Intel Core i7 with AI Accelerator",
+            "ram": "16GB DDR4",
+            "storage": "512GB SSD",
+            "camera": "8MP with IR for facial recognition",
+            "microphone": "4-array microphone",
+            "speakers": "2 x 10W stereo"
+          },
+          "connectivity": ["WiFi 6", "Bluetooth 5.0", "4G/5G", "Ethernet", "USB 3.0"],
+          "software": {
+            "os": "Custom Linux with AI Framework",
+            "analytics": "Real-time customer analytics",
+            "updates": "Over-the-air updates",
+            "integration": "API for CRM and POS integration"
+          },
+          "physical": {
+            "dimensions": "600mm x 1800mm x 450mm",
+            "material": "Stainless steel + tempered glass",
+            "weight": "85kg",
+            "ip_rating": "IP54"
+          }
+        },
+        "features": [
+          "Facial Recognition Login",
+          "Voice-Activated Commands",
+          "Personalized Recommendations",
+          "Multi-language Support",
+          "Real-time Analytics",
+          "Contactless Payments",
+          "Inventory Integration",
+          "Remote Management"
+        ],
+        "applications": [
+          "Retail Stores",
+          "Shopping Malls",
+          "Brand Experience Centers",
+          "Airport Retail",
+          "Hotel Concierge",
+          "Museum Guides",
+          "University Campuses",
+          "Corporate Lobbies"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "outdoor-displays": {
+    "category": "outdoor-displays",
+    "description": "Professional outdoor displays with high brightness and weatherproof design",
+    "products": [
+      {
+        "id": 1,
+        "name": "Outdoor Professional Display 55\"",
+        "type": "outdoor-touch",
+        "short_desc": "55\" outdoor touch display with 3500 cd/m² brightness",
+        "full_desc": "Professional 55-inch outdoor touch display with Samsung & LG A+ Grade panels, 3500 cd/m² high brightness, and weather-resistant design. Perfect for outdoor advertising, information kiosks, and interactive installations in challenging environments.",
+        "images": [
+          "/Outdoor_Displays/3.jpg",
+          "/Outdoor_Displays/2.jpg",
+          "/Outdoor_Displays/1.jpg",
+          "/Outdoor_Displays/4.webp",
+          "/Outdoor_Displays/5.jpg"
+        ],
+        "specifications": {
+          "screen": {
+            "panel_brand": "Samsung & LG Full New 100% A+ Grade Brand Panel",
+            "panel_size": "55\"",
+            "display_size": "1209mm(H)×680mm(V)",
+            "display_ratio": "16:9",
+            "resolution": "1080*1920 (Full HD)",
+            "viewing_angle": "178°/178°(H/V)",
+            "color": "16.7M",
+            "back_light": "LED",
+            "brightness": "3500 cd/m2",
+            "contrast_ratio": "3000:1"
+          },
+          "operating_system": {
+            "main_board": "i5-3317U (optional)",
+            "cpu": "Cortex A17 1.8 GHz",
+            "ram_options": ["4G, SSD:128G (optional)", "2G, EMMC:8G"],
+            "os_options": [
+              "Windows 7 (optional, win8, win8.1, win10)",
+              "Android 4.2 (optional, Android 4.4.4/4.2.2/5.1.1/6.0.1/7.1.2)"
+            ],
+            "network_connection": ["RJ45", "WIFI", "4G (optional)"]
+          },
+
+          "power": {
+            "power_rating": "450W",
+            "voltage": "AC 100-240V 50/60HZ",
+            "stability": "good"
+          },
+          "interfaces": {
+            "available": ["VGA", "HDMI", "USB", "TF card slot"]
+          },
+          "environmental": {
+            "working_temperature": [
+              "-30°C ~ 60°C (with air conditioner)",
+              "-10°C ~ 55°C (with fan cooling)",
+              "-30°C ~ 55°C (with fan cooling + heater)"
+            ]
+          },
+          "construction": {
+            "material": "Aluminum alloy, tempered glass",
+            "surface": "Spraying, frosted aluminum",
+            "shell": "Galvanized steel sheet. Thickness: 2mm. Aluminum, Stainless steel (optional)",
+            "color_options": ["Black", "White", "Silver", "Customized colors"],
+            "packaging": ["carton", "wooden case", "flight case (optional)"]
+          },
+          "optional_features": {
+            "protection": [
+              "Anti-dazzle",
+              "Anti-graffiti",
+              "Anti-glare",
+              "Anti-reflection",
+              "Anti-UV",
+              "Anti-IR",
+              "Water-proof",
+              "Dust-proof",
+              "Vandal proof"
+            ],
+            "connectivity": "3G/4G Capability",
+            "sensors": [
+              "Human sensor",
+              "Light sensor",
+              "Screen sensor",
+              "Humidity sensor",
+              "Temperature sensor",
+              "Vibration sensor",
+              "Safety monitoring sensor",
+              "Ponding sensor",
+              "Smog sensor",
+              "Collision sensor",
+              "Tilt sensor"
+            ]
+          }
+        },
+        "features": [
+          "High Brightness 3500 cd/m²",
+          "Outdoor Weatherproof Design",
+          "Dual OS Support (Windows/Android)",
+          "Multi-touch Capability",
+          "Wide Temperature Range Operation",
+          "Multiple Connectivity Options",
+          "Vandal-Resistant Construction",
+          "Various Sensor Support"
+        ],
+        "applications": [
+          "Outdoor Advertising",
+          "Digital Signage",
+          "Public Information Displays",
+          "Transportation Hubs",
+          "Shopping Mall Exteriors",
+          "Stadium Displays",
+          "Corporate Campus Information",
+          "Tourist Information Centers"
+        ]
+      }
+    ]
+  }
+}

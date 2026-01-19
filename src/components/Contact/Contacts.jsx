@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaPaperPlane } from "react-icons/fa";
-import "./Contacts.css"; // Keep the same file name
+import emailjs from "@emailjs/browser";
+import "./Contacts.css";
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -9,9 +10,9 @@ function ContactPage() {
     phone: "",
     message: "",
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Added for error handling
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,22 +21,35 @@ function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(""); // Clear previous errors
 
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: "", email: "", phone: "", message: "" });
-
-      setTimeout(() => setIsSubmitted(false), 4000);
-    }, 1500);
+    emailjs
+      .sendForm(
+        "service_dzmbnre", 
+        "YOUR_TEMPLATE_ID", // Replace with your EmailJS Template ID
+        e.target,
+        "YOUR_PUBLIC_KEY" // Replace with your EmailJS Public Key
+      )
+      .then(
+        (result) => {
+          console.log("Form submitted successfully:", result.text);
+          setIsSubmitting(false);
+          setIsSubmitted(true);
+          setFormData({ name: "", email: "", phone: "", message: "" });
+          setTimeout(() => setIsSubmitted(false), 4000);
+        },
+        (error) => {
+          console.error("Form submission error:", error.text);
+          setIsSubmitting(false);
+          setErrorMessage("Failed to send message. Please try again later.");
+        }
+      );
   };
 
   return (
     <div className="mfx-contact-page">
       <div className="mfx-bg-shape-1"></div>
       <div className="mfx-bg-shape-2"></div>
-
       <div className="mfx-contact-container">
         <div className="mfx-contact-header">
           <h1 className="mfx-contact-title">Get In Touch</h1>
@@ -43,7 +57,6 @@ function ContactPage() {
             Have questions or need assistance? We're here to help you bring your digital vision to life.
           </p>
         </div>
-
         <div className="mfx-contact-content">
           {/* Left Section */}
           <div className="mfx-contact-info-section">
@@ -52,7 +65,6 @@ function ContactPage() {
               <p className="mfx-company-description">
                 We specialize in innovative digital display solutions including LED screens, touch kiosks, and interactive displays.
               </p>
-
               <div className="mfx-contact-details">
                 <div className="mfx-contact-item">
                   <div className="mfx-contact-icon">
@@ -64,7 +76,6 @@ function ContactPage() {
                     <p>Kolkata 700017, West Bengal, India</p>
                   </div>
                 </div>
-
                 <div className="mfx-contact-item">
                   <div className="mfx-contact-icon">
                     <FaEnvelope />
@@ -75,7 +86,6 @@ function ContactPage() {
                     <p>Response within 24 hours</p>
                   </div>
                 </div>
-
                 <div className="mfx-contact-item">
                   <div className="mfx-contact-icon">
                     <FaPhoneAlt />
@@ -87,20 +97,13 @@ function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="mfx-company-highlight">
-                <h4>MFX INTERACTIVE PVT. LTD.</h4>
-                <p>Your Partner in Digital Transformation</p>
-              </div> */}
             </div>
           </div>
-
           {/* Right Form Section */}
           <div className="mfx-form-section">
             <div className="mfx-form-card">
               <h2>Send Us a Message</h2>
               <p className="mfx-form-intro">Fill out the form below and we'll get back to you as soon as possible.</p>
-
               <form onSubmit={handleSubmit} className="mfx-contact-form">
                 <div className="mfx-form-row">
                   <div className="mfx-form-group">
@@ -112,17 +115,14 @@ function ContactPage() {
                     <input type="email" name="email" value={formData.email} placeholder="john@example.com" onChange={handleChange} required />
                   </div>
                 </div>
-
                 <div className="mfx-form-group">
                   <label>Phone Number</label>
                   <input type="tel" name="phone" value={formData.phone} placeholder="+91 9876543210" onChange={handleChange} />
                 </div>
-
                 <div className="mfx-form-group">
                   <label>Your Message *</label>
                   <textarea name="message" value={formData.message} rows="5" placeholder="Tell us about your project requirements..." onChange={handleChange} required></textarea>
                 </div>
-
                 <div className="mfx-form-footer">
                   <p className="mfx-required-note">* Required fields</p>
                   <button type="submit" className="mfx-submit-btn" disabled={isSubmitting}>
@@ -136,7 +136,6 @@ function ContactPage() {
                     )}
                   </button>
                 </div>
-
                 {isSubmitted && (
                   <div className="mfx-success-message">
                     <div className="mfx-success-icon">✓</div>
@@ -144,6 +143,11 @@ function ContactPage() {
                       <h4>Message Sent Successfully!</h4>
                       <p>Thank you for contacting us. We'll get back to you soon.</p>
                     </div>
+                  </div>
+                )}
+                {errorMessage && (
+                  <div className="mfx-error-message">
+                    <p>{errorMessage}</p>
                   </div>
                 )}
               </form>
@@ -154,5 +158,4 @@ function ContactPage() {
     </div>
   );
 }
-
-export default ContactPage;
+export default ContactPage; 

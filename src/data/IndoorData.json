@@ -1,0 +1,344 @@
+{
+  "indoor-led": {
+    "category": "led-displays",
+    "subcategory": "indoor",
+    "description": "High-quality indoor LED displays for commercial and corporate environments",
+    "products": [
+      {
+        "id": 1,
+        "name": "Indoor P2.5 LED Display",
+        "type": "fine-pitch",
+        "short_desc": "Ultra high-resolution indoor LED display for close viewing",
+        "full_desc": "P2.5 pixel pitch LED display with exceptional image clarity and color reproduction. Perfect for boardrooms, control rooms, and high-end retail environments where image quality is critical.",
+        "images": [
+          "/Indoor/P25_01.jpg",
+          "/Indoor/P25_02.jpg",
+          "/Indoor/P25_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "pixel_pitch": "P2.5mm",
+            "resolution": "160,000 pixels/m²",
+            "brightness": "800-1200 cd/m²",
+            "refresh_rate": "3840Hz",
+            "viewing_distance": "2.5m - 25m",
+            "viewing_angle": "160° horizontal, 140° vertical"
+          },
+          "panel": {
+            "cabinet_size": "500x500mm",
+            "cabinet_thickness": "85mm",
+            "panel_weight": "12kg",
+            "material": "Die-cast aluminum",
+            "protection": "Front IP54"
+          },
+          "color_performance": {
+            "color_temperature": "6500K-10000K adjustable",
+            "color_depth": "16.7 million colors",
+            "color_gamut": "≥120% NTSC",
+            "gray_scale": "16-bit processing"
+          },
+          "technical": {
+            "power_consumption": "450W/m² max",
+            "power_supply": "AC 100-240V, 50/60Hz",
+            "lifespan": "100,000 hours",
+            "failure_rate": "<1/10,000 pixels"
+          },
+          "control_system": {
+            "controller": "Integrated sending card",
+            "connection": "CAT5E/CAT6 cable",
+            "scaling": "Automatic image scaling",
+            "compatibility": "HDMI, DVI, SDI, VGA"
+          }
+        },
+        "features": [
+          "Ultra High Resolution",
+          "Wide Viewing Angle",
+          "High Refresh Rate",
+          "Front Maintenance",
+          "Seamless Tiling",
+          "Color Calibration",
+          "Low Power Consumption",
+          "Quiet Operation"
+        ],
+        "applications": [
+          "Corporate Boardrooms",
+          "Control Centers",
+          "Broadcast Studios",
+          "Retail Stores",
+          "Museums & Galleries",
+          "Corporate Lobbies",
+          "Conference Centers",
+          "Hotel Displays"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Indoor P3 LED Display",
+        "type": "fine-pitch",
+        "short_desc": "High-resolution indoor LED for versatile applications",
+        "full_desc": "P3 pixel pitch LED display offering excellent balance between resolution and cost. Suitable for various indoor applications including corporate offices, retail spaces, and entertainment venues.",
+        "images": [
+          "/Indoor/P3_01.jpg",
+          "/Indoor/P3_02.jpg",
+          "/Indoor/P3_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "pixel_pitch": "P3mm",
+            "resolution": "111,111 pixels/m²",
+            "brightness": "700-1000 cd/m²",
+            "refresh_rate": "1920Hz",
+            "viewing_distance": "3m - 30m",
+            "viewing_angle": "160° horizontal, 140° vertical"
+          },
+          "panel": {
+            "cabinet_size": "576x576mm",
+            "cabinet_thickness": "90mm",
+            "panel_weight": "14kg",
+            "material": "Die-cast aluminum",
+            "protection": "Front IP43"
+          },
+          "color_performance": {
+            "color_temperature": "6500K-10000K adjustable",
+            "color_depth": "16.7 million colors",
+            "color_gamut": "≥110% NTSC",
+            "gray_scale": "14-bit processing"
+          },
+          "technical": {
+            "power_consumption": "400W/m² max",
+            "power_supply": "AC 100-240V, 50/60Hz",
+            "lifespan": "100,000 hours",
+            "failure_rate": "<1/10,000 pixels"
+          },
+          "control_system": {
+            "controller": "Integrated sending card",
+            "connection": "CAT5E cable",
+            "scaling": "Automatic image scaling",
+            "compatibility": "HDMI, DVI, VGA"
+          }
+        },
+        "features": [
+          "High Resolution",
+          "Excellent Color Reproduction",
+          "Energy Efficient",
+          "Easy Installation",
+          "Seamless Connection",
+          "Color Uniformity",
+          "Wide Compatibility",
+          "Stable Performance"
+        ],
+        "applications": [
+          "Corporate Offices",
+          "Shopping Malls",
+          "Restaurants & Bars",
+          "Gymnasiums",
+          "Educational Institutions",
+          "Transportation Hubs",
+          "Exhibition Halls",
+          "Entertainment Venues"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Indoor P4 LED Display",
+        "type": "standard-pitch",
+        "short_desc": "Cost-effective indoor LED display for large areas",
+        "full_desc": "P4 pixel pitch LED display offering great value for large indoor installations. Ideal for arenas, stadiums, and large retail spaces where viewing distance is greater.",
+        "images": [
+          "/Indoor/P4_01.jpg",
+          "/Indoor/P4_02.jpg",
+          "/Indoor/P4_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "pixel_pitch": "P4mm",
+            "resolution": "62,500 pixels/m²",
+            "brightness": "600-800 cd/m²",
+            "refresh_rate": "1920Hz",
+            "viewing_distance": "4m - 40m",
+            "viewing_angle": "140° horizontal, 120° vertical"
+          },
+          "panel": {
+            "cabinet_size": "500x500mm",
+            "cabinet_thickness": "80mm",
+            "panel_weight": "10kg",
+            "material": "Die-cast aluminum",
+            "protection": "Front IP43"
+          },
+          "color_performance": {
+            "color_temperature": "6500K-10000K adjustable",
+            "color_depth": "16.7 million colors",
+            "color_gamut": "≥100% NTSC",
+            "gray_scale": "14-bit processing"
+          },
+          "technical": {
+            "power_consumption": "350W/m² max",
+            "power_supply": "AC 100-240V, 50/60Hz",
+            "lifespan": "100,000 hours",
+            "failure_rate": "<1/10,000 pixels"
+          },
+          "control_system": {
+            "controller": "Integrated sending card",
+            "connection": "CAT5E cable",
+            "scaling": "Automatic image scaling",
+            "compatibility": "HDMI, DVI, VGA"
+          }
+        },
+        "features": [
+          "Cost Effective",
+          "Good Resolution",
+          "Low Power Consumption",
+          "Easy Maintenance",
+          "High Reliability",
+          "Wide Viewing Angle",
+          "Quick Setup",
+          "Durable Construction"
+        ],
+        "applications": [
+          "Sports Arenas",
+          "Concert Halls",
+          "Large Retail Stores",
+          "Warehouse Displays",
+          "Manufacturing Plants",
+          "Airport Terminals",
+          "Train Stations",
+          "Convention Centers"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Indoor P5 LED Display",
+        "type": "large-pitch",
+        "short_desc": "Large pitch indoor LED for budget-conscious installations",
+        "full_desc": "P5 pixel pitch LED display offering the most economical solution for indoor applications with longer viewing distances. Perfect for large venues and commercial spaces.",
+        "images": [
+          "/Indoor/P5_01.jpg",
+          "/Indoor/P5_02.jpg",
+          "/Indoor/P5_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "pixel_pitch": "P5mm",
+            "resolution": "40,000 pixels/m²",
+            "brightness": "500-700 cd/m²",
+            "refresh_rate": "960Hz",
+            "viewing_distance": "5m - 50m",
+            "viewing_angle": "120° horizontal, 100° vertical"
+          },
+          "panel": {
+            "cabinet_size": "640x640mm",
+            "cabinet_thickness": "85mm",
+            "panel_weight": "15kg",
+            "material": "Steel frame",
+            "protection": "Front IP20"
+          },
+          "color_performance": {
+            "color_temperature": "6500K-10000K adjustable",
+            "color_depth": "16.7 million colors",
+            "color_gamut": "≥95% NTSC",
+            "gray_scale": "12-bit processing"
+          },
+          "technical": {
+            "power_consumption": "300W/m² max",
+            "power_supply": "AC 100-240V, 50/60Hz",
+            "lifespan": "80,000 hours",
+            "failure_rate": "<1/10,000 pixels"
+          },
+          "control_system": {
+            "controller": "External sending card",
+            "connection": "CAT5E cable",
+            "scaling": "Automatic image scaling",
+            "compatibility": "HDMI, DVI, VGA"
+          }
+        },
+        "features": [
+          "Most Economical",
+          "Suitable for Large Areas",
+          "Easy Installation",
+          "Low Maintenance",
+          "High Brightness",
+          "Good Viewing Distance",
+          "Simple Operation",
+          "Reliable Performance"
+        ],
+        "applications": [
+          "Warehouse Price Displays",
+          "Factory Information Boards",
+          "Large Indoor Arenas",
+          "Parking Garages",
+          "Distribution Centers",
+          "Gymnasiums",
+          "Church Auditoriums",
+          "Community Centers"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Indoor Curved LED Display",
+        "type": "curved",
+        "short_desc": "Curved indoor LED for immersive viewing experiences",
+        "full_desc": "Flexible curved LED display that can be shaped to create immersive viewing experiences. Perfect for architectural installations, retail displays, and creative spaces.",
+        "images": [
+          "/Indoor/Curved_01.jpg",
+          "/Indoor/Curved_02.jpg",
+          "/Indoor/Curved_03.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "pixel_pitch": "P2.5/P3/P4",
+            "curvature_radius": "Customizable (1m - 10m)",
+            "bending_angle": "±15° per cabinet",
+            "brightness": "600-1000 cd/m²",
+            "refresh_rate": "1920Hz",
+            "viewing_angle": "170° horizontal, 150° vertical"
+          },
+          "panel": {
+            "cabinet_size": "500x500mm",
+            "cabinet_thickness": "95mm",
+            "panel_weight": "13kg",
+            "material": "Flexible PCB + aluminum",
+            "protection": "Front IP54"
+          },
+          "color_performance": {
+            "color_temperature": "6500K-10000K adjustable",
+            "color_depth": "16.7 million colors",
+            "color_gamut": "≥120% NTSC",
+            "gray_scale": "16-bit processing"
+          },
+          "technical": {
+            "power_consumption": "400W/m² max",
+            "power_supply": "AC 100-240V, 50/60Hz",
+            "lifespan": "100,000 hours",
+            "maximum_curvature": "360° full circle possible"
+          },
+          "control_system": {
+            "controller": "Integrated sending card",
+            "connection": "CAT6 cable",
+            "curvature_control": "Software adjustable",
+            "compatibility": "HDMI, DVI, SDI, VGA"
+          }
+        },
+        "features": [
+          "Flexible Curvature",
+          "Immersive Viewing",
+          "High Resolution",
+          "Seamless Connection",
+          "Creative Designs",
+          "Easy Installation",
+          "Wide Viewing Angle",
+          "Architectural Integration"
+        ],
+        "applications": [
+          "Architectural Displays",
+          "Retail Experience Centers",
+          "Museum Exhibits",
+          "Corporate Brand Walls",
+          "Entertainment Venues",
+          "TV Studios",
+          "Gaming Arenas",
+          "Product Launch Events"
+        ]
+      }
+    ]
+  }
+}

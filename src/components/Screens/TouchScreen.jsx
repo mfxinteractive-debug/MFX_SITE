@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Screens.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -12,87 +12,28 @@ const TouchScreens = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [activeTab, setActiveTab] = useState("specTable");
+  const [products, setProducts] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Get touch screens displays data from JSON
-  // Note: Make sure your JSON has this key or adjust accordingly
-  const touchScreenData = productData["touch-screens-displays"] || productData["touch_screens_displays"] || productData;
-  
-  // Use the specifications from touch screen data
-  const specifications = touchScreenData.specifications || touchScreenData;
-  
-  // Create products array
-  const products = [
-    {
-      name: "Touch Screen - Professional Series",
-      sizes: specifications?.screen?.panel_size ? 
-        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
-        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
-      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
-      images: [
-        "/Indoor/Creative_01.jpg",
-        "/Indoor/Creative_02.jpg",
-        "/Indoor/Creative_03.jpg",
-        "/Indoor/Creative_04.jpg",
-        "/Indoor/Creative_06.jpg",
-      ],
-    },
-       {
-      name: "Touch Screen - Professional Series",
-      sizes: specifications?.screen?.panel_size ? 
-        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
-        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
-      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
-      images: [
-        "/Indoor/Creative_01.jpg",
-        "/Indoor/Creative_02.jpg",
-        "/Indoor/Creative_03.jpg",
-        "/Indoor/Creative_04.jpg",
-        "/Indoor/Creative_06.jpg",
-      ],
-    },
-       {
-      name: "Touch Screen - Professional Series",
-      sizes: specifications?.screen?.panel_size ? 
-        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
-        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
-      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
-      images: [
-        "/Indoor/Creative_01.jpg",
-        "/Indoor/Creative_02.jpg",
-        "/Indoor/Creative_03.jpg",
-        "/Indoor/Creative_04.jpg",
-        "/Indoor/Creative_06.jpg",
-      ],
-    },
-       {
-      name: "Touch Screen - Professional Series",
-      sizes: specifications?.screen?.panel_size ? 
-        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
-        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
-      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
-      images: [
-        "/Indoor/Creative_01.jpg",
-        "/Indoor/Creative_02.jpg",
-        "/Indoor/Creative_03.jpg",
-        "/Indoor/Creative_04.jpg",
-        "/Indoor/Creative_06.jpg",
-      ],
-    },
-       {
-      name: "Touch Screen - Professional Series",
-      sizes: specifications?.screen?.panel_size ? 
-        `${specifications.screen.panel_size.join('" & "')}" Display | ${specifications.screen.resolution || "FULL HD 1920X1080"} | ${specifications.screen.brightness || "700 cd/m²"}` :
-        "32\" & 55\" Display | FULL HD 1920X1080 | 700 cd/m²",
-      desc: "High-performance touch screen display with dual OS support, perfect for corporate and educational environments.",
-      images: [
-        "/Indoor/Creative_01.jpg",
-        "/Indoor/Creative_02.jpg",
-        "/Indoor/Creative_03.jpg",
-        "/Indoor/Creative_04.jpg",
-        "/Indoor/Creative_06.jpg",
-      ],
-    },
-  ];
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Get products data from JSON
+  useEffect(() => {
+    const touchScreenData = productData["touch-screen"];
+    if (touchScreenData && touchScreenData.products) {
+      setProducts(touchScreenData.products);
+    }
+  }, []);
 
   const handleDetailsClick = (product) => {
     setSelectedProduct(product);
@@ -105,13 +46,12 @@ const TouchScreens = () => {
     if (Array.isArray(value)) {
       return value.join(', ');
     } else if (typeof value === 'object' && value !== null) {
-      // Handle nested objects
       return Object.entries(value)
         .map(([key, val]) => {
           const formattedKey = key.split('_').map(word => 
             word.charAt(0).toUpperCase() + word.slice(1)
           ).join(' ');
-          return `${formattedKey}: ${val}`;
+          return `${formattedKey}: ${formatValue(val)}`;
         })
         .join('; ');
     }
@@ -126,10 +66,12 @@ const TouchScreens = () => {
   };
 
   const renderSpecificationTable = () => {
+    if (!selectedProduct?.specifications) return null;
+
     return (
       <div className="specs-tab-content">
         <div className="specs-grid">
-          {Object.entries(specifications).map(([category, categoryData]) => (
+          {Object.entries(selectedProduct.specifications).map(([category, categoryData]) => (
             <div key={category} className="specs-category">
               <h4 className="specs-category-title">
                 {formatKey(category)}
@@ -154,12 +96,14 @@ const TouchScreens = () => {
   };
 
   const renderFeatures = () => {
+    if (!selectedProduct?.features) return null;
+
     return (
       <div className="specs-tab-content">
         <div className="specs-features">
-          <h4>All Features</h4>
+          <h4>Key Features</h4>
           <ul>
-            {specifications.features?.map((feature, index) => (
+            {selectedProduct.features.map((feature, index) => (
               <li key={index}>
                 <FaChevronRight className="feature-icon" />
                 {feature}
@@ -172,27 +116,28 @@ const TouchScreens = () => {
   };
 
   const renderApplications = () => {
-    const applications = [
-      "Corporate Meetings",
-      "Education & Training",
-      "Retail Displays",
-      "Control Rooms",
-      "Digital Signage",
-      "Conference Rooms"
-    ];
-    
+    if (!selectedProduct?.applications) return null;
+
     return (
       <div className="specs-tab-content">
         <div className="specs-applications">
           <h4>Applications</h4>
           <div className="applications-tags">
-            {applications.map((app, index) => (
+            {selectedProduct.applications.map((app, index) => (
               <span key={index} className="app-tag">{app}</span>
             ))}
           </div>
         </div>
       </div>
     );
+  };
+
+  // Function to get display sizes from specifications
+  const getDisplaySizes = (product) => {
+    if (product.specifications?.display?.sizes) {
+      return `${product.specifications.display.sizes.join('", "')}" Display`;
+    }
+    return "Multiple Sizes Available";
   };
 
   return (
@@ -215,67 +160,94 @@ const TouchScreens = () => {
           <h2 className="section-title">Touch Screens Displays</h2>
           <p className="section-subtitle">High-performance interactive displays for professional environments</p>
           
-          {products.map((product, index) => (
-            <div
-              className={`px-card ${index % 2 === 1 ? "px-reverse" : ""}`}
-              key={index}
-            >
-              {/* Image Slider */}
-              <div className="px-gallery">
-                <Swiper
-                  modules={[Autoplay, Pagination, Navigation]}
-                  pagination={{ clickable: true }}
-                  navigation={true}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  loop={true}
-                  className="px-swiper"
-                >
-                  {product.images.map((img, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="px-image-wrapper">
-                        <img src={img} alt={`${product.name} view ${i + 1}`} />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+          {products.length > 0 ? (
+            products.map((product, index) => (
+              <div
+                className={`px-card ${index % 2 === 1 ? "px-reverse" : ""}`}
+                key={product.id}
+              >
+                {/* Image Slider */}
+                <div className="px-gallery">
+                  {product.images && product.images.length > 0 ? (
+                    <Swiper
+                      modules={[Autoplay, Pagination, Navigation]}
+                      pagination={{ 
+                        clickable: true,
+                        dynamicBullets: true 
+                      }}
+                      navigation={!isMobile}
+                      autoplay={{ 
+                        delay: 3000, 
+                        disableOnInteraction: false 
+                      }}
+                      loop={true}
+                      className="px-swiper"
+                    >
+                      {product.images.map((img, i) => (
+                        <SwiperSlide key={i}>
+                          <div className="px-image-wrapper">
+                            <img 
+                              src={img} 
+                              alt={`${product.name} view ${i + 1}`}
+                              loading="lazy"
+                            />
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  ) : (
+                    <div className="px-image-wrapper">
+                      <img 
+                        src="/Indoor/default-display.jpg" 
+                        alt={product.name}
+                        className="default-image"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="px-info">
+                  <h2>{product.name}</h2>
+                  <div className="px-sizes">
+                    <FaRulerCombined /> Display: <span>{getDisplaySizes(product)}</span>
+                  </div>
+                  <p className="px-desc">{product.full_desc || product.short_desc}</p>
+
+                  <div className="px-actions">
+                    <button className="px-quote-btn">
+                      Get Quote <FaArrowRight />
+                    </button>
+                    <button 
+                      className="px-details-btn"
+                      onClick={() => handleDetailsClick(product)}
+                    >
+                      View Details
+                    </button>
+                  </div>
+
+                  <div className="px-quote">
+                    <FaQuoteRight />
+                    <em>{product.short_desc}</em>
+                  </div>
+                </div>
               </div>
-
-              {/* Content */}
-              <div className="px-info">
-                <h2>{product.name}</h2>
-                <div className="px-sizes">
-                  <FaRulerCombined /> Specifications: <span>{product.sizes}</span>
-                </div>
-                <p className="px-desc">{product.desc}</p>
-
-                <div className="px-actions">
-                  <button className="px-quote-btn">
-                    Get Quote <FaArrowRight />
-                  </button>
-                  <button 
-                    className="px-details-btn"
-                    onClick={() => handleDetailsClick(product)}
-                  >
-                    View Details
-                  </button>
-                </div>
-
-                <div className="px-quote">
-                  <FaQuoteRight />
-                  <em>Superior image quality with seamless integration.</em>
-                </div>
-              </div>
+            ))
+          ) : (
+            <div className="no-products">
+              <h3>No products available</h3>
+              <p>Please check back later or contact us for more information.</p>
             </div>
-          ))}
+          )}
         </div>
       </section>
 
       {/* Specifications Modal */}
-      {showDetails && (
-        <div className="specs-modal-overlay">
-          <div className="specs-modal">
+      {showDetails && selectedProduct && (
+        <div className="specs-modal-overlay" onClick={() => setShowDetails(false)}>
+          <div className="specs-modal" onClick={(e) => e.stopPropagation()}>
             <div className="specs-modal-header">
-              <h2>{selectedProduct?.name} - Complete Specifications</h2>
+              <h2>{selectedProduct.name} - Complete Specifications</h2>
               <button 
                 className="specs-modal-close"
                 onClick={() => setShowDetails(false)}
@@ -315,7 +287,16 @@ const TouchScreens = () => {
         </div>
       )}
 
-
+      {/* CTA */}
+      {/* <section className="px-cta">
+        <div className="px-container">
+          <h2>Ready for Digital Transformation?</h2>
+          <p>
+            Join hundreds of brands already using <strong>MULTIFX</strong> touch screen displays for corporate, retail, and control room applications.
+          </p>
+          <button className="px-main-cta">Explore All Products</button>
+        </div>
+      </section> */}
     </>
   );
 };

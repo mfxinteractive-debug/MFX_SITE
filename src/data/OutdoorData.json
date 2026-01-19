@@ -1,0 +1,69 @@
+{
+     "outdoor-led": {
+    "category": "led-displays",
+    "subcategory": "outdoor",
+    "description": "Weather-resistant outdoor LED displays for advertising and public information",
+    "products": [
+      {
+        "id": 1,
+        "name": "Outdoor P10 LED Display",
+        "type": "outdoor-billboard",
+        "short_desc": "High-brightness outdoor LED for advertising and public displays",
+        "full_desc": "P10 pixel pitch outdoor LED display with 8000+ nits brightness and IP65 waterproof rating. Perfect for outdoor advertising, stadiums, and public information displays in direct sunlight.",
+        "images": [
+          "/Outdoor/20.jpg",
+          "/Outdoor/21.jpg",
+          "/Outdoor/22.jpg",
+          "/Outdoor/23.jpg"
+        ],
+        "specifications": {
+          "display": {
+            "pixel_pitch": "P10mm",
+            "brightness": "8000-10000 cd/m²",
+            "refresh_rate": "1920Hz",
+            "viewing_distance": "10m - 100m",
+            "viewing_angle": "140° horizontal, 120° vertical"
+          },
+          "protection": {
+            "ip_rating": "65",
+            "waterproof": "Yes",
+            "dustproof": "Yes",
+            "uv_protection": "Yes"
+          },
+          "cabinet": {
+            "material": "Die-cast aluminum with powder coating",
+            "thickness": "120mm",
+            "weight": "25kg per cabinet",
+            "cooling": "Forced air cooling with fans"
+          },
+          "technical": {
+            "power_consumption": "800W/m² max",
+            "operating_temperature": "-20°C to 50°C",
+            "humidity": "10% to 90% non-condensing",
+            "wind_resistance": "Level 12"
+          }
+        },
+        "features": [
+          "High Brightness (8000+ nits)",
+          "IP65 Waterproof",
+          "Anti-Glare Treatment",
+          "High Wind Resistance",
+          "Wide Temperature Range",
+          "Automatic Brightness Adjustment",
+          "Remote Monitoring",
+          "Easy Maintenance"
+        ],
+        "applications": [
+          "Outdoor Advertising",
+          "Stadium Displays",
+          "Shopping Mall Facades",
+          "Building Wraps",
+          "Traffic Information",
+          "Airport Displays",
+          "Bus Station Screens",
+          "Public Square Displays"
+        ]
+      }
+    ]
+  }
+}
