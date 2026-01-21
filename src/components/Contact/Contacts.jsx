@@ -26,9 +26,9 @@ function ContactPage() {
     emailjs
       .sendForm(
         "service_dzmbnre", 
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS Template ID
+        "template_blzwif7", // Replace with your EmailJS Template ID
         e.target,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS Public Key
+        "jFAaoSJjicJsJtw-w" // Replace with your EmailJS Public Key
       )
       .then(
         (result) => {

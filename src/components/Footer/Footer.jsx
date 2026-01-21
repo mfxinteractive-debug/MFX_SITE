@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { 
   FaFacebookF, 
   FaInstagram, 
@@ -29,16 +30,16 @@ const Footer = () => {
             Transforming spaces with cutting-edge digital display solutions and interactive experiences.
           </p>
           <div className="social-icons">
-            <a href="#" className="social-icon" aria-label="Facebook">
+            <a href="https://facebook.com" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <FaFacebookF />
             </a>
-            <a href="#" className="social-icon" aria-label="Instagram">
+            <a href="https://instagram.com" className="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <FaInstagram />
             </a>
-            <a href="#" className="social-icon" aria-label="LinkedIn">
+            <a href="https://linkedin.com" className="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <FaLinkedinIn />
             </a>
-            <a href="#" className="social-icon" aria-label="YouTube">
+            <a href="https://youtube.com" className="social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
               <FaYoutube />
             </a>
           </div>
@@ -58,28 +59,28 @@ const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li>
-              <a href="/">
+              <Link to="/">
                 <FaArrowRight className="link-arrow" />
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/about">
+              <Link to="/about">
                 <FaArrowRight className="link-arrow" />
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/services">
+              <Link to="/services">
                 <FaArrowRight className="link-arrow" />
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/contact">
+              <Link to="/contact">
                 <FaArrowRight className="link-arrow" />
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -89,28 +90,28 @@ const Footer = () => {
           <h3>Our Products</h3>
           <ul>
             <li>
-              <a href="/touch-screen-display">
+              <Link to="/touch-screens">
                 <FaArrowRight className="link-arrow" />
                 Touch Screen Display
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/outdoor-led">
+              <Link to="/outdoor-led">
                 <FaArrowRight className="link-arrow" />
                 Outdoor LED
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/indoor-led">
+              <Link to="/indoor-led">
                 <FaArrowRight className="link-arrow" />
                 Indoor LED
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/ai-kiosks">
+              <Link to="/ai-kiosk">
                 <FaArrowRight className="link-arrow" />
                 AI Kiosks
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -163,12 +164,9 @@ const Footer = () => {
           <p>
             © {currentYear} MFX Interactive Pvt. Ltd. All Rights Reserved.
             <span className="separator">|</span>
-            <a href="/privacy">Privacy Policy</a>
+            <Link to="/privacy">Privacy Policy</Link>
             <span className="separator">|</span>
-            <a href="/terms">Terms of Service</a>
-          </p>
-          <p className="designed-by">
-            Designed with ❤️ for innovative digital experiences
+            <Link to="/terms">Terms of Service</Link>
           </p>
         </div>
       </div>

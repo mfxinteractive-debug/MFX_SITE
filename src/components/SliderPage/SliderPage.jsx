@@ -12,14 +12,14 @@ const Carousel = () => {
     {
       id: 2,
       image: '/Banner/2.jpeg',
-      title: 'Ocean Waves',
-      subtitle: 'Feel the serenity of the sea',
+      // title: 'Ocean Waves',
+      // subtitle: 'Feel the serenity of the sea',
     },
     {
       id: 3,
       image: '/Banner/3.jpeg',
-      title: 'Misty Forests',
-      subtitle: 'Lost in the green wilderness',
+      // title: 'Misty Forests',
+      // subtitle: 'Lost in the green wilderness',
     },
     // {
     //   id: 4,
