@@ -30,16 +30,13 @@ const Footer = () => {
             Transforming spaces with cutting-edge digital display solutions and interactive experiences.
           </p>
           <div className="social-icons">
-            <a href="https://facebook.com" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/mfxinteractive/" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <FaFacebookF />
             </a>
-            <a href="https://instagram.com" className="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <a href="instagram.com/mfxinteractive/" className="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <FaInstagram />
             </a>
-            <a href="https://linkedin.com" className="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <FaLinkedinIn />
-            </a>
-            <a href="https://youtube.com" className="social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+            <a href="https://youtube.com/@multifxinteractive3956?si=cxp17-cPSVnnpwWj" className="social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
               <FaYoutube />
             </a>
           </div>
@@ -90,7 +87,7 @@ const Footer = () => {
           <h3>Our Products</h3>
           <ul>
             <li>
-              <Link to="/touch-screens">
+              <Link to="touch-screen-display">
                 <FaArrowRight className="link-arrow" />
                 Touch Screen Display
               </Link>
@@ -108,7 +105,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/ai-kiosk">
+              <Link to="/ai-kiosks">
                 <FaArrowRight className="link-arrow" />
                 AI Kiosks
               </Link>

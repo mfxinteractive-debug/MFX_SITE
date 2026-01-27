@@ -10,12 +10,9 @@
         "short_desc": "Freestanding interactive display with mobility and flexibility",
         "full_desc": "Professional standing touch screen display with adjustable height and mobility features. Perfect for presentations, exhibitions, and interactive demos.",
         "images": [
-          "/Standing/1.jpg",
-         "/Standing/2.jpg",
-          "/Standing/3.jpg",
-          "/Standing/4.jpg",
-          "/Standing/5.jpg"
-        ],
+          "/Standing/2.jpg",
+          "/Standing/4.jpg"
+      ],
         "specifications": {
           "display": {
             "panel": "IPS Touch Panel",
@@ -32,7 +29,6 @@
           },
           "stand": {
             "type": "Mobile Stand",
-
             "wheels": "Lockable casters"
           },
           "connectivity": ["HDMI", "USB-C", "RJ45", "WiFi", "Bluetooth"]
@@ -59,9 +55,8 @@
         "short_desc": "Slim wall-mounted interactive display for conference rooms",
         "full_desc": "Ultra-slim wall-mounted touch screen display with 4K resolution and multi-touch capability. Perfect for boardrooms, control rooms, and collaborative spaces.",
         "images": [
-          "/WallMount/1.jpg",
-          "/WallMount/2.jpg",
-           "/WallMount/4.png"
+          "/WallMount/3.jpg",
+          "/WallMount/5.jpg"
         ],
         "specifications": {
           "display": {
@@ -147,9 +142,10 @@
         "short_desc": "Multi-user interactive table for collaborative work",
         "full_desc": "Collaborative interactive table supporting multiple simultaneous users. Perfect for team collaboration, design reviews, and interactive presentations.",
         "images": [
-          "/Table/1.jpg",
-          "/Table/2.jpg",
-           "/Table/3.png"
+          "/Table/7.jpg",
+          "/Table/9.jpg",
+          "/Table/11.jpg",
+          "/Table/12.jpg"
         ],
         "specifications": {
           "display": {
@@ -184,7 +180,7 @@
           "Innovation Labs"
         ]
       },
-       {
+      {
         "id": 5,
         "name": "32\" Portable Screen",
         "type": "portable-display",
@@ -313,6 +309,85 @@
           "Broadcast Studios",
           "Design Centers",
           "Financial Trading Floors"
+        ]
+      },
+      {
+        "id": 7,
+        "name": "MultiFX Kiosk",
+        "type": "interactive-kiosk",
+        "short_desc": "Interactive touch screen kiosk for information and self-service",
+        "full_desc": "Professional interactive kiosk with robust construction and user-friendly interface. Perfect for wayfinding, information display, self-service applications, and digital signage in public spaces.",
+        "images": [
+          "/Kiosk/1.jpg",
+          "/Kiosk/2.jpg",
+          "/Kiosk/6.jpg",
+          "/Kiosk/8.jpg"
+
+        ],
+        "specifications": {
+          "display": {
+            "panel": "Industrial-grade Touch Panel",
+            "sizes": ["21.5\"", "32\"", "43\"", "55\""],
+            "resolution": "Full HD 1920x1080",
+            "brightness": "500-800 cd/m² (adjustable)",
+            "contrast": "3000:1",
+            "viewing_angle": "178°"
+          },
+          "touch": {
+            "technology": "Projected Capacitive / Infrared",
+            "points": "10 points",
+            "response_time": "≤8ms",
+            "glove_touch": "Optional"
+          },
+          "hardware": {
+            "processor": "Intel Core i5/i7 or ARM Octa-core",
+            "ram": "8GB DDR4",
+            "storage": "128GB/256GB SSD",
+            "operating_system": ["Windows 10/11", "Android 11+", "Linux"],
+            "audio": "2 x 10W speakers with noise cancellation"
+          },
+          "enclosure": {
+            "material": "Powder-coated steel + tempered glass",
+            "ip_rating": "IP54 (dust and water resistant)",
+            "vandal_resistance": "9H hardness glass",
+            "temperature_range": "-20°C to 50°C",
+            "dimensions": "Customizable",
+            "mounting": ["Floor standing", "Wall mount", "Countertop"]
+          },
+          "connectivity": {
+            "wired": ["RJ45 Gigabit Ethernet", "USB 3.0 x 4", "HDMI", "RS-232"],
+            "wireless": ["WiFi 6", "Bluetooth 5.0", "4G/5G module (optional)"],
+            "peripherals": ["Barcode scanner", "RFID reader", "Card reader", "Printer", "Camera"]
+          },
+          "power": {
+            "input": "AC 100-240V, 50/60Hz",
+            "consumption": "150-250W",
+            "backup": "Optional UPS"
+          }
+        },
+        "features": [
+          "Vandal-Resistant Design",
+          "24/7 Operation Capability",
+          "Remote Management System",
+          "Content Management Software",
+          "Multi-language Support",
+          "Real-time Analytics",
+          "Cloud Synchronization",
+          "Over-the-air Updates",
+          "Customizable Interface",
+          "Accessibility Features"
+        ],
+        "applications": [
+          "Shopping Mall Wayfinding",
+          "Airport Information Kiosks",
+          "Hotel Self Check-in",
+          "Hospital Patient Registration",
+          "Museum Interactive Guides",
+          "University Campus Information",
+          "Restaurant Ordering Systems",
+          "Corporate Visitor Management",
+          "Tourist Information Centers",
+          "Government Service Kiosks"
         ]
       }
     ]
