@@ -16,6 +16,8 @@ import Services from "./components/Services/Services";
 import SliderPage from "./components/SliderPage/SliderPage";
 import Outdoor_Digital_Display from "./components/Screens/Outdoor_Digital_Display"
 import ScrollToTop from "./components/ScrollTop"; // Import ScrollToTop
+import ServiceSupport from "./components/ServiceSupport/ServiceSupport";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
         <Route path="/indoor-led" element={<Indoor />} />
         <Route path="/ai-kiosks" element={<Aikiosk />} />
         <Route path="/outdoor-digital-displays" element={<Outdoor_Digital_Display/>}/>
+        <Route path="/service-and-support" element={<ServiceSupport/>}/>
+         <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
       </Routes>
       <Footer />
     </>

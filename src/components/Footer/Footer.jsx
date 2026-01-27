@@ -161,9 +161,9 @@ const Footer = () => {
           <p>
             © {currentYear} MFX Interactive Pvt. Ltd. All Rights Reserved.
             <span className="separator">|</span>
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
             <span className="separator">|</span>
-            <Link to="/terms">Terms of Service</Link>
+            <Link to="/service-and-support">Service and Support</Link>
           </p>
         </div>
       </div>
