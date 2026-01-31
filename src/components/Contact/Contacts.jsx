@@ -108,11 +108,11 @@ function ContactPage() {
                 <div className="mfx-form-row">
                   <div className="mfx-form-group">
                     <label>Full Name *</label>
-                    <input type="text" name="name" value={formData.name} placeholder="John Doe" onChange={handleChange} required />
+                    <input type="text" name="name" value={formData.name} placeholder="Enter Your Name" onChange={handleChange} required />
                   </div>
                   <div className="mfx-form-group">
                     <label>Email Address *</label>
-                    <input type="email" name="email" value={formData.email} placeholder="john@example.com" onChange={handleChange} required />
+                    <input type="email" name="email" value={formData.email} placeholder="email@example.com" onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="mfx-form-group">

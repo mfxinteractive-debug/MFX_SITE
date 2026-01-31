@@ -15,7 +15,7 @@ function Installations() {
     { src: img1, title: "ITC Royal Bengal" },
     // { src: img2, title: "Melorra" },
     { src: img3, title: "Merlin" },
-    { src: img4, title: "Naturals Group" },
+    { src: img4, title: "Natural Group" },
     { src: img5, title: "Tutopia" },
   ];
 
