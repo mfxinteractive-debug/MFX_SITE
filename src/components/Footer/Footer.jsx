@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaFacebookF, 
-  FaInstagram, 
-  FaLinkedinIn, 
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
   FaYoutube,
   FaMapMarkerAlt,
   FaEnvelope,
@@ -19,7 +19,7 @@ const Footer = () => {
     <footer className="footer">
       {/* Top decorative border */}
       <div className="footer-top-border"></div>
-      
+
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-col footer-brand">
@@ -125,7 +125,7 @@ const Footer = () => {
               <p>Kolkata 700017, West Bengal, India</p>
             </div>
           </div>
-          
+
           <div className="contact-item">
             <div className="contact-icon">
               <FaEnvelope />
@@ -135,17 +135,19 @@ const Footer = () => {
               <p>Reply within 24 hours</p>
             </div>
           </div>
-          
+
           <div className="contact-item">
             <div className="contact-icon">
               <FaPhoneAlt />
             </div>
             <div>
-              <a href="tel:+916292004104">+91 6292004104</a>
+              <a href="tel:+916292004104">+91 6292004104</a><br/>
+              <a href="tel:+918697892496">+91 8697892496</a>
+
               <p>Mon-Fri: 9AM - 6PM</p>
             </div>
           </div>
-          
+
           <div className="business-hours">
             <h4>Business Hours</h4>
             <p>Monday - Friday: 9:00 AM - 6:00 PM</p>

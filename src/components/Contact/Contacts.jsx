@@ -25,7 +25,7 @@ function ContactPage() {
 
     emailjs
       .sendForm(
-        "service_dzmbnre", 
+        "service_dzmbnre",
         "template_blzwif7", // Replace with your EmailJS Template ID
         e.target,
         "jFAaoSJjicJsJtw-w" // Replace with your EmailJS Public Key
@@ -92,7 +92,8 @@ function ContactPage() {
                   </div>
                   <div>
                     <h4>Phone Number</h4>
-                    <a href="tel:+916292004104">+91 6292004104</a>
+                    <a href="tel:+916292004104">+91 6292004104</a><br/>
+                    <a href="tel:+918697892496">+91 8697892496</a>
                     <p>Mon-Fri: 9AM - 6PM</p>
                   </div>
                 </div>
