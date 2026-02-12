@@ -84,11 +84,11 @@ function Sponsors() {
         <div className="stats-section">
           <div className="stats-container">
             <div className="stat-item">
-              <div className="stat-number" style={{ color: '#be2426' }}>35+</div>
+              <div className="stat-number" style={{ color: '#be2426' }}>100+</div>
               <div className="stat-label">Happy Clients</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number" style={{ color: '#042b30' }}>50+</div>
+              <div className="stat-number" style={{ color: '#042b30' }}>150+</div>
               <div className="stat-label">Projects Delivered</div>
             </div>
             <div className="stat-item">
