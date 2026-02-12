@@ -21,8 +21,8 @@ function Installations() {
     { src: img3, title: "Merlin" },
     { src: img4, title: "Natural Group" },
     { src: img5, title: "Tutopia" },
-    {src: img6,title:"Spring Club"},
-    {src: img7,title:"ITC Sonar"},
+    {src: img6,title:"The Spring Club"},
+    {src: img7,title:"ITC Sonar Bengal"},
 
   ];
 
