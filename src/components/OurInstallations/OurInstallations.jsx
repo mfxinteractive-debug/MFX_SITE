@@ -4,6 +4,10 @@ import img2 from "../../assets/Installations/Melorra.avif";
 import img3 from "../../assets/Installations/Merlin.avif";
 import img4 from "../../assets/Installations/Naturals_Group.avif";
 import img5 from "../../assets/Installations/Tutopia.avif";
+import img6 from "../../assets/Installations/SpringClub.jpeg";
+import img7 from "../../assets/Installations/itc_sonar.jpeg";
+
+
 import "./OurInstallations.css";
 
 function Installations() {
@@ -17,6 +21,9 @@ function Installations() {
     { src: img3, title: "Merlin" },
     { src: img4, title: "Natural Group" },
     { src: img5, title: "Tutopia" },
+    {src: img6,title:"Spring Club"},
+    {src: img7,title:"ITC Sonar"},
+
   ];
 
   // Auto-play (every 5 seconds)
