@@ -121,7 +121,7 @@ const Footer = () => {
               <FaMapMarkerAlt />
             </div>
             <div>
-              <p>1, Shakespeare Sarani , 9th Flr, AC Market</p>
+              <p>1, Shakespeare Sarani, 6th Flr, AC Market (Back Gate)</p>
               <p>Kolkata 700017, West Bengal, India</p>
             </div>
           </div>
