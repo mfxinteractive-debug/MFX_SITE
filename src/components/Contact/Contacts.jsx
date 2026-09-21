@@ -72,7 +72,7 @@ function ContactPage() {
                   </div>
                   <div>
                     <h4>Our Location</h4>
-                    <p>37, Shakespeare Sarani</p>
+                    <p>1, Shakespeare Sarani, 6th Flr, AC Market (Back Gate)</p>
                     <p>Kolkata 700017, West Bengal, India</p>
                   </div>
                 </div>
