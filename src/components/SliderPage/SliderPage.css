@@ -1,170 +1,329 @@
-
-.carousel-container {
+/* ========================================
+   Homepage hero carousel
+   Phones/tablets: composed slide (product crop + HTML copy).
+   Desktop (>=1024px): the full 1920x400 banner, never cropped.
+   ======================================== */
+.hero-carousel {
   position: relative;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
+  background:
+    radial-gradient(120% 70% at 85% 0%, rgba(190, 36, 38, 0.28), transparent 60%),
+    linear-gradient(180deg, #031f24 0%, var(--mfx-ink) 100%);
+  color: #fff;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.carousel-slides {
+.hero-carousel__viewport {
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.hero-carousel__track {
   display: flex;
-  width: 100%;
-  height: 70vh;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s var(--mfx-ease);
+  will-change: transform;
 }
 
-.carousel-slide {
-  min-width: 100%;
+.hero-slide {
   position: relative;
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Improved text overlay - stronger dark gradient + solid backdrop for readability */
-.carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 100px 30px 50px; /* More space at bottom */
-  text-align: center;
-  color: white;
-  /* Solid dark backdrop + gradient for maximum readability */
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 40%,
-    rgba(0, 0, 0, 0.3) 70%,
-    transparent 100%
-  );
-  pointer-events: none; /* Allows clicks on dots below */
-}
-
-.carousel-caption h2 {
-  font-size: 3rem;
-  margin: 0 0 12px;
-  font-weight: 800;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
-  letter-spacing: 1px;
-}
-
-.carousel-caption p {
-  font-size: 1.4rem;
-  margin: 0;
-  font-weight: 500;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
-}
-
-/* Dots moved BELOW the text - now truly at the bottom */
-.carousel-dots {
-  position: absolute;
-  bottom: 20px; /* Clearly below the caption */
-  left: 50%;
-  transform: translateX(-50%);
+  flex: 0 0 100%;
+  min-width: 0;
   display: flex;
-  gap: 12px;
-  z-index: 20; /* Above everything */
-  pointer-events: all; /* Allow clicking */
+  flex-direction: column;
 }
 
-.dot {
-  width: 14px;
-  height: 14px;
+/* ---------- Media (cropped product framing) ---------- */
+.hero-slide__media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: clamp(230px, 64vw, 330px);
+  margin: 16px var(--mfx-gutter) 0;
+  overflow: hidden;
+  border-radius: var(--mfx-radius-lg);
+  background: var(--crop-panel);
+  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7);
+  isolation: isolate;
+}
+
+.hero-slide__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+
+.hero-slide__media img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: var(--crop-aspect);
+  object-fit: cover;
+  object-position: var(--crop-x) 50%;
+  /* Feather the crop edges into the panel so the frame reads as one image. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.hero-slide__banner-link {
+  display: none;
+}
+
+/* ---------- Copy ---------- */
+.hero-slide__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px var(--mfx-gutter) 8px;
+}
+
+/* Keep CTAs in the same spot on every slide, whatever the copy length. */
+.hero-slide__actions {
+  margin-top: auto;
+  align-self: stretch;
+}
+
+.hero-slide__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #ff8587;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-slide__eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.hero-slide__title {
+  font-family: var(--mfx-font-head);
+  text-wrap: balance;
+  margin-bottom: 10px;
+  font-size: clamp(1.45rem, 6.4vw, 2.25rem);
+  font-weight: 900;
+  line-height: 1.18;
+  color: #fff;
+}
+
+.hero-slide__text {
+  max-width: 46ch;
+  margin-bottom: 16px;
+  color: var(--mfx-on-dark-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.hero-slide__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+.hero-slide__chips li {
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6f0f1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.hero-slide__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-slide__actions .mfx-btn {
+  flex: 1 1 auto;
+}
+
+/* ---------- Slide dots ---------- */
+.hero-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px var(--mfx-gutter) 18px;
+}
+
+/* 32px tap target; the visible dot is drawn by ::before. */
+.hero-carousel__dot {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
+  background: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
 }
 
-.dot:hover {
-  background: white;
-  transform: scale(1.2);
+.hero-carousel__dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
-.dot.active {
-  background: white;
-  transform: scale(1.5);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+.hero-carousel__dot:hover::before {
+  background: rgba(255, 255, 255, 0.75);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .carousel-slides {
-    height: 65vh;
-  }
-
-  .carousel-caption h2 {
-    font-size: 2.6rem;
-  }
-
-  .carousel-caption p {
-    font-size: 1.3rem;
-  }
+.hero-carousel__dot.is-active::before {
+  background: #fff;
 }
 
-@media (max-width: 768px) {
-  .carousel-slides {
-    height: 60vh;
+.hero-carousel__dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+/* ---------- Tablet: copy beside the product crop ---------- */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-slide {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 28px;
+    padding: 28px var(--mfx-gutter) 0;
   }
 
-  .carousel-caption {
-    padding: 90px 20px 45px;
+  .hero-slide__media {
+    order: 2;
+    height: clamp(300px, 44vw, 400px);
+    margin: 0;
   }
 
-  .carousel-caption h2 {
-    font-size: 2.2rem;
+  .hero-slide__content {
+    padding: 0;
   }
 
-  .carousel-caption p {
-    font-size: 1.2rem;
-  }
-
-  .carousel-dots {
-    bottom: 15px;
-    gap: 10px;
-  }
-
-  .dot {
-    width: 12px;
-    height: 12px;
+  .hero-slide__actions .mfx-btn {
+    flex: 0 1 auto;
   }
 }
 
-@media (max-width: 480px) {
-  .carousel-slides {
-    height: 55vh;
+/* ---------- Phones in landscape: fit the slide into the short viewport ---------- */
+@media (max-height: 520px) and (orientation: landscape) and (max-width: 1023px) {
+  .hero-slide {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 20px;
+    padding-top: 16px;
   }
 
-  .carousel-caption {
-    padding: 80px 15px 40px;
+  .hero-slide__media {
+    /* svh = smallest viewport height, so mobile browser chrome never clips it. */
+    height: min(360px, calc(100svh - var(--mfx-header-h) - 80px));
   }
 
-  .carousel-caption h2 {
-    font-size: 1.8rem;
+  .hero-slide__title {
+    font-size: 1.45rem;
+    margin-bottom: 6px;
   }
 
-  .carousel-caption p {
-    font-size: 1.1rem;
+  .hero-slide__text {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
   }
 
-  .carousel-dots {
-    bottom: 12px;
+  .hero-slide__chips {
+    display: none;
   }
 
-  .dot {
-    width: 10px;
-    height: 10px;
+  .hero-slide__actions .mfx-btn {
+    min-height: 44px;
+    padding-block: 10px;
   }
 
-  .dot.active {
-    transform: scale(1.4);
+  .hero-carousel__dots {
+    padding-block: 6px 8px;
+  }
+}
+
+/* ---------- Desktop: the full banner at its true ratio ---------- */
+@media (min-width: 1024px) {
+  .hero-slide__content {
+    display: none;
+  }
+
+  .hero-slide__media {
+    display: block;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    background: #031f24;
+    box-shadow: none;
+  }
+
+  .hero-slide__media::after {
+    display: none;
+  }
+
+  .hero-slide__media img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    aspect-ratio: 1920 / 400;
+    object-fit: contain;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-slide__banner-link {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  .hero-slide__banner-link:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: -6px;
+  }
+
+  /* Small dots rest on the banners' empty bottom-centre. */
+  .hero-carousel__dots {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(2px, 0.6vw, 8px);
+    padding: 0;
+    transform: translateX(-50%);
+  }
+
+  .hero-carousel__dot::before {
+    background: rgba(4, 43, 48, 0.3);
+  }
+
+  .hero-carousel__dot:hover::before {
+    background: rgba(4, 43, 48, 0.55);
+  }
+
+  .hero-carousel__dot.is-active::before {
+    background: var(--mfx-red);
+  }
+
+  .hero-carousel__dot:focus-visible {
+    outline-color: var(--mfx-ink);
   }
 }

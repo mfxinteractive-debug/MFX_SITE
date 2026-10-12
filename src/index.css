@@ -1,19 +1,301 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap');
 
+/* ========================================
+   Design tokens
+   ======================================== */
+:root {
+  /* Brand */
+  --mfx-ink: #042b30;
+  --mfx-ink-2: #073f46;
+  --mfx-ink-3: #0d525a;
+  --mfx-red: #be2426;
+  --mfx-red-600: #a01d1f;
+  --mfx-red-2: #e24a4c;
+  --mfx-red-tint: #fbeced;
 
+  /* Surfaces & text */
+  --mfx-paper: #ffffff;
+  --mfx-soft: #f4f7f7;
+  --mfx-line: rgba(4, 43, 48, 0.12);
+  --mfx-line-dark: rgba(255, 255, 255, 0.12);
+  --mfx-text: #1d2f34;
+  --mfx-muted: #55686d;
+  --mfx-on-dark: #ffffff;
+  --mfx-on-dark-muted: #b4cdd1;
 
-*{
+  /* Type */
+  --mfx-font-head: "Merriweather", Georgia, serif;
+  --mfx-font-body: "Poppins", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* Shape & depth */
+  --mfx-radius-sm: 10px;
+  --mfx-radius: 16px;
+  --mfx-radius-lg: 24px;
+  --mfx-shadow-sm: 0 1px 2px rgba(4, 43, 48, 0.06), 0 4px 12px rgba(4, 43, 48, 0.06);
+  --mfx-shadow: 0 18px 40px -18px rgba(4, 43, 48, 0.35);
+  --mfx-shadow-lg: 0 30px 70px -24px rgba(4, 43, 48, 0.45);
+
+  /* Layout */
+  --mfx-container: 1200px;
+  /* Never narrower than the notch / rounded-corner inset in landscape. */
+  --mfx-gutter: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left), env(safe-area-inset-right));
+  --mfx-section-y: clamp(56px, 8vw, 112px);
+  --mfx-header-h: 76px;
+
+  --mfx-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 899px) {
+  :root {
+    --mfx-header-h: 64px;
+  }
+}
+
+/* ========================================
+   Base
+   ======================================== */
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-   font-family: "Merriweather", serif;;
-
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--mfx-header-h) + 12px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
-body{
-    background: linear-gradient(135deg, #042b30 0%, #be2426 100%);
+body {
+  background: var(--mfx-paper);
+  color: var(--mfx-text);
+  font-family: var(--mfx-font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
+h1,
+h2,
+h3 {
+  font-family: var(--mfx-font-head);
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h4,
+h5,
+h6,
+p,
+a,
+button,
+input,
+textarea,
+select,
+li,
+span,
+label {
+  font-family: var(--mfx-font-body);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+svg,
+video,
+picture {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(190, 36, 38, 0.6);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 2000;
+  padding: 12px 18px;
+  border-radius: var(--mfx-radius-sm);
+  background: var(--mfx-ink);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ========================================
+   Shared building blocks
+   ======================================== */
+.mfx-container {
+  width: 100%;
+  max-width: calc(var(--mfx-container) + 2 * var(--mfx-gutter));
+  margin-inline: auto;
+  padding-inline: var(--mfx-gutter);
+}
+
+.mfx-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mfx-red);
+}
+
+.mfx-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.mfx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 26px;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s var(--mfx-ease);
+}
+
+.mfx-btn svg {
+  flex-shrink: 0;
+  font-size: 0.85em;
+  transition: transform 0.25s var(--mfx-ease);
+}
+
+.mfx-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.mfx-btn:active {
+  transform: translateY(1px);
+}
+
+.mfx-btn--primary {
+  background: var(--mfx-red);
+  color: #fff;
+  box-shadow: 0 10px 24px -10px rgba(190, 36, 38, 0.7);
+}
+
+.mfx-btn--primary:hover {
+  background: var(--mfx-red-600);
+  box-shadow: 0 14px 30px -12px rgba(190, 36, 38, 0.8);
+}
+
+.mfx-btn--light {
+  background: #fff;
+  color: var(--mfx-ink);
+  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.45);
+}
+
+.mfx-btn--light:hover {
+  background: var(--mfx-red-tint);
+}
+
+.mfx-btn--outline {
+  border-color: rgba(4, 43, 48, 0.28);
+  color: var(--mfx-ink);
+  background: transparent;
+}
+
+.mfx-btn--outline:hover {
+  border-color: var(--mfx-ink);
+  background: rgba(4, 43, 48, 0.05);
+}
+
+.mfx-btn--outline-light {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+  background: transparent;
+}
+
+.mfx-btn--outline-light:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ========================================
+   Motion preferences
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The skip link moves focus here; no ring needed on the whole page region. */
+main:focus {
+  outline: none;
 }

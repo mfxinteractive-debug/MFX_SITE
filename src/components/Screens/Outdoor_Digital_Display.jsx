@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Screens.css";
+import SpecsDialog from "./SpecsDialog";
+import formatSizes from "./formatSizes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight } from "react-icons/fa";
+import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaChevronRight } from "react-icons/fa";
 import productData from "../../data/Outdoor_Displays.json";
 
 const Outdoor_Displays = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState("specTable");
   const [products, setProducts] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -45,7 +47,6 @@ const Outdoor_Displays = () => {
 
   const handleDetailsClick = (product) => {
     setSelectedProduct(product);
-    setActiveTab("specTable");
     setShowDetails(true);
   };
 
@@ -85,7 +86,8 @@ const Outdoor_Displays = () => {
                 {formatKey(category)}
               </h4>
               <div className="specs-table">
-                {Object.entries(categoryData).map(([key, value]) => (
+                {/* List-type categories (e.g. connectivity) are arrays: show them as one row. */}
+                {(Array.isArray(categoryData) ? [["included", categoryData]] : Object.entries(categoryData)).map(([key, value]) => (
                   <div key={key} className="specs-row">
                     <div className="specs-key">
                       {formatKey(key)}:
@@ -113,7 +115,7 @@ const Outdoor_Displays = () => {
           <ul>
             {selectedProduct.features.map((feature, index) => (
               <li key={index}>
-                <FaChevronRight className="feature-icon" />
+                <FaChevronRight className="px-feature-icon" aria-hidden="true" />
                 {feature}
               </li>
             ))}
@@ -152,7 +154,7 @@ const Outdoor_Displays = () => {
     // Check for size/sizes
     if (product.specifications?.display?.sizes) {
       if (Array.isArray(product.specifications.display.sizes)) {
-        specs.push(`${product.specifications.display.sizes.join('", "')}"`);
+        specs.push(`${formatSizes(product.specifications.display.sizes)}`);
       } else {
         specs.push(product.specifications.display.sizes);
       }
@@ -195,8 +197,8 @@ const Outdoor_Displays = () => {
       {/* Products Grid */}
       <section className="px-section">
         <div className="px-container">
-          <h2 className="section-title">Outdoor Display Solutions</h2>
-          <p className="section-subtitle">Durable, weatherproof displays for outdoor advertising and public information systems</p>
+          <h2 className="px-section-title">Outdoor Display Solutions</h2>
+          <p className="px-section-subtitle">Durable, weatherproof displays for outdoor advertising and public information systems</p>
           
           {products.length > 0 ? (
             products.map((product, index) => (
@@ -214,10 +216,11 @@ const Outdoor_Displays = () => {
                         dynamicBullets: true 
                       }}
                       navigation={!isMobile}
-                      autoplay={{ 
-                        delay: 3000, 
-                        disableOnInteraction: false 
-                      }}
+                      autoplay={
+                        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                          ? false
+                          : { delay: 3000, disableOnInteraction: false }
+                      }
                       loop={true}
                       className="px-swiper"
                     >
@@ -246,17 +249,18 @@ const Outdoor_Displays = () => {
 
                 {/* Content */}
                 <div className="px-info">
-                  <h2>{product.name}</h2>
+                  <h3>{product.name}</h3>
                   <div className="px-sizes">
-                    <FaRulerCombined /> Specifications: <span>{getDisplaySpecs(product)}</span>
+                    <FaRulerCombined aria-hidden="true" /> Specifications: <span>{getDisplaySpecs(product)}</span>
                   </div>
                   <p className="px-desc">{product.full_desc || product.short_desc || product.description}</p>
 
                   <div className="px-actions">
-                    <button className="px-quote-btn">
-                      Get Quote <FaArrowRight />
-                    </button>
-                    <button 
+                    <Link className="px-quote-btn" to="/contact">
+                      Get Quote <FaArrowRight aria-hidden="true" />
+                    </Link>
+                    <button
+                      type="button"
                       className="px-details-btn"
                       onClick={() => handleDetailsClick(product)}
                     >
@@ -265,7 +269,7 @@ const Outdoor_Displays = () => {
                   </div>
 
                   <div className="px-quote">
-                    <FaQuoteRight />
+                    <FaQuoteRight aria-hidden="true" />
                     <em>{product.short_desc || "Professional outdoor display solution"}</em>
                   </div>
                 </div>
@@ -282,47 +286,14 @@ const Outdoor_Displays = () => {
 
       {/* Specifications Modal */}
       {showDetails && selectedProduct && (
-        <div className="specs-modal-overlay" onClick={() => setShowDetails(false)}>
-          <div className="specs-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="specs-modal-header">
-              <h2>{selectedProduct.name} - Complete Specifications</h2>
-              <button 
-                className="specs-modal-close"
-                onClick={() => setShowDetails(false)}
-              >
-                <FaTimes />
-              </button>
-            </div>
-            
-            {/* Tabs */}
-            <div className="specs-tabs">
-              <button 
-                className={`specs-tab ${activeTab === "specTable" ? "active" : ""}`}
-                onClick={() => setActiveTab("specTable")}
-              >
-                Technical Specifications
-              </button>
-              <button 
-                className={`specs-tab ${activeTab === "features" ? "active" : ""}`}
-                onClick={() => setActiveTab("features")}
-              >
-                Features
-              </button>
-              <button 
-                className={`specs-tab ${activeTab === "applications" ? "active" : ""}`}
-                onClick={() => setActiveTab("applications")}
-              >
-                Applications
-              </button>
-            </div>
-
-            <div className="specs-modal-content">
-              {activeTab === "specTable" && renderSpecificationTable()}
-              {activeTab === "features" && renderFeatures()}
-              {activeTab === "applications" && renderApplications()}
-            </div>
-          </div>
-        </div>
+        <SpecsDialog
+          product={selectedProduct}
+          onClose={() => setShowDetails(false)}
+          featuresLabel="Features"
+          renderSpecs={renderSpecificationTable}
+          renderFeatures={renderFeatures}
+          renderApplications={renderApplications}
+        />
       )}
 
       {/* CTA - Commented out as per other pages */}

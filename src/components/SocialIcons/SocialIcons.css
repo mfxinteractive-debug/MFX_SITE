@@ -1,188 +1,57 @@
-/* SocialIcons.css */
-.social-icons-container {
+/* Floating social rail (home page, near the top only).
+   Shown only where it can sit in the page margin without covering content;
+   on smaller screens the same links live in the menu drawer and footer. */
+.float-social {
   position: fixed;
-  bottom: 30px;
-  right: 20px;
-  display: flex;
-  flex-direction: row; /* Changed to row for horizontal layout */
-  align-items: center;
-  gap: 12px;
-  z-index: 9999;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 10px;
-  background: rgba(4, 43, 48, 0.9);
-  border-radius: 50px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 900;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(4, 43, 48, 0.88);
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(190, 36, 38, 0.3);
-}
-
-.social-icons-container.social-hide {
-  opacity: 0;
-  transform: translateY(80px);
-  pointer-events: none;
-}
-
-.social-icons-container.social-show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
-}
-
-.social-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 20px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.social-icon:hover {
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.social-icon::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.social-icon:hover::before {
-  left: 100%;
-}
-
-/* Updated color schemes */
-.social-fb {
-  background: linear-gradient(135deg, #042b30 0%, #1877f2 100%);
-  border: 2px solid #1877f2;
-}
-
-.social-insta {
-  background: linear-gradient(45deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
-  border: 2px solid #fd1d1d;
-  animation: insta-gradient 3s ease infinite;
-  background-size: 200% 200%;
-}
-
-.social-wa {
-  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-  border: 2px solid #25d366;
-}
-
-.social-yt {
-  background: linear-gradient(135deg, #be2426 0%, #ff0000 100%);
-  border: 2px solid #ff0000;
-}
-
-@keyframes insta-gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Tooltip on hover */
-.social-icon::after {
-  content: attr(aria-label);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #042b30;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  margin-bottom: 10px;
-  border: 1px solid #be2426;
-  z-index: 10;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.35s var(--mfx-ease), visibility 0.3s;
 }
 
-.social-icon:hover::after {
+.float-social.is-visible {
   opacity: 1;
   visibility: visible;
-  bottom: 120%;
+  transform: none;
 }
 
-/* Pulse animation for attention */
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(190, 36, 38, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(190, 36, 38, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(190, 36, 38, 0); }
+.float-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: transform 0.2s var(--mfx-ease), filter 0.2s ease;
 }
 
-.social-icons-container.social-show {
-  animation: pulse 2s infinite;
+.float-social__link:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .social-icons-container {
-    right: 15px;
-    bottom: 20px;
-    gap: 10px;
-    padding: 8px;
-    border-radius: 40px;
-  }
-  
-  .social-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-  
-  .social-icons-container.social-hide {
-    transform: translateY(60px);
-  }
-  
-  .social-icon::after {
-    font-size: 10px;
-    padding: 4px 8px;
-  }
-}
+.float-social__link--fb { background: #1877f2; }
+.float-social__link--insta { background: linear-gradient(45deg, #833ab4, #fd1d1d 55%, #fcb045); }
+.float-social__link--wa { background: #1fa855; }
+.float-social__link--yt { background: #d61f1f; }
 
-@media (max-width: 480px) {
-  .social-icons-container {
-    right: 10px;
-    bottom: 15px;
-    gap: 8px;
-    padding: 6px;
-    border-radius: 35px;
-  }
-  
-  .social-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-  
-  .social-icon::after {
-    display: none; /* Hide tooltip on very small screens */
-  }
-}
-
-/* For very small screens, stack vertically */
-@media (max-width: 360px) {
-  .social-icons-container {
-    flex-direction: column;
-    border-radius: 20px;
-    padding: 8px 6px;
+@media (min-width: 1360px) {
+  .float-social {
+    display: flex;
   }
 }

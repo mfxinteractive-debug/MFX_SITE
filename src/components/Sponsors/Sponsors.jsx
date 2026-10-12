@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Sponsors.css';
 
 const BASE_PATH = '/Clients';
@@ -39,68 +39,86 @@ const logos = [
   { src: `${BASE_PATH}/ual_konarl.avif`, name: 'UAL Konarl' },
   { src: `${BASE_PATH}/vigans.avif`, name: 'Vigans' },
   { src: `${BASE_PATH}/flexi.webp`, name: 'Flexi' },
-  { src: `${BASE_PATH}/bp.png`, name: 'bp``' },
-  { src: `${BASE_PATH}/ual_konarl.avif`, name: 'UAL Konarl' },
-  { src: `${BASE_PATH}/ual_konarl.avif`, name: 'UAL Konarl' },
+  { src: `${BASE_PATH}/bp.png`, name: 'BP' },
 
 ];
 
+const stats = [
+  { value: '100+', label: 'Happy Clients' },
+  { value: '150+', label: 'Projects Delivered' },
+  { value: '10+', label: 'Years Experience' },
+  { value: '100%', label: 'Satisfaction Rate' },
+];
+
 function Sponsors() {
-  const duplicatedLogos = [...logos, ...logos];
+  // Logos sit in a horizontally clipped track where native lazy-loading never
+  // fires until each one scrolls into view, so load them all once the section
+  // approaches the viewport instead.
+  const sectionRef = useRef(null);
+  const [nearViewport, setNearViewport] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !('IntersectionObserver' in window)) {
+      setNearViewport(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '600px 0px' }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="sponsors">
-      <div className="sponsors-container">
+    <section className="sponsors" aria-labelledby="sponsors-heading" ref={sectionRef}>
+      <div className="sponsors-container mfx-container">
         <div className="sponsors-header">
-          <div className="section-label">
-            <span className="label-text">OUR CLIENTS</span>
-            <div className="label-line"></div>
-          </div>
-          <h2 className="sponsors-title">
-            <span className="title-part-1">Trusted by </span>
-            <span className="title-part-2">Industry Leaders</span>
+          <p className="mfx-eyebrow">Our Clients</p>
+          <h2 className="sponsors-title" id="sponsors-heading">
+            Trusted by <span className="title-part-2">Industry Leaders</span>
           </h2>
           <p className="sponsors-description">
             We're proud to partner with renowned brands and organizations across various sectors,
             delivering innovative digital display solutions that drive engagement and results.
           </p>
         </div>
+      </div>
 
-        <div className="clients-marquee">
-          <div className="marquee-track">
-            {duplicatedLogos.map((logo, index) => (
-              <div key={index} className="marquee-item">
+      <div className="clients-marquee">
+        <ul className="marquee-track" aria-label="Client logos">
+          {/* The second copy only exists to make the loop seamless. */}
+          {[0, 1].map((copy) =>
+            logos.map((logo) => (
+              <li key={`${copy}-${logo.src}`} className="marquee-item" aria-hidden={copy === 1 ? "true" : undefined}>
                 <img
                   src={logo.src}
-                  alt={logo.name}
+                  alt={copy === 1 ? "" : logo.name}
                   className="marquee-logo"
-                  loading="lazy"
+                  loading={nearViewport ? 'eager' : 'lazy'}
+                  decoding="async"
                 />
-              </div>
-            ))}
-          </div>
-        </div>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
 
-        <div className="stats-section">
-          <div className="stats-container">
-            <div className="stat-item">
-              <div className="stat-number" style={{ color: '#be2426' }}>100+</div>
-              <div className="stat-label">Happy Clients</div>
+      <div className="mfx-container">
+        <dl className="stats-section">
+          {stats.map((stat) => (
+            <div className="stat-item" key={stat.label}>
+              <dt className="stat-label">{stat.label}</dt>
+              <dd className="stat-number">{stat.value}</dd>
             </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{ color: '#042b30' }}>150+</div>
-              <div className="stat-label">Projects Delivered</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{ color: '#be2426' }}>10+</div>
-              <div className="stat-label">Years Experience</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number" style={{ color: '#042b30' }}>100%</div>
-              <div className="stat-label">Satisfaction Rate</div>
-            </div>
-          </div>
-        </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

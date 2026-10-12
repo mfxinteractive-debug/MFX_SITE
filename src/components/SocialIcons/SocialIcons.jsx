@@ -27,7 +27,7 @@ const SocialIcons = () => {
     };
 
     if (isHomePage) {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScroll, { passive: true });
       setShowIcons(true); // Show initially on home page
     } else {
       setShowIcons(false); // Hide on other pages
@@ -44,42 +44,46 @@ const SocialIcons = () => {
   }
 
   return (
-    <div className={`social-icons-container ${showIcons ? "social-show" : "social-hide"}`}>
+    <div className={`float-social ${showIcons ? "is-visible" : ""}`} aria-hidden={!showIcons}>
       <a 
         href="https://www.facebook.com/mfxinteractive/" 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="social-icon social-fb"
+        className="float-social__link float-social__link--fb"
         aria-label="Facebook"
+        tabIndex={showIcons ? undefined : -1}
       >
-        <FaFacebookF />
+        <FaFacebookF aria-hidden="true" />
       </a>
       <a 
         href="https://instagram.com/mfxinteractive/" 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="social-icon social-insta"
+        className="float-social__link float-social__link--insta"
         aria-label="Instagram"
+        tabIndex={showIcons ? undefined : -1}
       >
-        <FaInstagram />
+        <FaInstagram aria-hidden="true" />
       </a>
       <a 
         href="https://wa.me/916292004104" 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="social-icon social-wa"
+        className="float-social__link float-social__link--wa"
         aria-label="WhatsApp"
+        tabIndex={showIcons ? undefined : -1}
       >
-        <FaWhatsapp />
+        <FaWhatsapp aria-hidden="true" />
       </a>
       <a 
         href="https://youtube.com/@multifxinteractive3956?si=cxp17-cPSVnnpwWj" 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="social-icon social-yt"
+        className="float-social__link float-social__link--yt"
         aria-label="YouTube"
+        tabIndex={showIcons ? undefined : -1}
       >
-        <FaYoutube />
+        <FaYoutube aria-hidden="true" />
       </a>
     </div>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import './AboutUs.css';
 import ContactPage from '../Contact/Contacts';
 import { FaRocket, FaUsers, FaAward, FaHeadset } from 'react-icons/fa';
+import installationPhoto from '../../assets/Installations/itc_sonar.jpeg';
 
 function About() {
   return (
@@ -9,7 +10,7 @@ function About() {
       {/* Hero Section */}
       <section className="about-hero">
         <div className="hero-overlay">
-          <h1 className="hero-title">We Are <span className="brand-highlight">MULTIFX</span></h1>
+          <h1 className="hero-title">We Are <span className="about-brand">MULTIFX</span></h1>
           <p className='taazatv-text'>From the House of TAAZATV</p>
           <p className="hero-subtitle">Pioneering the Future of Interactive Display Technology</p>
         </div>
@@ -17,7 +18,7 @@ function About() {
 
       {/* Main About Content */}
       <section className="about-main">
-        <div className="container">
+        <div className="about-container">
           {/* Our Story */}
           <div className="story-section">
             <div className="story-text">
@@ -33,21 +34,29 @@ function About() {
               </p>
             </div>
             <div className="story-image">
-              <div className="image-placeholder"> {/* Replace with real image */}
-                <span>Interactive Display in Action</span>
-              </div>
+              <figure className="image-placeholder">
+                <img
+                  src={installationPhoto}
+                  alt="MULTIFX interactive display installed at ITC Sonar Bengal"
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Interactive Display in Action</figcaption>
+              </figure>
             </div>
           </div>
 
           {/* Mission & Vision */}
           <div className="mission-vision-grid">
-            <div className="card mission">
-              <FaRocket className="icon" />
+            <div className="about-card mission">
+              <FaRocket className="about-card__icon" aria-hidden="true" />
               <h3>Our Mission</h3>
               <p>To make interactive technology accessible, reliable, and inspiring — enabling creativity, collaboration, and connection in every environment.</p>
             </div>
-            <div className="card vision">
-              <FaAward className="icon" />
+            <div className="about-card vision">
+              <FaAward className="about-card__icon" aria-hidden="true" />
               <h3>Our Vision</h3>
               <p>To be the global benchmark for innovation and excellence in interactive display solutions.</p>
             </div>
@@ -55,26 +64,26 @@ function About() {
 
           {/* Why Choose Us */}
           <div className="why-choose-us">
-            <h2 className="section-title">Why Choose MULTIFX?</h2>
+            <h2 className="about-section-title">Why Choose MULTIFX?</h2>
             <div className="features-grid">
               <div className="feature-item">
-                <FaHeadset className="feature-icon" />
-                <h4>24/7 Expert Support</h4>
+                <FaHeadset className="about-feature-icon" aria-hidden="true" />
+                <h3>24/7 Expert Support</h3>
                 <p>Real people, real solutions — anytime you need us.</p>
               </div>
               <div className="feature-item">
-                <FaAward className="feature-icon" />
-                <h4>Premium Quality Guaranteed</h4>
+                <FaAward className="about-feature-icon" aria-hidden="true" />
+                <h3>Premium Quality Guaranteed</h3>
                 <p>Every product rigorously tested for durability and performance.</p>
               </div>
               <div className="feature-item">
-                <FaUsers className="feature-icon" />
-                <h4>Trusted by Industry Leaders</h4>
+                <FaUsers className="about-feature-icon" aria-hidden="true" />
+                <h3>Trusted by Industry Leaders</h3>
                 <p>From Fortune top universities — they choose MULTIFX.</p>
               </div>
               <div className="feature-item">
-                <FaRocket className="feature-icon" />
-                <h4>Fast Delivery & Installation</h4>
+                <FaRocket className="about-feature-icon" aria-hidden="true" />
+                <h3>Fast Delivery & Installation</h3>
                 <p>Nationwide coverage with professional setup available.</p>
               </div>
             </div>
@@ -82,7 +91,7 @@ function About() {
 
           {/* Values */}
           <div className="values-section">
-            <h2 className="section-title">Our Core Values</h2>
+            <h2 className="about-section-title">Our Core Values</h2>
             <ul className="values-list">
               <li><strong>Innovation:</strong> Always pushing the boundaries of what's possible</li>
               <li><strong>Integrity:</strong> Honest pricing, transparent communication</li>
@@ -94,9 +103,7 @@ function About() {
       </section>
 
       {/* Contact Section */}
-      <section>
-          <ContactPage />
-      </section>
+      <ContactPage titleAs="h2" />
     </>
   );
 }

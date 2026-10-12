@@ -1,306 +1,158 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 .sponsors {
-  font-family: 'Poppins', sans-serif;
-  padding: 100px 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.sponsors::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #be2426, #042b30, #be2426);
-  background-size: 200% 100%;
-  animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.sponsors-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding-block: var(--mfx-section-y);
+  background: var(--mfx-soft);
+  overflow: clip;
 }
 
 .sponsors-header {
+  max-width: 760px;
+  margin: 0 auto;
   text-align: center;
-  margin-bottom: 60px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.label-text {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #be2426;
-  background: rgba(190, 36, 38, 0.1);
-  padding: 8px 20px;
-  border-radius: 50px;
-}
-
-.label-line {
-  width: 50px;
-  height: 2px;
-  background: linear-gradient(90deg, #be2426, #042b30);
 }
 
 .sponsors-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-
-.title-part-1 {
-  color: #000000;
-  font-family: "Merriweather", serif;
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+  font-weight: 900;
+  color: var(--mfx-ink);
 }
 
 .title-part-2 {
-  color: #042b30;
-  position: relative;
-  display: inline-block;
-  font-family: "Merriweather", serif;
-}
-
-.title-part-2::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background: rgba(190, 36, 38, 0.2);
-  z-index: -1;
+  color: var(--mfx-red);
 }
 
 .sponsors-description {
-  font-size: 1.1rem;
-  color: #666;
-  line-height: 1.7;
-  max-width: 700px;
+  max-width: 62ch;
   margin: 0 auto;
+  color: var(--mfx-muted);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.7;
 }
 
+/* ---------- Logo marquee ---------- */
 .clients-marquee {
+  margin: clamp(32px, 5vw, 56px) 0;
   overflow: hidden;
-  width: 100%;
-  padding: 40px 0;
-  margin: 40px 0 80px;
-  background: rgba(4, 43, 48, 0.03);
-  border-radius: 16px;
-  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
 .marquee-track {
-display: flex;
-  animation: scroll 10s linear infinite;   /* ← change 80s → 45s (or try 40s / 50s) */
-  white-space: nowrap;
-  will-change: transform;
-
-}
-
-.marquee-item {
-  flex: 0 0 auto;
-  margin: 0 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 70px;
-}
-
-.marquee-logo {
-  max-height: 100%;
-  max-width: 160px;
-  object-fit: contain;
-  filter: grayscale(60%);
-  opacity: 0.85;
-  transition: all 0.4s ease;
-}
-
-.marquee-item:hover .marquee-logo {
-  filter: grayscale(0%);
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  display: flex;
+  width: max-content;
+  gap: clamp(12px, 2vw, 20px);
+  padding-block: 8px;
+  list-style: none;
+  animation: sponsors-scroll 90s linear infinite;
 }
 
 .clients-marquee:hover .marquee-track {
   animation-play-state: paused;
 }
 
+.marquee-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: clamp(128px, 16vw, 172px);
+  height: clamp(76px, 9vw, 92px);
+  padding: 14px 18px;
+  border: 1px solid var(--mfx-line);
+  border-radius: var(--mfx-radius);
+  background: #fff;
+  box-shadow: var(--mfx-shadow-sm);
+}
+
+.marquee-logo {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(35%);
+  opacity: 0.9;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.marquee-item:hover .marquee-logo {
+  filter: none;
+  opacity: 1;
+}
+
+@keyframes sponsors-scroll {
+  to {
+    /* Move by exactly one copy of the list (half the track, incl. one gap). */
+    transform: translateX(calc(-50% - clamp(12px, 2vw, 20px) / 2));
+  }
+}
+
+/* No motion: show the logos as a static wrapped grid instead. */
+@media (prefers-reduced-motion: reduce) {
+  .clients-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-inline: var(--mfx-gutter);
+    animation: none;
+  }
+
+  .marquee-item[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* ---------- Stats ---------- */
 .stats-section {
-  background: linear-gradient(135deg, #042b30, #0a454c);
-  border-radius: 25px;
-  padding: 60px 40px;
-  position: relative;
-  overflow: hidden;
-}
-
-.stats-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 80%, rgba(190, 36, 38, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%);
-}
-
-.stats-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  position: relative;
-  z-index: 1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border-radius: var(--mfx-radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--mfx-shadow);
 }
 
 .stat-item {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  gap: 6px;
+  padding: clamp(24px, 4vw, 40px) 16px;
   text-align: center;
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(190, 36, 38, 0.18), transparent 70%),
+    var(--mfx-ink);
 }
 
 .stat-number {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-family: var(--mfx-font-head);
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  font-weight: 900;
   line-height: 1;
+  color: #fff;
+}
+
+.stat-item:nth-child(odd) .stat-number {
+  color: #ff8587;
 }
 
 .stat-label {
-  font-size: 16px;
-  color: #a0c8cf;
+  color: var(--mfx-on-dark-muted);
+  font-size: 0.82rem;
   font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-@media (max-width: 1200px) {
-  .sponsors-title {
-    font-size: 3rem;
-  }
-  .stats-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-}
-
-@media (max-width: 992px) {
-  .sponsors {
-    padding: 80px 0;
-  }
-  .marquee-item {
-    margin: 0 30px;
-  }
-  .marquee-logo {
-    max-width: 140px;
-    height: 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .sponsors {
-    padding: 60px 0;
-  }
-  .sponsors-header {
-    margin-bottom: 50px;
-  }
-  .sponsors-title {
-    font-size: 2.2rem;
-  }
-  .sponsors-description {
-    font-size: 1rem;
-    padding: 0 15px;
-  }
-  .clients-marquee {
-    padding: 30px 0;
-  }
-  .marquee-item {
-    margin: 0 25px;
-  }
-  .marquee-logo {
-    max-width: 120px;
-  }
-  .marquee-track {
-    animation-duration: 10s;
-  }
+@media (max-width: 767px) {
   .stats-section {
-    padding: 40px 25px;
-  }
-  .stat-number {
-    font-size: 2.8rem;
-  }
-  .stat-label {
-    font-size: 14px;
-  }
-}
-
-
-@media (max-width: 576px) {
-  .sponsors {
-    padding: 50px 0;
-  }
-  .sponsors-title {
-    font-size: 1.9rem;
-  }
-  .section-label {
-    gap: 10px;
-  }
-  .label-text {
-    font-size: 12px;
-    padding: 6px 15px;
-  }
-  .label-line {
-    width: 30px;
-  }
-  .marquee-item {
-    margin: 0 20px;
-  }
-  .marquee-logo {
-    max-width: 100px;
-  }
-  .stats-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

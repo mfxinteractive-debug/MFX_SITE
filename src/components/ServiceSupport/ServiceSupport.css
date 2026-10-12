@@ -44,7 +44,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.hero-description {
+.service-hero .hero-description {
   font-size: 1.2rem;
   line-height: 1.7;
   max-width: 900px;
@@ -152,7 +152,7 @@
     font-size: 2.4rem;
   }
   
-  .hero-description {
+  .service-hero .hero-description {
     font-size: 1.1rem;
   }
   
@@ -204,7 +204,7 @@
     font-size: 2rem;
   }
   
-  .hero-description {
+  .service-hero .hero-description {
     font-size: 1rem;
   }
   
@@ -234,7 +234,7 @@
 }
 
 /* Animation */
-@keyframes fadeInUp {
+@keyframes support-fade-in-up {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -246,7 +246,7 @@
 }
 
 .service-card {
-  animation: fadeInUp 0.5s ease forwards;
+  animation: support-fade-in-up 0.5s ease forwards;
   opacity: 0;
 }
 
@@ -260,3 +260,33 @@
 .service-card:nth-child(7) { animation-delay: 0.7s; }
 .service-card:nth-child(8) { animation-delay: 0.8s; }
 .service-card:nth-child(9) { animation-delay: 0.9s; }
+/* Align the page hero with the site-wide hero style */
+.service-hero,
+.privacy-hero {
+  padding: clamp(56px, 9vw, 104px) var(--mfx-gutter);
+  background:
+    radial-gradient(70% 90% at 85% 10%, rgba(190, 36, 38, 0.35), transparent 60%),
+    radial-gradient(60% 80% at 10% 100%, rgba(13, 82, 90, 0.9), transparent 70%),
+    var(--mfx-ink);
+}
+
+.service-hero::before,
+.privacy-hero::before {
+  display: none;
+}
+
+.service-hero h1,
+.privacy-hero h1 {
+  margin-bottom: 16px;
+  font-size: clamp(2.1rem, 6vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-shadow: none;
+}
+
+.service-hero .hero-description,
+.privacy-hero .hero-description {
+  max-width: 62ch;
+  color: var(--mfx-on-dark-muted);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+}

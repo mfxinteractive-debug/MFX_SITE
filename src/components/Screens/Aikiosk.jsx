@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Screens.css";
+import SpecsDialog from "./SpecsDialog";
+import formatSizes from "./formatSizes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight, FaRobot, FaMicrochip, FaCamera } from "react-icons/fa";
+import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaChevronRight, FaRobot, FaMicrochip, FaCamera } from "react-icons/fa";
 import productData from "../../data/Ai_Kiosk.json";
 
 const Ai_Kiosk = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState("specTable");
   const [products, setProducts] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -48,7 +50,6 @@ const Ai_Kiosk = () => {
 
   const handleDetailsClick = (product) => {
     setSelectedProduct(product);
-    setActiveTab("specTable");
     setShowDetails(true);
   };
 
@@ -88,7 +89,8 @@ const Ai_Kiosk = () => {
                 {formatKey(category)}
               </h4>
               <div className="specs-table">
-                {Object.entries(categoryData).map(([key, value]) => (
+                {/* List-type categories (e.g. connectivity) are arrays: show them as one row. */}
+                {(Array.isArray(categoryData) ? [["included", categoryData]] : Object.entries(categoryData)).map(([key, value]) => (
                   <div key={key} className="specs-row">
                     <div className="specs-key">
                       {formatKey(key)}:
@@ -116,7 +118,7 @@ const Ai_Kiosk = () => {
           <ul>
             {selectedProduct.features.map((feature, index) => (
               <li key={index}>
-                <FaChevronRight className="feature-icon" />
+                <FaChevronRight className="px-feature-icon" aria-hidden="true" />
                 {feature}
               </li>
             ))}
@@ -152,7 +154,7 @@ const Ai_Kiosk = () => {
       specs.push(`${product.specifications.display.size}" Touch Screen`);
     } else if (product.specifications?.display?.sizes) {
       if (Array.isArray(product.specifications.display.sizes)) {
-        specs.push(`${product.specifications.display.sizes.join('", "')}" Touch Screen`);
+        specs.push(`${formatSizes(product.specifications.display.sizes)} Touch Screen`);
       } else {
         specs.push(`${product.specifications.display.sizes}" Touch Screen`);
       }
@@ -230,8 +232,8 @@ const Ai_Kiosk = () => {
       {/* Products Grid */}
       <section className="px-section">
         <div className="px-container">
-          <h2 className="section-title">AI-Powered Interactive Kiosks</h2>
-          <p className="section-subtitle">Next-generation smart kiosks with artificial intelligence and advanced interaction capabilities</p>
+          <h2 className="px-section-title">AI-Powered Interactive Kiosks</h2>
+          <p className="px-section-subtitle">Next-generation smart kiosks with artificial intelligence and advanced interaction capabilities</p>
           
           {products.length > 0 ? (
             products.map((product, index) => (
@@ -249,10 +251,11 @@ const Ai_Kiosk = () => {
                         dynamicBullets: true 
                       }}
                       navigation={!isMobile}
-                      autoplay={{ 
-                        delay: 3000, 
-                        disableOnInteraction: false 
-                      }}
+                      autoplay={
+                        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                          ? false
+                          : { delay: 3000, disableOnInteraction: false }
+                      }
                       loop={true}
                       className="px-swiper"
                     >
@@ -281,21 +284,22 @@ const Ai_Kiosk = () => {
 
                 {/* Content */}
                 <div className="px-info">
-                  <h2>{product.name}</h2>
+                  <h3>{product.name}</h3>
                   
                   {/* AI Highlights */}
                   {renderAIHighlights(product)}
                   
                   <div className="px-sizes">
-                    <FaRulerCombined /> Specifications: <span>{getDisplaySpecs(product)}</span>
+                    <FaRulerCombined aria-hidden="true" /> Specifications: <span>{getDisplaySpecs(product)}</span>
                   </div>
                   <p className="px-desc">{product.full_desc || product.short_desc || product.description}</p>
 
                   <div className="px-actions">
-                    <button className="px-quote-btn">
-                      Get Quote <FaArrowRight />
-                    </button>
-                    <button 
+                    <Link className="px-quote-btn" to="/contact">
+                      Get Quote <FaArrowRight aria-hidden="true" />
+                    </Link>
+                    <button
+                      type="button"
                       className="px-details-btn"
                       onClick={() => handleDetailsClick(product)}
                     >
@@ -304,7 +308,7 @@ const Ai_Kiosk = () => {
                   </div>
 
                   <div className="px-quote">
-                    <FaQuoteRight />
+                    <FaQuoteRight aria-hidden="true" />
                     <em>{product.short_desc || "Intelligent AI-powered interactive kiosk"}</em>
                   </div>
                 </div>
@@ -321,47 +325,14 @@ const Ai_Kiosk = () => {
 
       {/* Specifications Modal */}
       {showDetails && selectedProduct && (
-        <div className="specs-modal-overlay" onClick={() => setShowDetails(false)}>
-          <div className="specs-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="specs-modal-header">
-              <h2>{selectedProduct.name} - Complete Specifications</h2>
-              <button 
-                className="specs-modal-close"
-                onClick={() => setShowDetails(false)}
-              >
-                <FaTimes />
-              </button>
-            </div>
-            
-            {/* Tabs */}
-            <div className="specs-tabs">
-              <button 
-                className={`specs-tab ${activeTab === "specTable" ? "active" : ""}`}
-                onClick={() => setActiveTab("specTable")}
-              >
-                Technical Specifications
-              </button>
-              <button 
-                className={`specs-tab ${activeTab === "features" ? "active" : ""}`}
-                onClick={() => setActiveTab("features")}
-              >
-                AI Features
-              </button>
-              <button 
-                className={`specs-tab ${activeTab === "applications" ? "active" : ""}`}
-                onClick={() => setActiveTab("applications")}
-              >
-                Applications
-              </button>
-            </div>
-
-            <div className="specs-modal-content">
-              {activeTab === "specTable" && renderSpecificationTable()}
-              {activeTab === "features" && renderFeatures()}
-              {activeTab === "applications" && renderApplications()}
-            </div>
-          </div>
-        </div>
+        <SpecsDialog
+          product={selectedProduct}
+          onClose={() => setShowDetails(false)}
+          featuresLabel="AI Features"
+          renderSpecs={renderSpecificationTable}
+          renderFeatures={renderFeatures}
+          renderApplications={renderApplications}
+        />
       )}
 
       {/* CTA - Commented out as per other pages */}

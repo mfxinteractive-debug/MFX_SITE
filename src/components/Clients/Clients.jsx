@@ -22,7 +22,7 @@ function Clients() {
             {duplicatedLogos.map((logo, index) => (
               <div key={index} className="ticker-item">
                 <img 
-                  src={`${process.env.PUBLIC_URL}/clients/${logo}`} 
+                  src={`/clients/${logo}`} 
                   alt="Client logo" 
                   className="client-logo"
                   onError={(e) => {
@@ -40,7 +40,7 @@ function Clients() {
             {duplicatedLogos.map((logo, index) => (
               <div key={index} className="ticker-item">
                 <img 
-                  src={`${process.env.PUBLIC_URL}/clients/${logo}`} 
+                  src={`/clients/${logo}`} 
                   alt="Client logo" 
                   className="client-logo"
                   onError={(e) => {

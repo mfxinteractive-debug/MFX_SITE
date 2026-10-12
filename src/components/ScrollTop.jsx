@@ -9,7 +9,7 @@ const ScrollToTop = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth" // Optional: adds smooth scrolling
+      behavior: "instant" // Jump straight to the top of the new page
     });
   }, [pathname]);
 

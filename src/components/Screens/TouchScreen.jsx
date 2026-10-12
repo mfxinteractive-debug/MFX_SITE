@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Screens.css";
+import SpecsDialog from "./SpecsDialog";
+import formatSizes from "./formatSizes";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaTimes, FaChevronRight } from "react-icons/fa";
+import { FaRulerCombined, FaQuoteRight, FaArrowRight, FaChevronRight } from "react-icons/fa";
 import productData from "../../data/productsData.json";
 
 const TouchScreens = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState("specTable");
   const [products, setProducts] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -37,7 +39,6 @@ const TouchScreens = () => {
 
   const handleDetailsClick = (product) => {
     setSelectedProduct(product);
-    setActiveTab("specTable");
     setShowDetails(true);
   };
 
@@ -77,7 +78,8 @@ const TouchScreens = () => {
                 {formatKey(category)}
               </h4>
               <div className="specs-table">
-                {Object.entries(categoryData).map(([key, value]) => (
+                {/* List-type categories (e.g. connectivity) are arrays: show them as one row. */}
+                {(Array.isArray(categoryData) ? [["included", categoryData]] : Object.entries(categoryData)).map(([key, value]) => (
                   <div key={key} className="specs-row">
                     <div className="specs-key">
                       {formatKey(key)}:
@@ -105,7 +107,7 @@ const TouchScreens = () => {
           <ul>
             {selectedProduct.features.map((feature, index) => (
               <li key={index}>
-                <FaChevronRight className="feature-icon" />
+                <FaChevronRight className="px-feature-icon" aria-hidden="true" />
                 {feature}
               </li>
             ))}
@@ -135,7 +137,7 @@ const TouchScreens = () => {
   // Function to get display sizes from specifications
   const getDisplaySizes = (product) => {
     if (product.specifications?.display?.sizes) {
-      return `${product.specifications.display.sizes.join('", "')}" Display`;
+      return `${formatSizes(product.specifications.display.sizes)} Display`;
     }
     return "Multiple Sizes Available";
   };
@@ -157,8 +159,8 @@ const TouchScreens = () => {
       {/* Products Grid */}
       <section className="px-section">
         <div className="px-container">
-          <h2 className="section-title">Touch Screens Displays</h2>
-          <p className="section-subtitle">High-performance interactive displays for professional environments</p>
+          <h2 className="px-section-title">Touch Screens Displays</h2>
+          <p className="px-section-subtitle">High-performance interactive displays for professional environments</p>
           
           {products.length > 0 ? (
             products.map((product, index) => (
@@ -176,10 +178,11 @@ const TouchScreens = () => {
                         dynamicBullets: true 
                       }}
                       navigation={!isMobile}
-                      autoplay={{ 
-                        delay: 3000, 
-                        disableOnInteraction: false 
-                      }}
+                      autoplay={
+                        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                          ? false
+                          : { delay: 3000, disableOnInteraction: false }
+                      }
                       loop={true}
                       className="px-swiper"
                     >
@@ -208,17 +211,18 @@ const TouchScreens = () => {
 
                 {/* Content */}
                 <div className="px-info">
-                  <h2>{product.name}</h2>
+                  <h3>{product.name}</h3>
                   <div className="px-sizes">
-                    <FaRulerCombined /> Display: <span>{getDisplaySizes(product)}</span>
+                    <FaRulerCombined aria-hidden="true" /> Display: <span>{getDisplaySizes(product)}</span>
                   </div>
                   <p className="px-desc">{product.full_desc || product.short_desc}</p>
 
                   <div className="px-actions">
-                    <button className="px-quote-btn">
-                      Get Quote <FaArrowRight />
-                    </button>
-                    <button 
+                    <Link className="px-quote-btn" to="/contact">
+                      Get Quote <FaArrowRight aria-hidden="true" />
+                    </Link>
+                    <button
+                      type="button"
                       className="px-details-btn"
                       onClick={() => handleDetailsClick(product)}
                     >
@@ -227,7 +231,7 @@ const TouchScreens = () => {
                   </div>
 
                   <div className="px-quote">
-                    <FaQuoteRight />
+                    <FaQuoteRight aria-hidden="true" />
                     <em>{product.short_desc}</em>
                   </div>
                 </div>
@@ -244,47 +248,14 @@ const TouchScreens = () => {
 
       {/* Specifications Modal */}
       {showDetails && selectedProduct && (
-        <div className="specs-modal-overlay" onClick={() => setShowDetails(false)}>
-          <div className="specs-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="specs-modal-header">
-              <h2>{selectedProduct.name} - Complete Specifications</h2>
-              <button 
-                className="specs-modal-close"
-                onClick={() => setShowDetails(false)}
-              >
-                <FaTimes />
-              </button>
-            </div>
-            
-            {/* Tabs */}
-            <div className="specs-tabs">
-              <button 
-                className={`specs-tab ${activeTab === "specTable" ? "active" : ""}`}
-                onClick={() => setActiveTab("specTable")}
-              >
-                Technical Specifications
-              </button>
-              <button 
-                className={`specs-tab ${activeTab === "features" ? "active" : ""}`}
-                onClick={() => setActiveTab("features")}
-              >
-                Features
-              </button>
-              <button 
-                className={`specs-tab ${activeTab === "applications" ? "active" : ""}`}
-                onClick={() => setActiveTab("applications")}
-              >
-                Applications
-              </button>
-            </div>
-
-            <div className="specs-modal-content">
-              {activeTab === "specTable" && renderSpecificationTable()}
-              {activeTab === "features" && renderFeatures()}
-              {activeTab === "applications" && renderApplications()}
-            </div>
-          </div>
-        </div>
+        <SpecsDialog
+          product={selectedProduct}
+          onClose={() => setShowDetails(false)}
+          featuresLabel="Features"
+          renderSpecs={renderSpecificationTable}
+          renderFeatures={renderFeatures}
+          renderApplications={renderApplications}
+        />
       )}
 
       {/* CTA */}

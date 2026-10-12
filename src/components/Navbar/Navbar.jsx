@@ -1,225 +1,294 @@
-import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaChevronDown, FaChevronRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import {
+  FaBars,
+  FaTimes,
+  FaChevronDown,
+  FaArrowRight,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Mfx from "../../assets/mfx_logo.avif";
+import useFocusTrap from "../../hooks/useFocusTrap";
 import "./Navbar.css";
+
+const productLinks = [
+  { name: "Touch Screen Display", path: "/touch-screen-display" },
+  { name: "Indoor LED", path: "/indoor-led" },
+  { name: "Outdoor LED", path: "/outdoor-led" },
+  { name: "Outdoor Displays", path: "/outdoor-digital-displays" },
+  { name: "AI Kiosks", path: "/ai-kiosks" },
+];
+
+const socialLinks = [
+  { label: "Facebook", href: "https://www.facebook.com/mfxinteractive/", icon: <FaFacebookF /> },
+  { label: "Instagram", href: "https://instagram.com/mfxinteractive/", icon: <FaInstagram /> },
+  { label: "WhatsApp", href: "https://wa.me/916292004104", icon: <FaWhatsapp /> },
+  { label: "YouTube", href: "https://youtube.com/@multifxinteractive3956?si=cxp17-cPSVnnpwWj", icon: <FaYoutube /> },
+];
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductOpen, setMobileProductOpen] = useState(false);
-  const [ledOpen, setLedOpen] = useState(false);
-  
-  // For desktop LED hover
-  const [desktopLedOpen, setDesktopLedOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  const menuButtonRef = useRef(null);
+  const drawerRef = useRef(null);
+  const productsRef = useRef(null);
+  const productsButtonRef = useRef(null);
+  const hoverTimer = useRef(null);
+
+  const isProductRoute = productLinks.some((item) => item.path === pathname);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close every menu after navigating.
   useEffect(() => {
-    if (window.innerWidth <= 768 && menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [menuOpen]);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    if (!menuOpen) {
-      setMobileProductOpen(false);
-      setLedOpen(false);
-    }
-  };
-
-  const closeMenu = () => {
     setMenuOpen(false);
-    setMobileProductOpen(false);
-    setLedOpen(false);
+    setProductsOpen(false);
+  }, [pathname]);
+
+  // Close the drawer if the viewport grows into the desktop layout.
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 900px)");
+    const handleChange = (event) => event.matches && setMenuOpen(false);
+    query.addEventListener("change", handleChange);
+    return () => query.removeEventListener("change", handleChange);
+  }, []);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  useFocusTrap(drawerRef, menuOpen, closeMenu, menuButtonRef);
+
+  // Desktop products menu: close on outside click and on Escape.
+  useEffect(() => {
+    if (!productsOpen) return undefined;
+
+    const handlePointer = (event) => {
+      if (!productsRef.current?.contains(event.target)) setProductsOpen(false);
+    };
+    const handleKey = (event) => {
+      if (event.key === "Escape") {
+        setProductsOpen(false);
+        productsButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointer);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointer);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [productsOpen]);
+
+  useEffect(() => () => clearTimeout(hoverTimer.current), []);
+
+  const openProductsOnHover = () => {
+    clearTimeout(hoverTimer.current);
+    setProductsOpen(true);
   };
 
-  const toggleMobileProduct = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setMobileProductOpen(!mobileProductOpen);
-    if (mobileProductOpen) {
-      setLedOpen(false);
-    }
+  const closeProductsOnHover = () => {
+    clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => setProductsOpen(false), 160);
   };
 
-  const toggleMobileLed = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setLedOpen(!ledOpen);
+  const handleProductsBlur = (event) => {
+    if (!productsRef.current?.contains(event.relatedTarget)) setProductsOpen(false);
   };
 
-  const menuItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    {
-      name: "Products",
-      hasDropdown: true,
-      dropdown: [
-        { name: "Touch Screen Display", path: "/touch-screen-display" },
-        {
-          name: "LED",
-          hasSubDropdown: true,
-          subDropdown: [
-            { name: "Indoor LED", path: "/indoor-led" },
-            { name: "Outdoor LED", path: "/outdoor-led" },
-          ],
-        },
-        {name:"Outdoor Displays",path:"outdoor-digital-displays"},
-        { name: "AI Kiosks", path: "/ai-kiosks" },
-      ],
-    },
-    { name: "Services", path: "/services" },
-    { name: "Contact", path: "/contact" },
-  ];
+  const navClass = ({ isActive }) => `nav-link${isActive ? " is-active" : ""}`;
 
   return (
     <>
-      {/* Dark overlay when menu open on mobile */}
-      {menuOpen && (
-        <div className="mobile-overlay" onClick={closeMenu}></div>
-      )}
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
 
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="navbar-container">
-          <div className="navbar-logo">
-            <Link to="/" onClick={closeMenu}>
-              <img src={Mfx} alt="MFX Logo" />
-            </Link>
-          </div>
+      <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
+        <div className="site-header__inner">
+          <Link to="/" className="site-header__logo" aria-label="MULTIFX home">
+            <img src={Mfx} alt="MULTIFX" width="96" height="96" />
+          </Link>
 
-          <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
-            {menuItems.map((item) => (
+          <nav className="desktop-nav" aria-label="Primary">
+            <ul className="desktop-nav__list">
+              <li>
+                <NavLink to="/" end className={navClass}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/about" className={navClass}>
+                  About
+                </NavLink>
+              </li>
               <li
-                key={item.name}
-                className={`nav-item ${item.hasDropdown ? "has-dropdown" : ""}`}
+                ref={productsRef}
+                className="desktop-nav__dropdown"
+                onMouseEnter={openProductsOnHover}
+                onMouseLeave={closeProductsOnHover}
+                onBlur={handleProductsBlur}
               >
-                {!item.hasDropdown ? (
-                  // Regular menu item
-                  <Link to={item.path} onClick={closeMenu}>
-                    {item.name}
-                  </Link>
-                ) : (
-                  // Dropdown item
-                  <>
-                    {/* Desktop version */}
-                    <div 
-                      className="dropdown-wrapper desktop-only"
-                      onMouseEnter={() => setDesktopLedOpen(true)}
-                      onMouseLeave={() => setDesktopLedOpen(false)}
-                    >
-                      <Link 
-                        to="#" 
-                        className="dropdown-trigger"
-                        onClick={(e) => e.preventDefault()}
+                <button
+                  ref={productsButtonRef}
+                  type="button"
+                  className={`nav-link nav-link--button${isProductRoute ? " is-active" : ""}`}
+                  aria-expanded={productsOpen}
+                  aria-controls="products-menu"
+                  // Keyboard activation toggles; pointer clicks keep a hover-opened menu open.
+                  onClick={(event) => setProductsOpen((open) => (event.detail === 0 ? !open : true))}
+                >
+                  Products
+                  <FaChevronDown className="nav-link__chevron" aria-hidden="true" />
+                </button>
+                <ul
+                  id="products-menu"
+                  className={`products-menu${productsOpen ? " is-open" : ""}`}
+                >
+                  {productLinks.map((item) => (
+                    <li key={item.path}>
+                      <NavLink
+                        to={item.path}
+                        className={({ isActive }) => `products-menu__link${isActive ? " is-active" : ""}`}
+                        tabIndex={productsOpen ? 0 : -1}
                       >
                         {item.name}
-                        <FaChevronDown className="chevron-icon" />
-                      </Link>
-                      <ul className="dropdown-menu">
-                        {item.dropdown.map((sub) => (
-                          <li 
-                            key={sub.name}
-                            className={sub.hasSubDropdown ? "has-nested-dropdown" : ""}
-                            onMouseEnter={() => sub.hasSubDropdown && setDesktopLedOpen(true)}
-                            onMouseLeave={() => sub.hasSubDropdown && setDesktopLedOpen(false)}
-                          >
-                            {!sub.hasSubDropdown ? (
-                              <Link to={sub.path} onClick={closeMenu}>
-                                {sub.name}
-                              </Link>
-                            ) : (
-                              <>
-                                <span className="nested-trigger">
-                                  {sub.name}
-                                  <FaChevronRight className="nested-chevron" />
-                                </span>
-                                {desktopLedOpen && (
-                                  <ul className="nested-dropdown-menu">
-                                    {sub.subDropdown.map((nested) => (
-                                      <li key={nested.name}>
-                                        <Link to={nested.path} onClick={closeMenu}>
-                                          {nested.name}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Mobile version */}
-                    <div className="mobile-dropdown-wrapper mobile-only">
-                      <button 
-                        className="mobile-dropdown-trigger"
-                        onClick={toggleMobileProduct}
-                        aria-expanded={mobileProductOpen}
-                      >
-                        <span>{item.name}</span>
-                        <FaChevronDown 
-                          className={`chevron-mobile ${mobileProductOpen ? "rotated" : ""}`} 
-                        />
-                      </button>
-                      
-                      {mobileProductOpen && (
-                        <ul className="mobile-dropdown-content">
-                          {item.dropdown.map((sub) => (
-                            <li key={sub.name} className={sub.hasSubDropdown ? "has-nested-mobile" : ""}>
-                              {!sub.hasSubDropdown ? (
-                                <Link to={sub.path} onClick={closeMenu}>
-                                  {sub.name}
-                                </Link>
-                              ) : (
-                                <>
-                                  <button 
-                                    className="mobile-nested-trigger"
-                                    onClick={toggleMobileLed}
-                                  >
-                                    <span>{sub.name}</span>
-                                    <FaChevronDown 
-                                      className={`nested-chevron-mobile ${ledOpen ? "rotated" : ""}`} 
-                                    />
-                                  </button>
-                                  {ledOpen && (
-                                    <ul className="mobile-nested-dropdown">
-                                      {sub.subDropdown.map((nested) => (
-                                        <li key={nested.name}>
-                                          <Link to={nested.path} onClick={closeMenu}>
-                                            {nested.name}
-                                          </Link>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  )}
-                                </>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </>
-                )}
+                        <FaArrowRight aria-hidden="true" />
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
               </li>
-            ))}
-          </ul>
+              <li>
+                <NavLink to="/services" className={navClass}>
+                  Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact" className={navClass}>
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
 
-          <div className="menu-toggle" onClick={toggleMenu}>
-            {menuOpen ? <FaTimes /> : <FaBars />}
+          <Link to="/contact" className="mfx-btn mfx-btn--primary site-header__cta">
+            Get a Quote
+          </Link>
+
+          <button
+            ref={menuButtonRef}
+            className="menu-toggle"
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation menu"
+            aria-controls="mobile-navigation"
+            aria-expanded={menuOpen}
+          >
+            <FaBars aria-hidden="true" />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile drawer lives outside the blurred header so it is truly viewport-fixed. */}
+      <div className={`mobile-nav${menuOpen ? " is-open" : ""}`}>
+        <div className="mobile-nav__backdrop" onClick={closeMenu} aria-hidden="true" />
+        <div
+          ref={drawerRef}
+          id="mobile-navigation"
+          className="mobile-nav__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          tabIndex={-1}
+        >
+          <div className="mobile-nav__head">
+            <Link to="/" className="site-header__logo" aria-label="MULTIFX home">
+              <img src={Mfx} alt="MULTIFX" width="96" height="96" />
+            </Link>
+            <button type="button" className="menu-toggle menu-toggle--close" onClick={closeMenu} aria-label="Close navigation menu">
+              <FaTimes aria-hidden="true" />
+            </button>
+          </div>
+
+          <nav aria-label="Mobile" className="mobile-nav__body">
+            <ul className="mobile-nav__list">
+              <li>
+                <NavLink to="/" end className="mobile-nav__link">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/about" className="mobile-nav__link">
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className={`mobile-nav__link mobile-nav__toggle${isProductRoute ? " is-active" : ""}`}
+                  aria-expanded={mobileProductOpen}
+                  aria-controls="mobile-products"
+                  onClick={() => setMobileProductOpen((open) => !open)}
+                >
+                  Products
+                  <FaChevronDown className="mobile-nav__chevron" aria-hidden="true" />
+                </button>
+                <ul id="mobile-products" className="mobile-nav__sub" hidden={!mobileProductOpen}>
+                  {productLinks.map((item) => (
+                    <li key={item.path}>
+                      <NavLink to={item.path} className="mobile-nav__sublink">
+                        {item.name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <NavLink to="/services" className="mobile-nav__link">
+                  Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact" className="mobile-nav__link">
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="mobile-nav__foot">
+            <Link to="/contact" className="mfx-btn mfx-btn--primary mobile-nav__cta">
+              Get a Quote <FaArrowRight aria-hidden="true" />
+            </Link>
+            <a className="mobile-nav__contact" href="tel:+916292004104">
+              <FaPhoneAlt aria-hidden="true" /> +91 6292004104
+            </a>
+            <a className="mobile-nav__contact" href="mailto:info@mfxinteractive.com">
+              <FaEnvelope aria-hidden="true" /> info@mfxinteractive.com
+            </a>
+            <div className="mobile-nav__social">
+              {socialLinks.map((item) => (
+                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
+                  {item.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </nav>
+      </div>
     </>
   );
 }

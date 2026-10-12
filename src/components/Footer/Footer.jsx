@@ -18,26 +18,26 @@ const Footer = () => {
   return (
     <footer className="footer">
       {/* Top decorative border */}
-      <div className="footer-top-border"></div>
+      <div className="footer-top-border" aria-hidden="true"></div>
 
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-col footer-brand">
-          <h2>
-            <span className="brand-highlight">MFX</span> INTERACTIVE
-          </h2>
+          <p className="footer-brand__name">
+            <span className="footer-brand__mark">MFX</span> INTERACTIVE
+          </p>
           <p className="brand-tagline">
             Transforming spaces with cutting-edge digital display solutions and interactive experiences.
           </p>
-          <div className="social-icons">
-            <a href="https://www.facebook.com/mfxinteractive/" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-              <FaFacebookF />
+          <div className="footer-social">
+            <a href="https://www.facebook.com/mfxinteractive/" className="footer-social__link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <FaFacebookF aria-hidden="true" />
             </a>
-            <a href="instagram.com/mfxinteractive/" className="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <FaInstagram />
+            <a href="https://instagram.com/mfxinteractive/" className="footer-social__link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <FaInstagram aria-hidden="true" />
             </a>
-            <a href="https://youtube.com/@multifxinteractive3956?si=cxp17-cPSVnnpwWj" className="social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-              <FaYoutube />
+            <a href="https://youtube.com/@multifxinteractive3956?si=cxp17-cPSVnnpwWj" className="footer-social__link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+              <FaYoutube aria-hidden="true" />
             </a>
           </div>
           {/* <div className="newsletter">
@@ -53,29 +53,29 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="footer-col">
-          <h3>Quick Links</h3>
+          <h2 className="footer-heading">Quick Links</h2>
           <ul>
             <li>
               <Link to="/">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Home
               </Link>
             </li>
             <li>
               <Link to="/about">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 About Us
               </Link>
             </li>
             <li>
               <Link to="/services">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Services
               </Link>
             </li>
             <li>
               <Link to="/contact">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Contact
               </Link>
             </li>
@@ -84,29 +84,35 @@ const Footer = () => {
 
         {/* Products Links */}
         <div className="footer-col">
-          <h3>Our Products</h3>
+          <h2 className="footer-heading">Our Products</h2>
           <ul>
             <li>
-              <Link to="touch-screen-display">
-                <FaArrowRight className="link-arrow" />
+              <Link to="/touch-screen-display">
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Touch Screen Display
               </Link>
             </li>
             <li>
               <Link to="/outdoor-led">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Outdoor LED
               </Link>
             </li>
             <li>
               <Link to="/indoor-led">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Indoor LED
               </Link>
             </li>
             <li>
+              <Link to="/outdoor-digital-displays">
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
+                Outdoor Displays
+              </Link>
+            </li>
+            <li>
               <Link to="/ai-kiosks">
-                <FaArrowRight className="link-arrow" />
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
                 AI Kiosks
               </Link>
             </li>
@@ -115,9 +121,9 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="footer-col footer-contact">
-          <h3>Get In Touch</h3>
+          <h2 className="footer-heading">Get In Touch</h2>
           <div className="contact-item">
-            <div className="contact-icon">
+            <div className="contact-icon" aria-hidden="true">
               <FaMapMarkerAlt />
             </div>
             <div>
@@ -127,7 +133,7 @@ const Footer = () => {
           </div>
 
           <div className="contact-item">
-            <div className="contact-icon">
+            <div className="contact-icon" aria-hidden="true">
               <FaEnvelope />
             </div>
             <div>
@@ -137,19 +143,18 @@ const Footer = () => {
           </div>
 
           <div className="contact-item">
-            <div className="contact-icon">
+            <div className="contact-icon" aria-hidden="true">
               <FaPhoneAlt />
             </div>
             <div>
-              <a href="tel:+916292004104">+91 6292004104</a><br/>
+              <a href="tel:+916292004104">+91 6292004104</a>
               <a href="tel:+918697892496">+91 8697892496</a>
-
               <p>Mon-Fri: 9AM - 6PM</p>
             </div>
           </div>
 
           <div className="business-hours">
-            <h4>Business Hours</h4>
+            <h3>Business Hours</h3>
             <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
             <p>Saturday: 10:00 AM - 4:00 PM</p>
             <p>Sunday: Closed</p>
@@ -160,13 +165,11 @@ const Footer = () => {
       {/* Bottom Section */}
       <div className="footer-bottom">
         <div className="footer-bottom-container">
-          <p>
-            © {currentYear} MFX Interactive Pvt. Ltd. All Rights Reserved.
-            <span className="separator">|</span>
+          <p>© {currentYear} MFX Interactive Pvt. Ltd. All Rights Reserved.</p>
+          <nav className="footer-legal" aria-label="Legal">
             <Link to="/privacy-policy">Privacy Policy</Link>
-            <span className="separator">|</span>
             <Link to="/service-and-support">Service and Support</Link>
-          </p>
+          </nav>
         </div>
       </div>
     </footer>

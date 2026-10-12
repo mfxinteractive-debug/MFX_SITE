@@ -25,6 +25,7 @@ function App() {
       <Navbar />
       <SocialIcons />
       <ScrollToTop /> {/* Add this */}
+      <main id="main-content" tabIndex={-1}>
       <Routes>
         <Route
           path="/"
@@ -34,7 +35,7 @@ function App() {
               <LandingPage />
               <OurInstallations />
               <Sponsors />
-              <Contacts />
+              <Contacts titleAs="h2" />
             </>
           }
         />
@@ -49,6 +50,7 @@ function App() {
         <Route path="/service-and-support" element={<ServiceSupport/>}/>
          <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
       </Routes>
+      </main>
       <Footer />
     </>
   );
