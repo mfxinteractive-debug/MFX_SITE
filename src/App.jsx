@@ -16,6 +16,7 @@ import Services from "./components/Services/Services";
 import SliderPage from "./components/SliderPage/SliderPage";
 import Outdoor_Digital_Display from "./components/Screens/Outdoor_Digital_Display"
 import ScrollToTop from "./components/ScrollTop"; // Import ScrollToTop
+import Seo from "./components/Seo";
 import ServiceSupport from "./components/ServiceSupport/ServiceSupport";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 
@@ -25,6 +26,7 @@ function App() {
       <Navbar />
       <SocialIcons />
       <ScrollToTop /> {/* Add this */}
+      <Seo />
       <main id="main-content" tabIndex={-1}>
       <Routes>
         <Route
