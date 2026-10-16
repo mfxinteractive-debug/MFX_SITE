@@ -74,6 +74,24 @@ const Footer = () => {
               </Link>
             </li>
             <li>
+              <Link to="/our-work">
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
+                Our Work
+              </Link>
+            </li>
+            <li>
+              <Link to="/touch-screen-display-kolkata">
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
+                Touch Screens in Kolkata
+              </Link>
+            </li>
+            <li>
+              <Link to="/faq">
+                <FaArrowRight className="link-arrow" aria-hidden="true" />
+                FAQ
+              </Link>
+            </li>
+            <li>
               <Link to="/contact">
                 <FaArrowRight className="link-arrow" aria-hidden="true" />
                 Contact

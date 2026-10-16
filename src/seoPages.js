@@ -1,8 +1,21 @@
 // Per-route SEO metadata, shared by the app (Seo.jsx) and the build-time
 // prerender step in vite.config.js. Plain JS so Node can import it directly.
+// An optional `jsonLd` object is written into that page's static HTML head.
+
+import { faqs } from "./content/faqs.js";
 
 export const SITE_URL = "https://mfxinteractive.com";
 const BRAND = "MFX Interactive";
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
 
 export const pages = {
   "/": {
@@ -54,6 +67,22 @@ export const pages = {
     title: `Service & Support | ${BRAND}`,
     description:
       "OEM services, warranty, shipment, samples and after-sales support for MFX Interactive display products.",
+  },
+  "/touch-screen-display-kolkata": {
+    title: `Touch Screen Display Supplier in Kolkata | ${BRAND}`,
+    description:
+      "Kolkata-based supplier of interactive touch screen displays, touch kiosks, digital standees, interactive flat panels and LED walls, with installation, warranty and local support. Call +91 6292004104.",
+  },
+  "/our-work": {
+    title: `Our Work: Installations in Kolkata | ${BRAND}`,
+    description:
+      "Digital standees, interactive touch tables and kiosks installed by MFX Interactive for ITC Sonar, ITC Royal Bengal, The Spring Club, Tutopia, Merlin and Natural Group.",
+  },
+  "/faq": {
+    title: `FAQ: Touch Screens, Kiosks & Digital Signage | ${BRAND}`,
+    description:
+      "Answers on touch screen sizes, pricing, installation, warranty, support, operating systems and ordering from MFX Interactive, Kolkata.",
+    jsonLd: faqJsonLd,
   },
   "/privacy-policy": {
     title: `Privacy Policy | ${BRAND}`,

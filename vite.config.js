@@ -29,7 +29,13 @@ function prerenderPageMeta() {
         const title = escapeHtml(page.title)
         const description = escapeHtml(page.description)
 
+        // `<` is escaped so page text can never close the script element early.
+        const jsonLd = page.jsonLd
+          ? `    <script type="application/ld+json">${JSON.stringify(page.jsonLd).replace(/</g, '\\u003c')}</script>\n  </head>`
+          : '</head>'
+
         const html = template
+          .replace('</head>', jsonLd)
           .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
           .replace(/(<meta name="description" content=")[^"]*(")/, `$1${description}$2`)
           .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)

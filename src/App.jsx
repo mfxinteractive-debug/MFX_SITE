@@ -19,6 +19,9 @@ import ScrollToTop from "./components/ScrollTop"; // Import ScrollToTop
 import Seo from "./components/Seo";
 import ServiceSupport from "./components/ServiceSupport/ServiceSupport";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
+import KolkataPage from "./components/Pages/KolkataPage";
+import OurWork from "./components/Pages/OurWork";
+import FaqPage from "./components/Pages/FaqPage";
 
 function App() {
   return (
@@ -51,6 +54,9 @@ function App() {
         <Route path="/outdoor-digital-displays" element={<Outdoor_Digital_Display/>}/>
         <Route path="/service-and-support" element={<ServiceSupport/>}/>
          <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
+        <Route path="/touch-screen-display-kolkata" element={<KolkataPage />} />
+        <Route path="/our-work" element={<OurWork />} />
+        <Route path="/faq" element={<FaqPage />} />
       </Routes>
       </main>
       <Footer />

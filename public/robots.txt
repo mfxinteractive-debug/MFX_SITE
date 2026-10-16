@@ -1,4 +1,27 @@
+# All crawlers are welcome, including the AI assistants below, so that
+# ChatGPT, Gemini, Perplexity, Claude and Copilot can find and cite this site.
 User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://mfxinteractive.com/sitemap.xml

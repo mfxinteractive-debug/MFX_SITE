@@ -40,10 +40,11 @@
             "publisher": { "@id": "https://mfxinteractive.com/#organization" }
           },
           {
-            "@type": "Organization",
+            "@type": "LocalBusiness",
             "@id": "https://mfxinteractive.com/#organization",
             "name": "MFX Interactive Pvt. Ltd.",
-            "alternateName": "MULTIFX",
+            "alternateName": ["MULTIFX", "MFX Interactive"],
+            "description": "Kolkata-based supplier of interactive touch screen displays, touch kiosks, digital standees, interactive flat panels, indoor and outdoor LED displays and AI kiosks, with installation and after-sales support.",
             "url": "https://mfxinteractive.com/",
             "logo": {
               "@type": "ImageObject",
@@ -51,6 +52,7 @@
               "width": 512,
               "height": 512
             },
+            "image": "https://mfxinteractive.com/logo.png",
             "email": "info@mfxinteractive.com",
             "telephone": "+91-6292004104",
             "address": {
@@ -60,6 +62,48 @@
               "addressRegion": "West Bengal",
               "postalCode": "700017",
               "addressCountry": "IN"
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=MFX+Interactive+AC+Market+1+Shakespeare+Sarani+Kolkata+700017",
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "10:00",
+                "closes": "16:00"
+              }
+            ],
+            "areaServed": [
+              { "@type": "City", "name": "Kolkata" },
+              { "@type": "State", "name": "West Bengal" },
+              { "@type": "Country", "name": "India" }
+            ],
+            "parentOrganization": { "@type": "Organization", "name": "TAAZATV" },
+            "knowsAbout": [
+              "Touch screen displays",
+              "Interactive kiosks",
+              "Digital signage",
+              "Interactive flat panels",
+              "LED video walls",
+              "AI kiosks",
+              "Touch interactive content development"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Interactive displays and digital signage",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Touch screen standees and kiosks", "url": "https://mfxinteractive.com/touch-screen-display" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Indoor LED displays", "url": "https://mfxinteractive.com/indoor-led" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Outdoor LED displays", "url": "https://mfxinteractive.com/outdoor-led" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Outdoor digital displays", "url": "https://mfxinteractive.com/outdoor-digital-displays" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "AI kiosks", "url": "https://mfxinteractive.com/ai-kiosks" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Touch interactive content development", "url": "https://mfxinteractive.com/services" } }
+              ]
             },
             "sameAs": [
               "https://www.facebook.com/mfxinteractive/",
