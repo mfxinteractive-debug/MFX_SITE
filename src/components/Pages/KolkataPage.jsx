@@ -8,7 +8,6 @@ import {
   FaShieldAlt,
   FaHeadset,
   FaCode,
-  FaSyncAlt,
   FaBoxOpen,
 } from "react-icons/fa";
 import { business } from "../../content/business";
@@ -43,7 +42,6 @@ const reasons = [
   { icon: <FaShieldAlt />, title: "12–24 month warranty", text: "12 months standard from shipment, up to 24 months on designated models." },
   { icon: <FaHeadset />, title: "Fast support", text: "24/7 online support: replies within 4 hours on working days, 12 hours on weekends." },
   { icon: <FaCode />, title: "In-house content team", text: "We build the interactive apps, signage and games that run on your screens." },
-  { icon: <FaSyncAlt />, title: "Free CMS included", text: "Update your digital signage content easily with the included MWE Free CMS." },
   { icon: <FaBoxOpen />, title: "No minimum order", text: "Order a single display or a full rollout; samples available for testing." },
 ];
 
@@ -114,7 +112,7 @@ function KolkataPage() {
           <div className="pg-section__head">
             <h2 id="kol-why">Why Kolkata businesses choose MFX Interactive</h2>
           </div>
-          <div className="pg-grid">
+          <div className="pg-grid pg-grid--3">
             {reasons.map((reason) => (
               <div key={reason.title} className="pg-card">
                 <span className="pg-card__icon" aria-hidden="true">{reason.icon}</span>

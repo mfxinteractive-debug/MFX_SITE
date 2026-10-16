@@ -45,11 +45,6 @@ export const faqs = [
       "Yes. Our in-house creative and development team builds touch-interactive content, including interactive learning apps, corporate presentations and digital signage, retail product explorers and wayfinding, museum and exhibition content, and custom games.",
   },
   {
-    question: "How do we update what is shown on our digital signage?",
-    answer:
-      "Our digital signage includes MWE Free CMS, so your team can publish and update content easily without technical help.",
-  },
-  {
     question: "Is there a minimum order quantity?",
     answer:
       "No. There is no minimum order quantity for standard products, though unit prices vary with quantity. Customised products are priced slightly higher than standard ones.",
